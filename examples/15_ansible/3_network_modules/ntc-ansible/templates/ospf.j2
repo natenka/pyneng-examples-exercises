@@ -1,0 +1,7 @@
+router ospf 1
+ router-id {{ mgmnt_ip }}
+ ispf
+ auto-cost reference-bandwidth 10000
+{% for ip in ospf_ints %}
+ network {{ ip }} 0.0.0.0 area 0
+{% endfor %}

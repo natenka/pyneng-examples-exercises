@@ -1,0 +1,5 @@
+Template, Hostname, Vendor, Command
+sh_cdp_n_det.template, .*, Cisco, sh[[ow]] cdp ne[[ighbors]] de[[tail]]
+sh_clock.template, .*, Cisco, sh[[ow]] clo[[ck]]
+sh_ip_int_br.template, .*, Cisco, sh[[ow]] ip int[[erface]] br[[ief]]
+sh_ip_route_ospf.template, .*, Cisco, sh[[ow]] ip rou[[te]] o[[spf]]

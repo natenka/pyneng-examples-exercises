@@ -1,0 +1,5 @@
+---
+
+hostname: london_sw1
+mgmnt_int: VLAN100
+mgmnt_ip: 10.0.0.100

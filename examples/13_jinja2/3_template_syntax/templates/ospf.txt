@@ -1,0 +1,5 @@
+router ospf 1
+ auto-cost reference-bandwidth 10000
+{% for networks in ospf %}
+ network {{ networks.network }} area {{ networks.area }}
+{% endfor %}

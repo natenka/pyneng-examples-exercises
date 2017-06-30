@@ -1,0 +1,16 @@
+hostname {{ name }}
+
+interface Loopback0
+ ip address 10.0.0.{{ id }} 255.255.255.255
+
+{% for vlan, name in vlans.iteritems() %}
+vlan {{ vlan }}
+ name {{ name }}
+{% endfor %}
+
+router ospf 1
+ router-id 10.0.0.{{ id }}
+ auto-cost reference-bandwidth 10000
+{% for networks in ospf %}
+ network {{ networks.network }} area {{ networks.area }}
+{% endfor %}

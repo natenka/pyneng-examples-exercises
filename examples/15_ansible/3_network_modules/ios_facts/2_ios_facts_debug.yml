@@ -1,0 +1,19 @@
+---
+
+- name: Collect IOS facts
+  hosts: 192.168.100.1
+  gather_facts: false
+  connection: local
+
+  tasks:
+
+    - name: Facts
+      ios_facts:
+        gather_subset: all
+        provider: "{{ cli }}"
+
+    - name: Show ansible_net_all_ipv4_addresses fact
+      debug: var=ansible_net_all_ipv4_addresses
+
+    - name: Show ansible_net_interfaces fact
+      debug: var=ansible_net_interfaces['Ethernet0/0']

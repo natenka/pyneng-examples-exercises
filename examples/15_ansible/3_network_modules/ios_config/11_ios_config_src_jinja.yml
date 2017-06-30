@@ -1,0 +1,13 @@
+---
+
+- name: Run cfg commands on router
+  hosts: cisco-routers
+  gather_facts: false
+  connection: local
+
+  tasks:
+
+    - name: Config OSPF
+      ios_config:
+        src: templates/ospf.j2
+        provider: "{{ cli }}"

@@ -1,0 +1,11 @@
+router bgp {{ bgp.local_as }}
+ {% for ibgp in bgp.ibgp_neighbors %}
+ neighbor {{ ibgp }} remote-as {{ bgp.local_as }}
+ neighbor {{ ibgp }} update-source {{ bgp.loopback }}
+ {% endfor %}
+
+router bgp {{ bgp.local_as }}
+ {%+ for ibgp in bgp.ibgp_neighbors %}
+ neighbor {{ ibgp }} remote-as {{ bgp.local_as }}
+ neighbor {{ ibgp }} update-source {{ bgp.loopback }}
+ {%+ endfor %}

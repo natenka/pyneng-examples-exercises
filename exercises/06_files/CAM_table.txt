@@ -1,0 +1,13 @@
+sw1#sh mac address-table 
+          Mac Address Table
+-------------------------------------------
+
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+ 100    aabb.cc80.7000    DYNAMIC     Gi0/1
+ 200    aabb.cc80.7000    DYNAMIC     Gi0/2
+ 300    aabb.cc80.7000    DYNAMIC     Gi0/3
+ 100    aabb.cc80.7000    DYNAMIC     Gi0/4
+ 500    aabb.cc80.7000    DYNAMIC     Gi0/5
+ 200    aabb.cc80.7000    DYNAMIC     Gi0/6
+ 300    aabb.cc80.7000    DYNAMIC     Gi0/7

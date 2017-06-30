@@ -1,0 +1,18 @@
+---
+
+- name: Run cfg commands on router
+  hosts: 192.168.100.1
+  gather_facts: false
+  connection: local
+
+  tasks:
+
+    - name: Config ACL
+      ios_config:
+        parents:
+          - ip access-list extended IN_to_OUT
+        lines:
+          - permit tcp 10.0.1.0 0.0.0.255 any eq www
+          - permit tcp 10.0.1.0 0.0.0.255 any eq 22
+          - permit icmp any any
+        provider: "{{ cli }}"

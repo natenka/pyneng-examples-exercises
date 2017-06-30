@@ -1,0 +1,15 @@
+---
+
+- name: Run cfg commands on routers
+  hosts: cisco-routers
+  gather_facts: false
+  connection: local
+
+  tasks:
+
+    - name: Config console logging
+      ios_config:
+        lines:
+          - logging console debugging
+        provider: "{{ cli }}"
+

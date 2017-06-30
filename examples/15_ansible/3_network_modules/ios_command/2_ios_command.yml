@@ -1,0 +1,19 @@
+---
+
+- name: Run show commands on routers
+  hosts: cisco-routers
+  gather_facts: false
+  connection: local
+
+  tasks:
+
+    - name: run show commands
+      ios_command:
+        commands:
+          - show ip int br
+          - sh ip route
+        provider: "{{ cli }}"
+      register: show_result
+
+    - name: Debug registered var
+      debug: var=show_result.stdout_lines

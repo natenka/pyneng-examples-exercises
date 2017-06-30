@@ -1,0 +1,22 @@
+---
+
+- name: Run cfg commands on routers
+  hosts: cisco-routers
+  gather_facts: false
+  connection: local
+
+  tasks:
+
+    - name: Config line vty
+      ios_config:
+        parents:
+          - line vty 0 4
+        lines:
+          - login local
+          - transport input ssh
+        provider: "{{ cli }}"
+      register: cfg
+
+    - name: Show config updates
+      debug: var=cfg.updates
+      when: cfg.changed

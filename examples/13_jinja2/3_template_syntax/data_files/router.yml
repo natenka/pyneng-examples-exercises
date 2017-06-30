@@ -1,0 +1,17 @@
+ospf:
+  - network: 10.0.1.0 0.0.0.255
+    area: 0
+  - network: 10.0.2.0 0.0.0.255
+    area: 2
+  - network: 10.1.1.0 0.0.0.255
+    area: 0
+bgp:
+  local_as: 100
+  loopback: lo100
+  ibgp_neighbors:
+    - 10.0.0.2
+    - 10.0.0.3
+  ebgp_neighbors:
+    90.1.1.1: 500
+    80.1.1.1: 600
+log_server: 10.1.1.1

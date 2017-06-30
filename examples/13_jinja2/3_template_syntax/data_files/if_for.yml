@@ -1,0 +1,4 @@
+vlans:
+  10: Marketing
+  20: Voice
+  30: Management

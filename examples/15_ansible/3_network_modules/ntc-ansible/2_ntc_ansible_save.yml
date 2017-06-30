@@ -1,0 +1,24 @@
+---
+
+- name: Run show commands on routers
+  hosts: cisco-routers
+  gather_facts: false
+  connection: local
+
+  tasks:
+
+    - name: Run sh ip int br
+      ntc_show_command:
+        connection: ssh
+        platform: "cisco_ios"
+        command: "sh ip int br"
+        host: "{{ inventory_hostname }}"
+        username: "cisco"
+        password: "cisco"
+        template_dir: "library/ntc-ansible/ntc-templates/templates"
+      register: result
+
+    - name: Copy facts to files
+      copy:
+        content: "{{ result.response | to_nice_json }}"
+        dest: "all_facts/{{inventory_hostname}}_sh_ip_int_br.json"

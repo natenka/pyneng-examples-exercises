@@ -1,0 +1,20 @@
+- id: 11
+  name: Liverpool
+  to_name: LONDON
+  IT: 791
+  BS: 1550
+  to_id: 1
+
+- id: 12
+  name: Bristol
+  to_name: LONDON
+  IT: 793
+  BS: 1510
+  to_id: 1
+
+- id: 14
+  name: Coventry
+  to_name: Manchester
+  IT: 892
+  BS: 1650
+  to_id: 2

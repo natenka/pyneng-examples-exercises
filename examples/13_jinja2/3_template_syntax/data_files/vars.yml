@@ -1,0 +1,9 @@
+id: 3
+name: R3
+vlans:
+  - 10
+  - 20
+  - 30
+ospf:
+  network: 10.0.1.0 0.0.0.255
+  area: 0

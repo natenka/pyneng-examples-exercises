@@ -1,0 +1,14 @@
+---
+
+- name: Run show commands on routers
+  hosts: cisco-routers
+  gather_facts: false
+
+  tasks:
+
+    - name: run sh ip int br
+      raw: sh ip int br | ex unass
+      register: sh_ip_int_br_result
+
+    - name: Debug registered var
+      debug: var=sh_ip_int_br_result.stdout_lines

@@ -1,0 +1,13 @@
+---
+
+- name: Collect IOS facts
+  hosts: cisco-routers
+  gather_facts: false
+  connection: local
+
+  tasks:
+
+    - name: Facts
+      ios_facts:
+        gather_subset: all
+        provider: "{{ cli }}"

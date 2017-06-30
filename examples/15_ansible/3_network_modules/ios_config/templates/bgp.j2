@@ -1,0 +1,13 @@
+router bgp {{ as }}
+ network {{ network }}
+ {% for n in ibgp_neighbors %}
+ neighbor {{ n }} remote-as {{ as }}
+ neighbor {{ n }} update-source {{ update_source_int }}
+ {% endfor %}
+ {% for extn in ebgp_neighbors %}
+ neighbor {{ extn.ip }} remote-as {{ extn.as }}
+ neighbor {{ extn.ip }} ttl-security hops {{ ttl_security_hops }}
+ {% if send_community == true %}
+ neighbor {{ extn.ip }} send-community
+ {% endif %}
+ {% endfor %}

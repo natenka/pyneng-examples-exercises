@@ -1,0 +1,10 @@
+{% for intf, params in trunks | dictsort %}
+interface {{ intf }}
+ {% if params.action == 'add' %}
+ switchport trunk allowed vlan add {{ params.vlans }}
+ {% elif params.action == 'delete' %}
+ switchport trunk allowed vlan remove {{ params.vlans }}
+ {% else %}
+ switchport trunk allowed vlan {{ params.vlans }}
+ {% endif %}
+{% endfor %}

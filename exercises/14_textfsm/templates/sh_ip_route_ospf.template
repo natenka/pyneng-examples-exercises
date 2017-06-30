@@ -1,0 +1,11 @@
+Value Network (([0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}))
+Value Mask (\/\d{1,2})
+Value Distance (\d+)
+Value Metric (\d+)
+Value List NextHop ([0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3})
+
+Start
+  ^O -> Continue.Record
+  ^O +${Network}${Mask}\s\[${Distance}\/${Metric}\]\svia\s${NextHop},
+  ^\s+\[${Distance}\/${Metric}\]\svia\s${NextHop},
+

@@ -1,0 +1,17 @@
+ospf:
+- router ospf 1
+- auto-cost reference-bandwith 10000
+- network 10.0.0.0 0.255.255.255 area 0
+
+mngmt:
+- logging 10.1.1.1
+
+alias:
+- alias configure sh do sh 
+- alias exec ospf sh run | s ^router ospf
+- alias exec bri show ip int bri | exc unass
+- alias exec id show int desc
+- alias exec top sh proc cpu sorted | excl 0.00%__0.00%__0.00%
+- alias exec c conf t
+- alias exec diff sh archive config differences nvram:startup-config system:running-config
+- alias exec desc sh int desc | ex down

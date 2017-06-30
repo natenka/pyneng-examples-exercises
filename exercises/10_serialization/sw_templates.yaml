@@ -1,0 +1,17 @@
+access:
+- switchport access vlan
+- switchport mode access
+- switchport nonegotiate
+- spanning-tree portfast
+- spanning-tree bpduguard enable
+
+psecurity:
+- switchport port-security maximum 2
+- switchport port-security violation restrict
+- switchport port-security
+
+trunk:
+- switchport trunk encapsulation dot1q
+- switchport mode trunk
+- switchport trunk native vlan 999
+- switchport trunk allowed vlan

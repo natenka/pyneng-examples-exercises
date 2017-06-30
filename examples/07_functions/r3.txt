@@ -1,0 +1,12 @@
+!
+service timestamps debug datetime msec localtime show-timezone year
+service timestamps log datetime msec localtime show-timezone year
+service password-encryption
+service sequence-numbers
+
+!
+
+
+ip ssh version 2
+
+!

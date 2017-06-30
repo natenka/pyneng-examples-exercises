@@ -1,0 +1,5 @@
+Value ID (\d+)
+Value Hop (\d+(\.\d+){3})
+
+Start
+  ^  ${ID} ${Hop} -> Record

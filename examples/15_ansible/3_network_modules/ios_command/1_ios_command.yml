@@ -1,0 +1,13 @@
+---
+
+- name: Run show commands on routers
+  hosts: cisco-routers
+  gather_facts: false
+  connection: local
+
+  tasks:
+
+    - name: run sh ip int br
+      ios_command:
+        commands: show ip int br
+        provider: "{{ cli }}"

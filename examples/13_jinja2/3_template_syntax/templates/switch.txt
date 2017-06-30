@@ -1,0 +1,3 @@
+{% include 'vlans.txt' %}
+
+{% include 'ospf.txt' %}

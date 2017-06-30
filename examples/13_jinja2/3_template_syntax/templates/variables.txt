@@ -1,0 +1,12 @@
+hostname {{ name }}
+
+interface Loopback0
+ ip address 10.0.0.{{ id }} 255.255.255.255
+
+vlan {{ vlans[0] }}
+
+router ospf 1
+ router-id 10.0.0.{{ id }}
+ auto-cost reference-bandwidth 10000
+ network {{ ospf.network }} area {{ ospf['area'] }}
+

@@ -1,0 +1,23 @@
+{% for intf, params in trunks | dictsort %}
+ {% set vlans = params.vlans %}
+ {% set action = params.action %}
+
+interface {{ intf }}
+ {% if vlans is iterable %}
+  {% if action == 'add' %}
+ switchport trunk allowed vlan add {{ vlans | join(',') }}
+  {% elif action == 'delete' %}
+ switchport trunk allowed vlan remove {{ vlans | join(',') }}
+  {% else %}
+ switchport trunk allowed vlan {{ vlans | join(',') }}
+  {% endif %}
+ {% else %}
+  {% if action == 'add' %}
+ switchport trunk allowed vlan add {{ vlans }}
+  {% elif action == 'delete' %}
+ switchport trunk allowed vlan remove {{ vlans }}
+  {% else %}
+ switchport trunk allowed vlan {{ vlans }}
+  {% endif %}
+ {% endif %}
+{% endfor %}

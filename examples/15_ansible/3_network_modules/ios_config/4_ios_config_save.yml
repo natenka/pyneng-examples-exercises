@@ -1,0 +1,26 @@
+---
+
+- name: Run cfg commands on routers
+  hosts: cisco-routers
+  gather_facts: false
+  connection: local
+
+  tasks:
+
+    - name: Config line vty
+      ios_config:
+        parents:
+          - line vty 0 4
+        lines:
+          - login local
+          - transport input ssh
+        #save: yes - в версии 2.2 не работает корректно
+        provider: "{{ cli }}"
+      register: cfg
+
+    - name: Save config
+      ios_command:
+        commands:
+          - write
+        provider: "{{ cli }}"
+      when: cfg.changed

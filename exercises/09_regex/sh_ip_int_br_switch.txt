@@ -1,0 +1,14 @@
+SW1#show ip interface brief
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/1            unassigned      YES unset  up                    up
+FastEthernet0/2            unassigned      YES unset  up                    up
+FastEthernet0/3            unassigned      YES unset  up                    up
+FastEthernet0/4            unassigned      YES unset  up                    up
+FastEthernet0/5            unassigned      YES unset  up                    up
+FastEthernet0/6            unassigned      YES unset  up                    up
+FastEthernet0/7            unassigned      YES unset  up                    up
+FastEthernet0/8            unassigned      YES unset  up                    up
+FastEthernet0/9            unassigned      YES unset  up                    up
+FastEthernet0/10           unassigned      YES unset  up                    up
+FastEthernet0/11           unassigned      YES unset  up                    up
+FastEthernet0/12           unassigned      YES unset  up                    up
