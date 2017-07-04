@@ -1,4 +1,4 @@
-{% for intf, params in trunks.iteritems() %}
+{% for intf, params in trunks.items() %}
 interface {{ intf }}
  {% if params.action == 'add' %}
  switchport trunk allowed vlan add {{ params.vlans }}

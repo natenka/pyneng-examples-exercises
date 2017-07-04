@@ -1,5 +1,5 @@
 import sys
-import textfsm
+import jtextfsm as textfsm
 from tabulate import tabulate
 
 template = sys.argv[1]
@@ -13,4 +13,4 @@ re_table = textfsm.TextFSM(f)
 header = re_table.header
 result = re_table.ParseText(output)
 
-print tabulate(result, headers=header)
+print(tabulate(result, headers=header))

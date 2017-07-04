@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
 try:
-    a = raw_input("Введите первое число: ")
-    b = raw_input("Введите второе число: ")
-    print "Результат: ", int(a)/int(b)
+    a = input("Введите первое число: ")
+    b = input("Введите второе число: ")
+    print("Результат: ", int(a)/int(b))
 except ValueError:
-    print "Пожалуйста, вводите только числа"
+    print("Пожалуйста, вводите только числа")
 except ZeroDivisionError:
-    print "На ноль делить нельзя"
+    print("На ноль делить нельзя")
 
 """
 Example:

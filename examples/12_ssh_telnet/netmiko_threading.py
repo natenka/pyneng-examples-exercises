@@ -11,8 +11,8 @@ def connect_ssh(device_dict, command):
     ssh.enable()
     result = ssh.send_command(command)
 
-    print "Connection to device %s" % device_dict['ip']
-    print result
+    print("Connection to device {}".format( device_dict['ip'] ))
+    print(result)
 
 
 def conn_threads(function, devices, command):

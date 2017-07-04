@@ -3,33 +3,33 @@ import time
 import getpass
 import sys
 
-COMMAND = sys.argv[1]
-USER = raw_input("Username: ")
-PASSWORD = getpass.getpass()
-ENABLE_PASS = getpass.getpass(prompt='Enter enable password: ')
+COMMAND = sys.argv[1].encode('utf-8')
+USER = input("Username: ").encode('utf-8')
+PASSWORD = getpass.getpass().encode('utf-8')
+ENABLE_PASS = getpass.getpass(prompt='Enter enable password: ').encode('utf-8')
 
 DEVICES_IP = ['192.168.100.1','192.168.100.2','192.168.100.3']
 
 for IP in DEVICES_IP:
-    print "Connection to device %s" % IP
+    print("Connection to device {}".format( IP ))
     t = telnetlib.Telnet(IP)
 
-    t.read_until("Username:")
-    t.write(USER + '\n')
+    t.read_until(b"Username:")
+    t.write(USER + b'\n')
 
-    t.read_until("Password:")
-    t.write(PASSWORD + '\n')
-    t.write("enable\n")
+    t.read_until(b"Password:")
+    t.write(PASSWORD + b'\n')
+    t.write(b"enable\n")
 
-    t.read_until("Password:")
-    t.write(ENABLE_PASS + '\n')
-    t.write("terminal length 0\n")
-    t.write(COMMAND + '\n')
+    t.read_until(b"Password:")
+    t.write(ENABLE_PASS + b'\n')
+    t.write(b"terminal length 0\n")
+    t.write(COMMAND + b'\n')
 
     time.sleep(5)
 
-    output = t.read_very_eager()
-    print output
+    output = t.read_very_eager().decode('utf-8')
+    print(output)
 
 """
 Example:
@@ -83,5 +83,4 @@ FastEthernet0/1.50     10.3.50.1       YES manual up                    up
 FastEthernet0/1.60     10.3.60.1       YES manual up                    up
 FastEthernet0/1.70     10.3.70.1       YES manual up                    up
 R3#
-"""
 """

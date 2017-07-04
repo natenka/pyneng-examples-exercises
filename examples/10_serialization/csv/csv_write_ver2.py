@@ -12,7 +12,7 @@ with open('sw_data_new.csv', 'w') as f:
         writer.writerow(row)
 
 with open('sw_data_new.csv') as f:
-    print f.read()
+    print(f.read())
 
 
 """

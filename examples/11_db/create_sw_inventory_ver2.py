@@ -14,4 +14,4 @@ with sqlite3.connect('sw_inventory3.db') as con:
     con.executemany(query, data)
 
     for row in con.execute("select * from switch"):
-        print row
+        print(row)

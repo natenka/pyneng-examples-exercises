@@ -19,7 +19,7 @@ with open('sw_templates.json', 'w') as f:
     f.write(json.dumps(to_json))
 
 with open('sw_templates.json') as f:
-    print f.read()
+    print(f.read())
 
 """
 Example:

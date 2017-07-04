@@ -2,21 +2,22 @@
 # Unpacking positional arguments
 
 def config_interface(intf_name, ip_address, cidr_mask):
-    interface = 'interface %s'
+    interface = 'interface {}'
     no_shut = 'no shutdown'
-    ip_addr = 'ip address %s %s'
+    ip_addr = 'ip address {} {}'
     result = []
-    result.append(interface % intf_name)
+    result.append(interface.format( intf_name ))
     result.append(no_shut)
 
     mask_bits = int(cidr_mask.split('/')[-1])
     bin_mask = '1'*mask_bits + '0'*(32-mask_bits)
-    dec_mask = '.'.join([ str(int(bin_mask[i:i+8], 2)) for i in [0,8,16,24] ])
+    dec_mask = [str(int(bin_mask[i:i+8], 2)) for i in range(0,25,8)]
+    dec_mask_str = '.'.join(dec_mask)
 
-    result.append(ip_addr % (ip_address, dec_mask))
+    result.append(ip_addr.format( ip_address, dec_mask_str ))
     return result
 
-#print config_interface('Fa0/1', '10.0.1.1', '/25')
+#print(config_interface('Fa0/1', '10.0.1.1', '/25'))
 
 interfaces_info = [['Fa0/1', '10.0.1.1', '/24'],
                    ['Fa0/2', '10.0.2.1', '/24'],
@@ -26,7 +27,7 @@ interfaces_info = [['Fa0/1', '10.0.1.1', '/24'],
 
 
 for i in interfaces_info:
-    print config_interface(*i)
+    print( config_interface(*i) )
 
 """
 Output:
@@ -61,7 +62,7 @@ cfg = [dict(cfg_file='r1.txt', delete_excl=True, delete_empty=True, strip_end=Tr
 
 
 for d in cfg:
-    print config_to_list(**d)
+    print( config_to_list(**d) )
 
 """
 Output:
@@ -71,4 +72,4 @@ Output:
 ['service timestamps debug datetime msec localtime show-timezone year', 'service timestamps log datetime msec localtime show-timezone year', 'service password-encryption', 'service sequence-numbers', '', '', '', 'ip ssh version 2', '']
 ['service timestamps debug datetime msec localtime show-timezone year\n', 'service timestamps log datetime msec localtime show-timezone year\n', 'service password-encryption\n', 'service sequence-numbers\n', 'no ip domain lookup\n', 'ip ssh version 2\n']
 
-```
+"""

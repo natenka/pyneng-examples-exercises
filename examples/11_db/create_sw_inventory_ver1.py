@@ -15,6 +15,6 @@ con.executemany(query, data)
 con.commit()
 
 for row in con.execute("select * from switch"):
-    print row
+    print(row)
 
 con.close()

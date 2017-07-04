@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 from jinja2 import Template
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
-template_r1 = Template(u"""
+template_r1 = Template("""
 hostname {{name}}
 !
 interface Loopback10

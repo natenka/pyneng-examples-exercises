@@ -14,10 +14,10 @@ def ping_ip(ip_address, count=3):
         try:
             output = subprocess.check_output(['ping', '-c', str(count), '-n', ip_address],
                                              stderr=temp)
-            return 0, output
+            return 0, output.decode('utf-8')
         except subprocess.CalledProcessError as e:
             temp.seek(0)
-            return e.returncode, temp.read()
+            return e.returncode, temp.read().decode('utf-8')
 
 
 parser = argparse.ArgumentParser(description='Ping script')
@@ -27,7 +27,7 @@ parser.add_argument('-c', action="store", dest="count", default=2, type=int,
                     help="Number of packets")
 
 args = parser.parse_args()
-print args
+print(args)
 
 rc, message = ping_ip( args.host, args.count )
-print message
+print(message)

@@ -1,4 +1,4 @@
-{% for vlan, name in vlans.iteritems() if vlan > 15 %}
+{% for vlan, name in vlans.items() if vlan > 15 %}
 vlan {{ vlan }}
  name {{ name }}
 {% endfor %}

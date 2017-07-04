@@ -1,4 +1,4 @@
-import textfsm
+import jtextfsm as textfsm
 
 traceroute = """
 r2#traceroute 90.0.0.9 source 33.0.0.2
@@ -12,12 +12,12 @@ VRF info: (vrf in name/id, vrf out name/id)
   4 79.0.0.9  4 msec *  1 msec
 """
 
-template = open('traceroute.textfsm')
+template = open('traceroute.template')
 fsm = textfsm.TextFSM(template)
 result = fsm.ParseText(traceroute)
 
-print fsm.header
-print result
+print(fsm.header)
+print(result)
 
 """
 Example:

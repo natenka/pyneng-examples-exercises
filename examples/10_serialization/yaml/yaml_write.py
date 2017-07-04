@@ -18,7 +18,7 @@ with open('sw_templates.yaml', 'w') as f:
     f.write(yaml.dump(to_yaml))
 
 with open('sw_templates.yaml') as f:
-    print f.read()
+    print(f.read())
 
 """
 Example:

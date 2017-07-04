@@ -9,3 +9,8 @@ interface Port-channel1.300
  encapsulation dot1Q 300
  vrf forwarding Management
  ip address 10.16.19.35 255.255.255.248
+interface Port-channel1.600
+ encapsulation dot1Q 600
+ vrf forwarding Management
+ ip address 10.15.16.35 255.255.255.248
+

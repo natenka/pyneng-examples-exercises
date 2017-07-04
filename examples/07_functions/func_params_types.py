@@ -9,8 +9,8 @@ def cfg_to_list(cfg_file, delete_exclamation):
     return result
 
 
-print cfg_to_list('r1.txt', True)
-print cfg_to_list('r1.txt', False)
+print(cfg_to_list('r1.txt', True))
+print(cfg_to_list('r1.txt', False))
 
 
 def cfg_to_list(cfg_file, delete_exclamation=True):
@@ -24,5 +24,5 @@ def cfg_to_list(cfg_file, delete_exclamation=True):
     return result
 
 
-print cfg_to_list('r1.txt')
-print cfg_to_list('r1.txt', False)
+print(cfg_to_list('r1.txt'))
+print(cfg_to_list('r1.txt', False))

@@ -2,7 +2,7 @@ import yaml
 
 templates = yaml.load(open('info.yaml'))
 
-print templates
+print(templates)
 
 
 """

@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 from jinja2 import Environment, FileSystemLoader
 import yaml
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
 env = Environment(loader = FileSystemLoader('templates'))
 template = env.get_template('router_template.txt')

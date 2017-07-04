@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 
-username = raw_input('Введите имя пользователя: ' )
-password = raw_input('Введите пароль: ' )
+username = input('Введите имя пользователя: ' )
+password = input('Введите пароль: ' )
 
 if len(password) < 8:
-    print 'Пароль слишком короткий'
+    print('Пароль слишком короткий')
 elif username in password:
-    print 'Пароль содержит имя пользователя'
+    print('Пароль содержит имя пользователя')
 else:
-    print 'Пароль для пользователя %s установлен' % username
+    print('Пароль для пользователя {} установлен'.format( username ))
 
 """
 Usage example:

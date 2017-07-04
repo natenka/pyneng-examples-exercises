@@ -11,7 +11,7 @@ def connect_ssh(device_dict, command, queue):
     ssh = ConnectHandler(**device_dict)
     ssh.enable()
     result = ssh.send_command(command)
-    print "Connection to device %s" % device_dict['ip']
+    print("Connection to device {}".format( device_dict['ip'] ))
 
     #Добавляем словарь в список
     queue.append({ device_dict['ip']: result })
@@ -38,4 +38,5 @@ def conn_threads(function, devices, command):
 
     return q
 
-print conn_threads(connect_ssh, devices['routers'], COMMAND)
+print(conn_threads(connect_ssh, devices['routers'], COMMAND))
+

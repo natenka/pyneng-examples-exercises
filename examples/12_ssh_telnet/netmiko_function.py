@@ -7,13 +7,13 @@ devices = yaml.load(open('devices.yaml'))
 
 def connect_ssh(device_dict, command):
 
-    print "Connection to device %s" % device_dict['ip']
+    print("Connection to device {}".format( device_dict['ip'] ))
 
     ssh = ConnectHandler(**device_dict)
     ssh.enable()
 
     result = ssh.send_command(command)
-    print result
+    print(result)
 
 for router in devices['routers']:
     connect_ssh(router, COMMAND)

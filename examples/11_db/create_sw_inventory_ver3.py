@@ -14,12 +14,12 @@ try:
         query = "INSERT into switch values (?, ?, ?, ?)"
         con.executemany(query, data)
 except sqlite3.IntegrityError as e:
-    print "Error occured: ", e
+    print("Error occured: ", e)
 
 for row in con.execute("select * from switch"):
-    print row
+    print(row)
 
-print '-'*30
+print('-'*30)
 
 #MAC-адрес sw7 совпадает с MAC-адресом существующего коммутатора - sw3
 data2 = [('0055.AAAA.CCCC', 'sw5', 'Cisco 3750', 'London, Green Str'),
@@ -32,7 +32,7 @@ try:
         query = "INSERT into switch values (?, ?, ?, ?)"
         con.executemany(query, data2)
 except sqlite3.IntegrityError as e:
-    print "Error occured: ", e
+    print("Error occured: ", e)
 
 for row in con.execute("select * from switch"):
-    print row
+    print(row)
