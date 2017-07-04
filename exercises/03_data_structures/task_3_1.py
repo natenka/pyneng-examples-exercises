@@ -2,12 +2,12 @@
 '''
 Задание 3.1
 Обработать строку ospf_route и вывести информацию в виде:
-Protocol:				OSPF
-Prefix:					10.0.24.0/24
-AD/Metric:				110/41
-Next-Hop:				10.0.13.3
-Last update:			3d18h
-Outbound Interface:		FastEthernet0/0
+Protocol:              OSPF
+Prefix:                10.0.24.0/24
+AD/Metric:             110/41
+Next-Hop:              10.0.13.3
+Last update:           3d18h
+Outbound Interface:    FastEthernet0/0
 
 
 > В разделе [Форматирование строк](https://natenka.gitbooks.io/pyneng/content/book/03_data_structures/4b_string_format.html) добавились примеры, которые помогут с отображением вывода столбцами.

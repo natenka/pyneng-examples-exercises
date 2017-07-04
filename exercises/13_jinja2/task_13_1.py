@@ -29,4 +29,4 @@ template = env.get_template(template)
 
 vars_dict = yaml.load( open( VARS_FILE ) )
 
-print template.render( vars_dict )
+print(template.render( vars_dict ))

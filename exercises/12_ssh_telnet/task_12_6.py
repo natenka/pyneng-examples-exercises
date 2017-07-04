@@ -27,7 +27,7 @@ def connect_ssh(device_dict, command, queue):
     ssh.enable()
     result = ssh.send_command(command)
 
-    print "Connection to device %s" % device_dict['ip']
+    print("Connection to device {}".format( device_dict['ip'] )
     queue.put({device_dict['ip']: result})
 
 
@@ -50,3 +50,4 @@ def conn_processes(function, devices, command):
     return results
 
 print( conn_processes(connect_ssh, devices['routers'], COMMAND) )
+

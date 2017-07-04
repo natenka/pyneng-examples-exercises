@@ -9,30 +9,30 @@ DFLT_DB_SCHEMA = 'dhcp_snooping_schema.sql'
 
 
 def create(args):
-    print "Creating DB %s with DB schema %s" % (args.name, args.schema)
+    print("Creating DB {} with DB schema {}".format( args.name, args.schema )
     pds.create_db(args.name, args.schema)
 
 
 def add(args):
     if args.sw_true:
-        print "Adding switch data to database"
+        print("Adding switch data to database")
         pds.add_data_switches(args.db_file, args.filename)
     else:
-        print "Reading info from file(s) \n%s" % ', '.join( args.filename )
-        print "\nAdding data to db %s" % args.db_file
+        print("Reading info from file(s) \n{}".format( ', '.join( args.filename ) )
+        print("\nAdding data to db {}".format( args.db_file )
         pds.add_data(args.db_file, args.filename)
 
 
 def get(args):
     if args.key and args.value:
-        print "Geting data from DB: %s" % args.db_file
-        print "Request data for host(s) with %s %s" % (args.key, args.value)
+        print("Geting data from DB: {}".format( args.db_file )
+        print("Request data for host(s) with {} {}".format( args.key, args.value )
         pds.get_data(args.db_file, args.key, args.value)
     elif args.key or args.value:
-        print "Please give two or zero args\n"
-        print show_subparser_help('get')
+        print("Please give two or zero args\n")
+        print(show_subparser_help('get'))
     else:
-        print "Showing %s content..." % args.db_file
+        print("Showing {} content...".format( args.db_file )
         pds.get_all_data( args.db_file )
 
 

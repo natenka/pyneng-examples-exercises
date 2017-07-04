@@ -6,8 +6,8 @@ import sys
 try:
     import graphviz as gv
 except ImportError:
-    print "Module graphviz needs to be installed"
-    print "pip install graphviz"
+    print( "Module graphviz needs to be installed" )
+    print( "pip install graphviz" )
     sys.exit()
 
 
@@ -65,18 +65,18 @@ def draw_topology(topology_dict, out_filename='img/topology', style_dict=styles)
     Функция генерирует топологию, в формате svg.
     И записывает файл topology.svg в каталог img.
     '''
-    nodes = set([key[0] for key in topology_dict.keys() + topology_dict.values()])
+    nodes = set([key[0] for key in list(topology_dict.keys()) + list(topology_dict.values())])
 
     graph = gv.Graph(format='svg')
 
     for node in nodes:
         graph.node(node)
 
-    for key, value in topology_dict.iteritems():
+    for key, value in topology_dict.items():
         head, t_label = key
         tail, h_label = value
         graph.edge(head, tail, headlabel=h_label, taillabel=t_label, label=" "*12)
 
     graph = apply_styles(graph, style_dict)
     filename = graph.render(filename=out_filename)
-    print "Topology saved in", filename
+    print( "Topology saved in", filename )

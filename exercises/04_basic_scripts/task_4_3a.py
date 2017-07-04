@@ -13,12 +13,12 @@
 """
 
 access_template = ['switchport mode access',
-                   'switchport access vlan %s',
+                   'switchport access vlan {}',
                    'switchport nonegotiate',
                    'spanning-tree portfast',
                    'spanning-tree bpduguard enable']
 
 trunk_template = ['switchport trunk encapsulation dot1q',
                   'switchport mode trunk',
-                  'switchport trunk allowed vlan %s']
+                  'switchport trunk allowed vlan {}']
 
