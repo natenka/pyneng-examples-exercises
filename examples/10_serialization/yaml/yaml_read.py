@@ -1,8 +1,10 @@
 import yaml
+import pprint
 
-templates = yaml.load(open('info.yaml'))
+with open('info.yaml') as f:
+    templates = yaml.load(f)
 
-print(templates)
+pprint.pprint(templates)
 
 
 """

@@ -13,8 +13,6 @@
 - generate_switch_config - генерирует конфигурацию коммутатора, в зависимости от переданных параметров,
                            использует для этого остальные функции
 '''
-import yaml
-
 
 access_dict = { 'FastEthernet0/12':10,
                 'FastEthernet0/14':11,
@@ -59,8 +57,7 @@ def generate_ospf_config(filename):
 
     Возвращает список всех команд, которые были сгенерированы на основе шаблона
     """
-    templates = yaml.load(open(filename))
-
+    pass
 
 
 def generate_mngmt_config(filename):
