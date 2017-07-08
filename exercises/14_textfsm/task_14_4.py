@@ -23,27 +23,21 @@
 Пример из раздела:
 '''
 
-import textfsm.clitable as clitable
+import clitable
 
 output_sh_ip_route_ospf = open('output/sh_ip_route_ospf.txt').read()
-cli_table = clitable.CliTable('index', 'templates')
-attributes = {'Command': 'show ip route ospf' , 'Vendor': 'Cisco'}
-cli_table.ParseCmd(output_sh_ip_route_ospf, attributes)
 
+cli_table = clitable.CliTable('index', 'templates')
+
+attributes = {'Command': 'show ip route ospf' , 'Vendor': 'Cisco'}
+
+cli_table.ParseCmd(output_sh_ip_route_ospf, attributes)
 print("CLI Table output:\n", cli_table)
+
 print("Formatted Table:\n", cli_table.FormattedTable())
 
-data_rows = []
-
-for row in cli_table:
-    current_row = []
-    for value in row:
-        current_row.append(value)
-    data_rows.append(current_row)
-
-header = []
-for name in cli_table.header:
-    header.append(name)
+data_rows = [list(row) for row in cli_table]
+header = list(cli_table.header)
 
 print(header)
 for row in data_rows:
