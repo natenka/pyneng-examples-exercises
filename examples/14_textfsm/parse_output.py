@@ -1,5 +1,5 @@
 import sys
-import jtextfsm as textfsm
+import textfsm
 from tabulate import tabulate
 
 template = sys.argv[1]

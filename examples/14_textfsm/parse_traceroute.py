@@ -1,4 +1,4 @@
-import jtextfsm as textfsm
+import textfsm
 
 traceroute = """
 r2#traceroute 90.0.0.9 source 33.0.0.2
