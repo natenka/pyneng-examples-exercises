@@ -1,6 +1,6 @@
 import re
 
-regex = ('.*Host \S+ '
+regex = ('\S+: Host \S+ '
          'in vlan (\d+) '
          'is flapping between port '
          '(\S+) and port (\S+)')
