@@ -1,54 +1,28 @@
 # -*- coding: utf-8 -*-
 from pprint import pprint
 import sqlite3
+import create_sw_inventory_ver2_functions as dbf
 
-data = [('0000.AAAA.CCCC', 'sw1', 'Cisco 3750', 'London, Green Str'),
-        ('0000.BBBB.CCCC', 'sw2', 'Cisco 3780', 'London, Green Str'),
-        ('0000.AAAA.DDDD', 'sw3', 'Cisco 2960', 'London, Green Str'),
-        ('0011.AAAA.CCCC', 'sw4', 'Cisco 3750', 'London, Green Str')]
+#MAC-адрес sw7 совпадает с MAC-адресом коммутатора sw3 в списке data
+data2 = [('0055.AAAA.CCCC', 'sw5', 'Cisco 3750', 'London, Green Str'),
+         ('0066.BBBB.CCCC', 'sw6', 'Cisco 3780', 'London, Green Str'),
+         ('0000.AAAA.DDDD', 'sw7', 'Cisco 2960', 'London, Green Str'),
+         ('0088.AAAA.CCCC', 'sw8', 'Cisco 3750', 'London, Green Str')]
 
-#MAC-адрес sw7 совпадает с MAC-адресом существующего коммутатора - sw3
-data2 = [('0000.AAAA.DDDD', 'sw7', 'Cisco 2960', 'London, Green Str')]
+con = dbf.create_connection('sw_inventory3.db')
 
-def crete_connection(db_name):
-    con = sqlite3.connect(db_name)
-    return con
+query_insert = "INSERT into switch values (?, ?, ?, ?)"
+query_get_all = "SELECT * from switch"
 
+print("\nПроверка текущего содержимого БД")
+pprint(dbf.get_all_from_db(con, query_get_all))
 
-def create_table(connection, sql_command):
-    con.execute("""create table switch
-                   (mac text primary key,
-                    hostname text,
-                    model text,
-                    location text)""")
+print('-'*60)
+print("Попытка записать данные с повторяющимся MAC-адресом:")
+pprint(data2)
+dbf.write_data_to_db(con, query_insert, data2)
+print("\nПроверка содержимого БД")
+pprint(dbf.get_all_from_db(con, query_get_all))
 
-
-def write_data_to_db(connection, query, data):
-    try:
-        with connection:
-            connection.executemany(query, data)
-    except sqlite3.IntegrityError as e:
-        print("Error occured: ", e)
-        return False
-    else:
-        return True
-
-
-def get_all(connection, query):
-    result = []
-    for row in connection.execute(query):
-        result.append(row)
-    return result
-
-
-query = "INSERT into switch values (?, ?, ?, ?)"
-
-write_data_to_db(query, data)
-pprint(get_all("select * from switch"))
-
-print('-'*30)
-
-write_data_to_db(query, data2)
-pprint(get_all("select * from switch"))
-
+con.close()
 

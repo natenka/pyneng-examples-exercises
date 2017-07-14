@@ -2,16 +2,16 @@
 import sqlite3
 import sys
 
-DB_FILENAME = 'dhcp_snooping.db'
+db_filename = 'dhcp_snooping.db'
 
-query_dict = {'vlan': "select * from dhcp where vlan = ?",
-              'mac': "select * from dhcp where mac = ?",
-              'ip': "select * from dhcp where ip = ?",
-              'interface': "select * from dhcp where interface = ?"}
+query_dict = {'vlan': "select mac, ip, interface from dhcp where vlan = ?",
+              'mac': "select vlan, ip, interface from dhcp where mac = ?",
+              'ip': "select vlan, mac, interface from dhcp where ip = ?",
+              'interface': "select vlan, mac, ip from dhcp where interface = ?"}
 
 
 key, value = sys.argv[1:]
-keys = list(query_dict.keys())
+keys = query_dict.keys()
 
 if not key in keys:
     print("Enter key from {}".format(','.join(keys)))
@@ -25,11 +25,9 @@ else:
 
         query = query_dict[key]
         result = conn.execute(query, (value,))
-        # метод description позволяет получить заголовки полученных столбцов.
-        # В нем будут находиться только те столбцы, который соответствуют запросу.
-        all_rows = [r[0] for r in result.description]
 
         for row in result:
-            for row_name in all_rows:
+            for row_name in row.keys():
                 print("{:12}: {}".format(row_name, row[row_name]))
             print('-' * 40)
+

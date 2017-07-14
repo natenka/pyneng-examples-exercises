@@ -6,10 +6,15 @@ data_filename = 'dhcp_snooping.txt'
 db_filename = 'dhcp_snooping.db'
 schema_filename = 'dhcp_snooping_schema.sql'
 
-regex = re.compile('(.+?) +(.*?) +\d+ +[\w-]+ +(\d+) +(.*$)')
+regex = re.compile('(\S+) +(\S+) +\d+ +\S+ +(\d+) +(\S+)')
 
-with open(data_filename) as data:
-    result = [regex.search(line).groups() for line in data if line[0].isdigit()]
+result = []
+
+with open('dhcp_snooping.txt') as data:
+    for line in data:
+        match = regex.search(line)
+        if match:
+            result.append(match.groups())
 
 db_exists = os.path.exists(db_filename)
 
@@ -24,7 +29,8 @@ with sqlite3.connect(db_filename) as conn:
         print('Inserting DHCP Snooping data')
         for val in result:
             query = """insert into dhcp (mac, ip, vlan, interface)
-            values (?, ?, ?, ?)"""
+                       values (?, ?, ?, ?)"""
             conn.execute(query, val)
     else:
         print('Database exists, assume dhcp table does, too.')
+

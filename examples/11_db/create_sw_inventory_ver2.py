@@ -7,9 +7,8 @@ data = [('0000.AAAA.CCCC', 'sw1', 'Cisco 3750', 'London, Green Str'),
         ('0011.AAAA.CCCC', 'sw4', 'Cisco 3750', 'London, Green Str')]
 
 con = sqlite3.connect('sw_inventory3.db')
-con.execute("create table switch "
-            "(mac text primary key, hostname text,"
-             "model text, location text)")
+con.execute("""create table switch
+               (mac text primary key, hostname text, model text, location text)""")
 
 try:
     with con:
@@ -22,4 +21,4 @@ except sqlite3.IntegrityError as e:
 for row in con.execute("select * from switch"):
     print(row)
 
-
+con.close()

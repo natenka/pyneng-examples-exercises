@@ -1,13 +1,15 @@
 import sqlite3
 import re
 
-regex = re.compile('(.+?) +(.*?) +\d+ +[\w-]+ +(\d+) +(.*$)')
+regex = re.compile('(\S+) +(\S+) +\d+ +\S+ +(\d+) +(\S+)')
+
 result = []
 
 with open('dhcp_snooping.txt') as data:
     for line in data:
-        if line[0].isdigit():
-            result.append(regex.search(line).groups())
+        match = regex.search(line)
+        if match:
+            result.append(match.groups())
 
 with sqlite3.connect('dhcp_snooping.db') as conn:
     print('Creating schema...')
@@ -20,5 +22,5 @@ with sqlite3.connect('dhcp_snooping.db') as conn:
 
     for row in result:
         query = """insert into dhcp (mac, ip, vlan, interface)
-        values (?, ?, ?, ?)"""
+                   values (?, ?, ?, ?)"""
         conn.execute(query, row)
