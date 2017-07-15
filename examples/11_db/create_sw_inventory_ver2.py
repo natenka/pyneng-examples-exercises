@@ -8,7 +8,7 @@ data = [('0000.AAAA.CCCC', 'sw1', 'Cisco 3750', 'London, Green Str'),
 
 con = sqlite3.connect('sw_inventory3.db')
 con.execute("""create table switch
-               (mac text primary key, hostname text, model text, location text)""")
+               (mac text not NULL primary key, hostname text, model text, location text)""")
 
 try:
     with con:
