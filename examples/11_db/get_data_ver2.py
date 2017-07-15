@@ -14,20 +14,19 @@ key, value = sys.argv[1:]
 keys = query_dict.keys()
 
 if not key in keys:
-    print("Enter key from {}".format(','.join(keys)))
+    print("Enter key from {}".format(', '.join(keys)))
 else:
+    conn = sqlite3.connect(db_filename)
+    conn.row_factory = sqlite3.Row
 
-    with sqlite3.connect(db_filename) as conn:
-        conn.row_factory = sqlite3.Row
+    print("\nDetailed information for host(s) with", key, value)
+    print('-' * 40)
 
-        print("\nDetailed information for host(s) with", key, value)
+    query = query_dict[key]
+    result = conn.execute(query, (value,))
+
+    for row in result:
+        for row_name in row.keys():
+            print("{:12}: {}".format(row_name, row[row_name]))
         print('-' * 40)
-
-        query = query_dict[key]
-        result = conn.execute(query, (value,))
-
-        for row in result:
-            for row_name in row.keys():
-                print("{:12}: {}".format(row_name, row[row_name]))
-            print('-' * 40)
 

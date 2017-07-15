@@ -11,16 +11,23 @@ with open('dhcp_snooping.txt') as data:
         if match:
             result.append(match.groups())
 
-with sqlite3.connect('dhcp_snooping.db') as conn:
-    print('Creating schema...')
-    with open('dhcp_snooping_schema.sql', 'r') as f:
-        schema = f.read()
-        conn.executescript(schema)
-    print("Done")
+conn = sqlite3.connect('dhcp_snooping.db')
 
-    print('Inserting DHCP Snooping data')
+print('Creating schema...')
+with open('dhcp_snooping_schema.sql', 'r') as f:
+    schema = f.read()
+    conn.executescript(schema)
+print("Done")
 
-    for row in result:
-        query = """insert into dhcp (mac, ip, vlan, interface)
-                   values (?, ?, ?, ?)"""
-        conn.execute(query, row)
+print('Inserting DHCP Snooping data')
+
+for row in result:
+    try:
+        with conn:
+            query = """insert into dhcp (mac, ip, vlan, interface)
+                       values (?, ?, ?, ?)"""
+            conn.execute(query, row)
+    except sqlite3.IntegrityError as e:
+        print("Error occured: ", e)
+
+conn.close()
