@@ -11,7 +11,7 @@ ENABLE_PASS = getpass.getpass(prompt='Enter enable password: ').encode('utf-8')
 DEVICES_IP = ['192.168.100.1','192.168.100.2','192.168.100.3']
 
 for IP in DEVICES_IP:
-    print("Connection to device {}".format( IP ))
+    print("Connection to device {}".format(IP))
     t = telnetlib.Telnet(IP)
 
     t.read_until(b"Username:")
