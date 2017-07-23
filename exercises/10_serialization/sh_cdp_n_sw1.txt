@@ -1,3 +1,4 @@
+
 SW1>show cdp neighbors
 
 Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
