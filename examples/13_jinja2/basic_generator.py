@@ -19,14 +19,12 @@ router ospf 10
 
 liverpool = {'id':'11', 'name':'Liverpool', 'int':'Gi1/0/17', 'ip':'10.1.1.10'}
 
-print(template.render( liverpool ))
+print(template.render(liverpool))
 
 
 """
 Examples:
-
 $ python generator.py
-
 hostname Liverpool
 !
 interface Loopback255

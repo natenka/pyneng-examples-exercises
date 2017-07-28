@@ -10,5 +10,4 @@ routers = yaml.load(open('routers_info.yml'))
 for router in routers:
     r1_conf = router['name']+'_r1.txt'
     with open(r1_conf,'w') as f:
-        f.write(template.render( router ))
-
+        f.write(template.render(router))
