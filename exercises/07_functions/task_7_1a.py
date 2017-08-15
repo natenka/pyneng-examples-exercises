@@ -11,10 +11,13 @@
 
 Проверить работу функции на примере словаря access_dict,
 с генерацией конфигурации port-security и без.
+
+Ограничение: Все задания надо выполнять используя только пройденные темы.
+
 '''
 
 def generate_access_config(access):
-    """
+    '''
     access - словарь access-портов,
     для которых необходимо сгенерировать конфигурацию, вида:
         { 'FastEthernet0/12':10,
@@ -26,7 +29,7 @@ def generate_access_config(access):
         - если значение False, то настройка не выполняется
 
     Возвращает список всех команд, которые были сгенерированы на основе шаблона
-    """
+    '''
 
     access_template = ['switchport mode access',
                        'switchport access vlan',
@@ -45,3 +48,4 @@ access_dict = { 'FastEthernet0/12':10,
                 'FastEthernet0/14':11,
                 'FastEthernet0/16':17,
                 'FastEthernet0/17':150 }
+

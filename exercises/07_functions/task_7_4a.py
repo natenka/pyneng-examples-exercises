@@ -14,24 +14,32 @@
 При этом, не привязываясь к конкретным разделам.
 Она должна быть универсальной, и сработать, если это будут другие разделы.
 
-Теперь:
-* если уровня 2, то команды верхнего уровня будут ключами словаря, а команды подуровней - списками;
-* если уровня 3, то самый вложенный должен быть списком, а остальные - словарями.
+Если уровня вложенности два:
+* то команды верхнего уровня будут ключами словаря,
+* а команды подуровней - списками
 
-На примере interface Ethernet0/3.100
+Если уровня вложенности три:
+* самый вложенный уровень должен быть списком,
+* а остальные - словарями.
+
+На примере interface Ethernet0/3.100:
+
 {'interface Ethernet0/3.100':{
-                    'encapsulation dot1Q 100':[],
-                    'xconnect 10.2.2.2 12100 encapsulation mpls':
-                        ['backup peer 10.4.4.4 14100',
-                         'backup delay 1 1']}}
+               'encapsulation dot1Q 100':[],
+               'xconnect 10.2.2.2 12100 encapsulation mpls':
+                   ['backup peer 10.4.4.4 14100',
+                    'backup delay 1 1']}}
 
+
+Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 '''
 
 ignore = ['duplex', 'alias', 'Current configuration']
 
+
 def check_ignore(command, ignore):
-    """
+    '''
     Функция проверяет содержится ли в команде слово из списка ignore.
 
     command - строка. Команда, которую надо проверить
@@ -39,17 +47,12 @@ def check_ignore(command, ignore):
 
     Возвращает True, если в команде содержится слово из списка ignore, False - если нет
 
-    """
-    ignore_command = False
-
-    for word in ignore:
-        if word in command:
-            ignore_command = True
-    return ignore_command
+    '''
+    return any(word in command for word in ignore)
 
 
 def config_to_dict(config):
-    """
+    '''
     config - имя конфигурационного файла
-    """
-    pass
+    '''
+
