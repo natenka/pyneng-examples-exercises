@@ -13,11 +13,12 @@
 * применить ACL к интерфейсу
 
 ACL должен быть таким:
+```
 ip access-list extended INET-to-LAN
  permit tcp 10.0.1.0 0.0.0.255 any eq www
  permit tcp 10.0.1.0 0.0.0.255 any eq 22
  permit icmp any any
-
+```
 
 Проверьте работу playbook на маршрутизаторе R1.
 
