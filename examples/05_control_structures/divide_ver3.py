@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 
 try:
-    a = input("Введите первое число: ")
-    b = input("Введите второе число: ")
+    a = input('Введите первое число: ')
+    b = input('Введите второе число: ')
     result = int(a)/int(b)
 except (ValueError, ZeroDivisionError):
-    print("Что-то пошло не так...")
+    print('Что-то пошло не так...')
 else:
-    print("Результат в квадрате: ", result**2)
+    print('Результат в квадрате: ', result**2)
 
-"""
+'''
 Example:
 
 $ python divide_ver3.py
@@ -21,4 +21,4 @@ $ python divide_ver3.py
 Введите первое число: werq
 Введите второе число: 3
 Что-то пошло не так...
-"""
+'''

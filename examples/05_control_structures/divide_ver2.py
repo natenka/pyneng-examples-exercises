@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
 try:
-    a = input("Введите первое число: ")
-    b = input("Введите второе число: ")
-    print("Результат: ", int(a)/int(b))
+    a = input('Введите первое число: ')
+    b = input('Введите второе число: ')
+    print('Результат: ', int(a)/int(b))
 except (ValueError, ZeroDivisionError):
-    print("Что-то пошло не так...")
+    print('Что-то пошло не так...')
 
-"""
+'''
 Example:
 
 $ python divide_ver2.py
@@ -19,4 +19,4 @@ $ python divide_ver2.py
 Введите первое число: 5
 Введите второе число: 0
 Результат:  Что-то пошло не так...
-"""
+'''

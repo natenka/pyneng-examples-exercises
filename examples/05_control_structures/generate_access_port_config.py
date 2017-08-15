@@ -12,11 +12,11 @@ for intf, vlan in fast_int['access'].items():
     print('interface FastEthernet' + intf)
     for command in access_template:
         if command.endswith('access vlan'):
-            print(' {} {}'.format( command, vlan ))
+            print(' {} {}'.format(command, vlan))
         else:
-            print(' {}'.format( command ))
+            print(' {}'.format(command))
 
-"""
+'''
 Example:
 
 python generate_access_port_config.py
@@ -35,4 +35,4 @@ interface FastEthernet0/16
  switchport access vlan 17
  spanning-tree portfast
  spanning-tree bpduguard enable
-"""
+'''
