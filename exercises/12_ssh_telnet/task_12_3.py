@@ -11,11 +11,12 @@
 * config - список с командами, которые надо выполнить в конфигурационном режиме
 
 В зависимости от того, какой аргумент был передан, функция вызывает разные функции внутри.
+При вызове функции, всегда будет передаваться только один из аргументов show, config, filename.
 
 Далее комбинация из аргумента и соответствующей функции:
-* show -- функция send_show_command из задания 12.1
-* config -- функция send_config_commands из задания 12.2, 12.2a или 12.2b
-* filename -- функция send_commands_from_file (ее также надо написать по аналогии с предыдущими)
+* show - функция send_show_command из задания 12.1
+* config - функция send_config_commands из задания 12.2, 12.2a или 12.2b
+* filename - функция send_commands_from_file (ее также надо написать по аналогии с предыдущими)
 
 Функция возвращает словарь с результатами выполнения команды:
 * ключ - IP устройства
@@ -34,7 +35,7 @@ from netmiko import ConnectHandler
 commands = [ 'logging 10.255.255.1',
              'logging buffered 20010',
              'no logging console' ]
-command = "sh ip int br"
+command = 'sh ip int br'
 
 def send_show_command(device_list, show_command):
     pass
