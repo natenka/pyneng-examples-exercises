@@ -1,3 +1,4 @@
+
 def cfg_to_list(cfg_file, delete_exclamation):
     result = []
     with open( cfg_file ) as f:
@@ -13,7 +14,7 @@ print(cfg_to_list('r1.txt', True))
 print(cfg_to_list('r1.txt', False))
 
 
-def cfg_to_list(cfg_file, delete_exclamation=True):
+def cfg_to_list2(cfg_file, delete_exclamation=True):
     result = []
     with open( cfg_file ) as f:
         for line in f:
@@ -24,5 +25,7 @@ def cfg_to_list(cfg_file, delete_exclamation=True):
     return result
 
 
-print(cfg_to_list('r1.txt'))
-print(cfg_to_list('r1.txt', False))
+print(cfg_to_list2('r1.txt'))
+print(cfg_to_list2('r1.txt', False))
+# лучше вызывать так:
+print(cfg_to_list2('r1.txt', delete_exclamation=False))

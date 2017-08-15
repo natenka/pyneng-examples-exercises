@@ -6,7 +6,7 @@ def config_interface(intf_name, ip_address, cidr_mask):
     no_shut = 'no shutdown'
     ip_addr = 'ip address {} {}'
     result = []
-    result.append(interface.format( intf_name ))
+    result.append(interface.format(intf_name))
     result.append(no_shut)
 
     mask_bits = int(cidr_mask.split('/')[-1])
@@ -14,7 +14,7 @@ def config_interface(intf_name, ip_address, cidr_mask):
     dec_mask = [str(int(bin_mask[i:i+8], 2)) for i in range(0,25,8)]
     dec_mask_str = '.'.join(dec_mask)
 
-    result.append(ip_addr.format( ip_address, dec_mask_str ))
+    result.append(ip_addr.format(ip_address, dec_mask_str))
     return result
 
 #print(config_interface('Fa0/1', '10.0.1.1', '/25'))
@@ -27,23 +27,23 @@ interfaces_info = [['Fa0/1', '10.0.1.1', '/24'],
 
 
 for i in interfaces_info:
-    print( config_interface(*i) )
+    print(config_interface(*i))
 
-"""
+'''
 Output:
 ['interface Fa0/1', 'no shutdown', 'ip address 10.0.1.1 255.255.255.0']
 ['interface Fa0/2', 'no shutdown', 'ip address 10.0.2.1 255.255.255.0']
 ['interface Fa0/3', 'no shutdown', 'ip address 10.0.3.1 255.255.255.0']
 ['interface Fa0/4', 'no shutdown', 'ip address 10.0.4.1 255.255.255.0']
 ['interface Lo0', 'no shutdown', 'ip address 10.0.0.1 255.255.255.255']
-"""
+'''
 
 # Unpacking keyword arguments
 
 def config_to_list(cfg_file, delete_excl=True,
                    delete_empty=True, strip_end=True):
     result = []
-    with open( cfg_file ) as f:
+    with open(cfg_file) as f:
         for line in f:
             if strip_end:
                 line = line.rstrip()
@@ -62,9 +62,9 @@ cfg = [dict(cfg_file='r1.txt', delete_excl=True, delete_empty=True, strip_end=Tr
 
 
 for d in cfg:
-    print( config_to_list(**d) )
+    print(config_to_list(**d))
 
-"""
+'''
 Output:
 
 ['service timestamps debug datetime msec localtime show-timezone year', 'service timestamps log datetime msec localtime show-timezone year', 'service password-encryption', 'service sequence-numbers', 'no ip domain lookup', 'ip ssh version 2']
@@ -72,4 +72,4 @@ Output:
 ['service timestamps debug datetime msec localtime show-timezone year', 'service timestamps log datetime msec localtime show-timezone year', 'service password-encryption', 'service sequence-numbers', '', '', '', 'ip ssh version 2', '']
 ['service timestamps debug datetime msec localtime show-timezone year\n', 'service timestamps log datetime msec localtime show-timezone year\n', 'service password-encryption\n', 'service sequence-numbers\n', 'no ip domain lookup\n', 'ip ssh version 2\n']
 
-"""
+'''
