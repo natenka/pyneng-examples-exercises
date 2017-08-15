@@ -7,26 +7,26 @@ DFLT_DB_SCHEMA = 'dhcp_snooping_schema.sql'
 
 
 def create(args):
-    print("Creating DB {} with DB schema {}".format((args.name, args.schema)))
+    print('Creating DB {} with DB schema {}'.format((args.name, args.schema)))
 
 
 def add(args):
     if args.sw_true:
-        print("Adding switch data to database")
+        print('Adding switch data to database')
     else:
-        print("Reading info from file(s) \n{}".format(', '.join(args.filename)))
-        print("\nAdding data to db {}".format(args.db_file))
+        print('Reading info from file(s) \n{}'.format(', '.join(args.filename)))
+        print('\nAdding data to db {}'.format(args.db_file))
 
 
 def get(args):
     if args.key and args.value:
-        print("Geting data from DB: {}".format(args.db_file))
-        print("Request data for host(s) with {} {}".format((args.key, args.value)))
+        print('Geting data from DB: {}'.format(args.db_file))
+        print('Request data for host(s) with {} {}'.format((args.key, args.value)))
     elif args.key or args.value:
-        print("Please give two or zero args\n")
+        print('Please give two or zero args\n')
         print(show_subparser_help('get'))
     else:
-        print("Showing {} content...".format(args.db_file))
+        print('Showing {} content...'.format(args.db_file))
 
 
 parser = argparse.ArgumentParser()
@@ -53,10 +53,10 @@ add_parser.set_defaults( func=add )
 
 get_parser = subparsers.add_parser('get', help='get data from db')
 get_parser.add_argument('--db', dest='db_file', default=DFLT_DB_NAME, help='db name')
-get_parser.add_argument('-k', dest="key",
+get_parser.add_argument('-k', dest='key',
                         choices=['mac', 'ip', 'vlan', 'interface', 'switch'],
                         help='host key (parameter) to search')
-get_parser.add_argument('-v', dest="value", help='value of key')
+get_parser.add_argument('-v', dest='value', help='value of key')
 get_parser.add_argument('-a', action='store_true', help='show db content')
 get_parser.set_defaults( func=get )
 

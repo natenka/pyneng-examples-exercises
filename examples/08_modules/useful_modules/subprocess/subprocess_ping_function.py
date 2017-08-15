@@ -2,7 +2,7 @@ import subprocess
 
 
 def ping_ip(ip_address):
-    """
+    '''
     Ping IP address and return tuple:
     On success:
         * True
@@ -10,7 +10,7 @@ def ping_ip(ip_address):
     On failure:
         * False
         * error output (stderr)
-    """
+    '''
     reply = subprocess.run(['ping', '-c', '3', '-n', ip_address],
                            stdout=subprocess.PIPE,
                            stderr=subprocess.PIPE,
