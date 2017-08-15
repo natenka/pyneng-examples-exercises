@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""
+'''
 Задание 13.1c
 
 Дополнить функцию generate_cfg_from_template из задания 13.1, 13.1a или 13.1b:
@@ -22,7 +22,7 @@
 * data_files/for.json
 * словаре data_dict
 
-"""
+'''
 
 data_dict = {'vlans': {
                         10: 'Marketing',

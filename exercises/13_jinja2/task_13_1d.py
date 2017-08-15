@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""
+'''
 Задание 13.1d
 
 Переделать функцию generate_cfg_from_template из задания 13.1, 13.1a, 13.1b или 13.1c:
@@ -19,12 +19,12 @@
 * data_files/for.json
 * словаре data_dict
 
-"""
+'''
 
-error_message = """
+error_message = '''
 Не получилось определить формат данных.
 Поддерживаются файлы с расширением .json, .yml, .yaml и словари Python
-"""
+'''
 
 data_dict = {'vlans': {
                         10: 'Marketing',

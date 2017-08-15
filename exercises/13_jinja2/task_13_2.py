@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""
+'''
 Задание 13.2
 
 На основе конфигурации config_r1.txt, создать шаблоны:
@@ -12,6 +12,7 @@
 В шаблонах templates/alias.txt и templates/eem_int_desc.txt переменных нет.
 
 Создать шаблон templates/cisco_router_base.txt.
+
 В шаблон должно быть включено содержимое шаблонов:
 * templates/cisco_base.txt
 * templates/alias.txt
@@ -25,6 +26,6 @@
 
 В качестве данных, используйте словарь router_info
 
-"""
+'''
 
-router_info = { 'hostname': 'R1' }
+router_info = {'hostname': 'R1'}

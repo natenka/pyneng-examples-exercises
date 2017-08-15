@@ -3,7 +3,7 @@ hostname {{ name }}
 interface Loopback0
  ip address 10.0.0.{{ id }} 255.255.255.255
 
-{% for vlan, name in vlans.iteritems() %}
+{% for vlan, name in vlans.items() %}
 vlan {{ vlan }}
  name {{ name }}
 {% endfor %}
