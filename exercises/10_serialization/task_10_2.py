@@ -1,16 +1,20 @@
 # -*- coding: utf-8 -*-
 '''
-Задание 2
+Задание 10.2
 
 Создать функции:
 - generate_access_config - генерирует конфигурацию для access-портов,
                            на основе словарей access и psecurity из файла sw_templates.yaml
-- generate_trunk_config - генерирует конфигурацию для trunk-портов,
+- generate_trunk_config  - генерирует конфигурацию для trunk-портов,
                            на основе словаря trunk из файла sw_templates.yaml
-- generate_ospf_config - генерирует конфигурацию ospf, на основе словаря ospf из файла templates.yaml
-- generate_mngmt_config - генерирует конфигурацию менеджмент настроек, на основе словаря mngmt из файла templates.yaml
-- generate_alias_config - генерирует конфигурацию alias, на основе словаря alias из файла templates.yaml
-- generate_switch_config - генерирует конфигурацию коммутатора, в зависимости от переданных параметров,
+- generate_ospf_config   - генерирует конфигурацию ospf, на основе словаря ospf
+                           из файла templates.yaml
+- generate_mngmt_config  - генерирует конфигурацию менеджмент настроек,
+                           на основе словаря mngmt из файла templates.yaml
+- generate_alias_config  - генерирует конфигурацию alias, на основе словаря alias
+                           из файла templates.yaml
+- generate_switch_config - генерирует конфигурацию коммутатора,
+                           в зависимости от переданных параметров,
                            использует для этого остальные функции
 '''
 
@@ -39,6 +43,7 @@ def generate_access_config(access, psecurity=False):
     """
     pass
 
+
 def generate_trunk_config(trunk):
     """
     trunk - словарь trunk-портов,
@@ -50,6 +55,7 @@ def generate_trunk_config(trunk):
     Возвращает список всех команд, которые были сгенерированы на основе шаблона
     """
     pass
+
 
 def generate_ospf_config(filename):
     """
@@ -68,6 +74,7 @@ def generate_mngmt_config(filename):
     """
     pass
 
+
 def generate_alias_config(filename):
     """
     filename - имя файла в формате YAML, в котором находится шаблон alias.
@@ -75,6 +82,7 @@ def generate_alias_config(filename):
     Возвращает список всех команд, которые были сгенерированы на основе шаблона
     """
     pass
+
 
 def generate_switch_config(access=True, psecurity=False, trunk=True,
                            ospf=True, mngmt=True, alias=False):
@@ -91,3 +99,4 @@ def generate_switch_config(access=True, psecurity=False, trunk=True,
 sw1 = generate_switch_config()
 sw2 = generate_switch_config(psecurity=True, alias=True)
 sw3 = generate_switch_config(ospf=False)
+
