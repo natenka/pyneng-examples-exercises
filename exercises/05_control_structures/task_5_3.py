@@ -20,6 +20,7 @@
 - сгенерировать конфигурацию на основе шаблона trunk_template
 - с учетом ключевых слов add, del, only
 
+Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
 
 access_template = ['switchport mode access',
@@ -40,8 +41,8 @@ for intf, vlan in fast_int['access'].items():
     print('interface FastEthernet' + intf)
     for command in access_template:
         if command.endswith('access vlan'):
-            print(' {} {}'.format( command, vlan ))
+            print(' {} {}'.format(command, vlan))
         else:
-            print(' {}'.format( command ))
+            print(' {}'.format(command))
 
 
