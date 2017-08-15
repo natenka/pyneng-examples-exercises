@@ -1,7 +1,7 @@
 -- Schema for dhcp-snopping parsing example.
 
 create table switches (
-    hostname    text primary key,
+    hostname    text not null primary key,
     location    text
 );
 

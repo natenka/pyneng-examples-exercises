@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""
+'''
 Задание 11.6
 
 В этом задании выложен файл parse_dhcp_snooping.py.
@@ -14,9 +14,7 @@
 в предыдущих заданиях, выполнялись в файлах create_db.py, add_data.py и get_data.py.
 
 В файле parse_dhcp_snooping.py есть такая строка:
-```python
 import parse_dhcp_snooping_functions as pds
-```
 
 И задача этого задания в том, чтобы создать все необходимые функции,
 в файле parse_dhcp_snooping_functions.py на основе информации в файле parse_dhcp_snooping.py.
@@ -32,10 +30,10 @@ import parse_dhcp_snooping_functions as pds
 в файле parse_dhcp_snooping.py.
 
 В принципе, для выполнения задания, не обязательно разбираться с модулем argparse.
-Но, вы можете почитать о нем в разделе [Дополнительная информация](../../book/16_additional_info/useful_modules/argparse.md).
+Но, вы можете почитать о нем в разделе 08_modules/useful_modules/argparse.html.
 
 Для того, чтобы было проще начать, попробуйте создать необходимые функции в файле
-parse_dhcp_snooping_functions.py и, например, просто выведите аргументы функций, используя print.
+parse_dhcp_snooping_functions.py и просто выведите аргументы функций, используя print.
 
 Потом, можно создать функции, которые запрашивают информацию из БД
 (базу данных можно скопировать из предыдущих заданий).
@@ -101,6 +99,23 @@ optional arguments:
   -n NAME     db filename
   -s SCHEMA   db schema filename
 
+
+$ python parse_dhcp_snooping.py create_db
+Creating DB dhcp_snooping.db with DB schema dhcp_snooping_schema.sql
+Creating schema...
+Done
+
+$ python parse_dhcp_snooping.py add sw1_dhcp_snooping.txt sw2_dhcp_snooping.txt sw3_dhcp_snooping.txt
+Reading info from file(s)
+sw1_dhcp_snooping.txt, sw2_dhcp_snooping.txt, sw3_dhcp_snooping.txt
+
+Adding data to db dhcp_snooping.db
+
+
+$ python parse_dhcp_snooping.py add -s switches.yml
+Adding switch data to database
+
+
 $ python parse_dhcp_snooping.py get
 Showing dhcp_snooping.db content...
 ----------------------------------------------------------------------
@@ -136,9 +151,12 @@ interface   : FastEthernet0/7
 switch      : sw2
 ----------------------------------------
 
-$ python parse_dhcp_snooping.py add sw1_dhcp_snooping.txt sw2_dhcp_snooping.txt sw3_dhcp_snooping.txt
-Reading info from file(s)
-sw1_dhcp_snooping.txt, sw2_dhcp_snooping.txt, sw3_dhcp_snooping.txt
 
-"""
+$ python parse_dhcp_snooping.py get -k vln -v 10
+usage: parse_dhcp_snooping.py get [-h] [--db DB_FILE]
+                                  [-k {mac,ip,vlan,interface,switch}]
+                                  [-v VALUE] [-a]
+parse_dhcp_snooping.py get: error: argument -k: invalid choice: 'vln' (choose from 'mac', 'ip', 'vlan', 'interface', 'switch')
+
+'''
 

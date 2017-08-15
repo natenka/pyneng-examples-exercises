@@ -1,7 +1,27 @@
 # -*- coding: utf-8 -*-
 
 '''
-Это копия скрипта get_data_ver1.py из раздела
+Код в скрипте должен быть разбит на функции.
+Какие именно функции и как разделить код, надо решить самостоятельно.
+Часть кода может быть глобальной.
+
+
+В примере из раздела, скрипту передавались два аргумента:
+* key - имя столбца, по которому надо найти информацию
+* value - значение
+
+Теперь необходимо расширить функциональность таким образом:
+* если скрипт был вызван без аргументов, вывести всё содержимое таблицы dhcp
+ * отформатировать вывод в виде столбцов
+* если скрипт был вызван с двумя аргументами, вывести информацию из таблицы dhcp, которая соответствует полю и значению
+* если скрипт был вызван с любым другим количеством аргументов, вывести сообщение, что скрипт поддерживает только два или ноль аргументов
+
+> Обработка некорректного ввода аргумента будет выполняться в следующем задании
+
+Файл БД можно скопировать из прошлых заданий
+
+
+Ниже копия скрипта get_data_ver1.py из раздела
 '''
 
 import sqlite3
@@ -14,17 +34,18 @@ key, value = sys.argv[1:]
 keys = ['mac', 'ip', 'vlan', 'interface']
 keys.remove(key)
 
-with sqlite3.connect(db_filename) as conn:
-    #Позволяет далее обращаться к данным в колонках, по имени колонки
-    conn.row_factory = sqlite3.Row
+conn = sqlite3.connect(db_filename)
 
-    print("\nDetailed information for host(s) with", key, value)
+#Позволяет далее обращаться к данным в колонках, по имени колонки
+conn.row_factory = sqlite3.Row
+
+print("\nDetailed information for host(s) with", key, value)
+print('-' * 40)
+
+query = "select * from dhcp where {} = ?".format( key )
+result = conn.execute(query, (value,))
+
+for row in result:
+    for k in keys:
+        print("{:12}: {}".format(k, row[k]))
     print('-' * 40)
-
-    query = "select * from dhcp where {} = ?".format( key )
-    result = conn.execute(query, (value,))
-
-    for row in result:
-        for k in keys:
-            print("{:12}: {}".format(k, row[k]))
-        print('-' * 40)
