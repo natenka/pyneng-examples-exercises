@@ -2,7 +2,8 @@
 '''
 Задание 14.4
 
-На основе примера из раздела [clitable](https://natenka.gitbooks.io/pyneng/content/book/14_textfsm/3_textfsm_clitable.html) сделать функцию parse_command_dynamic.
+На основе примера textfsm_clitable.py из раздела TextFSM
+сделать функцию parse_command_dynamic.
 
 Параметры функции:
 * словарь атрибутов, в котором находятся такие пары ключ: значение:
@@ -28,13 +29,12 @@ import clitable
 output_sh_ip_route_ospf = open('output/sh_ip_route_ospf.txt').read()
 
 cli_table = clitable.CliTable('index', 'templates')
-
-attributes = {'Command': 'show ip route ospf' , 'Vendor': 'Cisco'}
+attributes = {'Command': 'show ip route ospf', 'Vendor': 'Cisco'}
 
 cli_table.ParseCmd(output_sh_ip_route_ospf, attributes)
-print("CLI Table output:\n", cli_table)
 
-print("Formatted Table:\n", cli_table.FormattedTable())
+print('CLI Table output:\n', cli_table)
+print('Formatted Table:\n', cli_table.FormattedTable())
 
 data_rows = [list(row) for row in cli_table]
 header = list(cli_table.header)
