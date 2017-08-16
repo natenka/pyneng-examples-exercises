@@ -1,11 +1,5 @@
 {% extends "base_router.txt" %}
 
-{% block ospf %}
-{{ super() }}
- {% for networks in ospf %}
- network {{ networks.network }} area {{ networks.area }}
- {% endfor %}
-{% endblock %}
 
 {% block alias %}
 alias configure sh do sh
@@ -17,3 +11,13 @@ alias exec c conf t
 alias exec diff sh archive config differences nvram:startup-config system:running-config
 alias exec desc sh int desc | ex down
 {% endblock %}
+
+
+{% block ospf %}
+{{ super() }}
+ {% for networks in ospf %}
+ network {{ networks.network }} area {{ networks.area }}
+ {% endfor %}
+{% endblock %}
+
+

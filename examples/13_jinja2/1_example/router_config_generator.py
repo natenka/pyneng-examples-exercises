@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import yaml
-from jinja2 import Template
 from router_template import template_r1
 
 routers = yaml.load(open('routers_info.yml'))

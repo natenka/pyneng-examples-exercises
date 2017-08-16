@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from jinja2 import Template
 
-template_r1 = Template("""
+template_r1 = Template('''
 hostname {{name}}
 !
 interface Loopback10
@@ -40,4 +40,4 @@ router ospf 10
  auto-cost reference-bandwidth 10000
  network 10.0.0.0 0.255.255.255 area 0
  !
-""")
+''')
