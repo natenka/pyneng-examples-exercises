@@ -7,7 +7,7 @@ with open('sw_data.csv') as f:
         print(row['hostname'], row['model'])
 
 
-"""
+'''
 Example:
 $ python csv_read_dict.py
 OrderedDict([('hostname', 'sw1'), ('vendor', 'Cisco'), ('model', '3750'), ('location', 'London')])
@@ -18,4 +18,4 @@ OrderedDict([('hostname', 'sw3'), ('vendor', 'Cisco'), ('model', '3650'), ('loca
 sw3 3650
 OrderedDict([('hostname', 'sw4'), ('vendor', 'Cisco'), ('model', '3650'), ('location', 'London')])
 sw4 3650
-"""
+'''

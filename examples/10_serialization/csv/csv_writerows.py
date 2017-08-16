@@ -14,7 +14,7 @@ with open('sw_data_new.csv') as f:
     print(f.read())
 
 
-"""
+'''
 Example:
 $ python csv_write_ver2.py
 "hostname","vendor","model","location"
@@ -22,4 +22,4 @@ $ python csv_write_ver2.py
 "sw2","Cisco","3850","Liverpool, Better str"
 "sw3","Cisco","3650","Liverpool, Better str"
 "sw4","Cisco","3650","London, Best str"
-"""
+'''

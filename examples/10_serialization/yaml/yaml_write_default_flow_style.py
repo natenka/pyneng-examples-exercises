@@ -20,7 +20,7 @@ with open('sw_templates.yaml', 'w') as f:
 with open('sw_templates.yaml') as f:
     print(f.read())
 
-"""
+'''
 Example:
 $ python yaml_write_ver2.py
 access:
@@ -34,4 +34,4 @@ trunk:
 - switchport mode trunk
 - switchport trunk native vlan 999
 - switchport trunk allowed vlan
-"""
+'''

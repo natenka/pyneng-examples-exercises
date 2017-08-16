@@ -7,7 +7,7 @@ with open('info.yaml') as f:
 pprint.pprint(templates)
 
 
-"""
+'''
 Example:
 $ python yaml_read.py
 [{'BS': 1550,
@@ -28,4 +28,4 @@ $ python yaml_read.py
   'name': 'Coventry',
   'to_id': 2,
   'to_name': 'Manchester'}]
-"""
+'''
