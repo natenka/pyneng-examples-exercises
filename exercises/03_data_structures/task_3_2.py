@@ -8,4 +8,4 @@
 
 '''
 
-MAC = "AAAA:BBBB:CCCC"
+MAC = 'AAAA:BBBB:CCCC'
