@@ -14,13 +14,13 @@ conn = sqlite3.connect(db_filename)
 #Позволяет далее обращаться к данным в колонках, по имени колонки
 conn.row_factory = sqlite3.Row
 
-print("\nDetailed information for host(s) with", key, value)
+print('\nDetailed information for host(s) with', key, value)
 print('-' * 40)
 
-query = "select * from dhcp where {} = ?".format( key )
+query = 'select * from dhcp where {} = ?'.format( key )
 result = conn.execute(query, (value,))
 
 for row in result:
     for k in keys:
-        print("{:12}: {}".format(k, row[k]))
+        print('{:12}: {}'.format(k, row[k]))
     print('-' * 40)

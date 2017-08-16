@@ -8,14 +8,14 @@ data = [('0000.AAAA.CCCC', 'sw1', 'Cisco 3750', 'London, Green Str'),
 
 con = sqlite3.connect('sw_inventory2.db')
 
-con.execute("""create table switch
-            (mac text not NULL primary key, hostname text, model text, location text)""")
+con.execute('''create table switch
+            (mac text not NULL primary key, hostname text, model text, location text)''')
 
-query = "INSERT into switch values (?, ?, ?, ?)"
+query = 'INSERT into switch values (?, ?, ?, ?)'
 con.executemany(query, data)
 con.commit()
 
-for row in con.execute("select * from switch"):
+for row in con.execute('select * from switch'):
     print(row)
 
 con.close()

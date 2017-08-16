@@ -30,10 +30,10 @@ def write_rows_to_db(connection, query, data, verbose=False):
                 connection.execute(query, row)
         except sqlite3.IntegrityError as e:
             if verbose:
-                print('При записи данных "{}" возникла ошибка'.format(', '.join(row), e))
+                print('При записи данных '{}' возникла ошибка'.format(', '.join(row), e))
         else:
             if verbose:
-                print('Запись данных "{}" прошла успешно'.format(', '.join(row)))
+                print('Запись данных '{}' прошла успешно'.format(', '.join(row)))
 
 
 con = dbf.create_connection('sw_inventory3.db')
