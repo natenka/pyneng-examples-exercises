@@ -4,37 +4,38 @@ import getpass
 import sys
 
 COMMAND = sys.argv[1].encode('utf-8')
-USER = input("Username: ").encode('utf-8')
+USER = input('Username: ').encode('utf-8')
 PASSWORD = getpass.getpass().encode('utf-8')
 ENABLE_PASS = getpass.getpass(prompt='Enter enable password: ').encode('utf-8')
 
 DEVICES_IP = ['192.168.100.1','192.168.100.2','192.168.100.3']
 
 for IP in DEVICES_IP:
-    print("Connection to device {}".format(IP))
-    t = telnetlib.Telnet(IP)
+    print('Connection to device {}'.format(IP))
+    with telnetlib.Telnet(IP) as t:
 
-    t.read_until(b"Username:")
-    t.write(USER + b'\n')
+        t.read_until(b'Username:')
+        t.write(USER + b'\n')
 
-    t.read_until(b"Password:")
-    t.write(PASSWORD + b'\n')
-    t.write(b"enable\n")
+        t.read_until(b'Password:')
+        t.write(PASSWORD + b'\n')
+        t.write(b'enable\n')
 
-    t.read_until(b"Password:")
-    t.write(ENABLE_PASS + b'\n')
-    t.write(b"terminal length 0\n")
-    t.write(COMMAND + b'\n')
+        t.read_until(b'Password:')
+        t.write(ENABLE_PASS + b'\n')
+        t.write(b'terminal length 0\n')
+        t.write(COMMAND + b'\n')
 
-    time.sleep(5)
+        time.sleep(5)
 
-    output = t.read_very_eager().decode('utf-8')
-    print(output)
+        output = t.read_very_eager().decode('utf-8')
+        print(output)
 
-"""
+
+'''
 Example:
 
-$ python 2_telnetlib.py "sh ip int br"
+$ python 2_telnetlib.py 'sh ip int br'
 Username: nata
 Password:
 Enter enable secret:
@@ -83,4 +84,4 @@ FastEthernet0/1.50     10.3.50.1       YES manual up                    up
 FastEthernet0/1.60     10.3.60.1       YES manual up                    up
 FastEthernet0/1.70     10.3.70.1       YES manual up                    up
 R3#
-"""
+'''

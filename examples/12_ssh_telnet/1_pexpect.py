@@ -3,38 +3,40 @@ import getpass
 import sys
 
 COMMAND = sys.argv[1]
-USER = input("Username: ")
+USER = input('Username: ')
 PASSWORD = getpass.getpass()
 ENABLE_PASS = getpass.getpass(prompt='Enter enable password: ')
 
 DEVICES_IP = ['192.168.100.1','192.168.100.2','192.168.100.3']
 
 for IP in DEVICES_IP:
-    print("Connection to device {}".format( IP ))
-    t = pexpect.spawn('ssh {}@{}'.format( USER, IP ))
+    print('Connection to device {}'.format(IP))
+    with pexpect.spawn('ssh {}@{}'.format(USER, IP)) as ssh:
 
-    t.expect('Password:')
-    t.sendline(PASSWORD)
+        ssh.expect('Password:')
+        ssh.sendline(PASSWORD)
 
-    t.expect('>')
-    t.sendline('enable')
+        ssh.expect('>')
+        ssh.sendline('enable')
 
-    t.expect('Password:')
-    t.sendline(ENABLE_PASS)
+        ssh.expect('Password:')
+        ssh.sendline(ENABLE_PASS)
 
-    t.expect('#')
-    t.sendline("terminal length 0")
+        ssh.expect('#')
+        ssh.sendline('terminal length 0')
 
-    t.expect('#')
-    t.sendline(COMMAND)
+        ssh.expect('#')
+        ssh.sendline(COMMAND)
 
-    t.expect('#')
-    print(t.before.decode('utf-8'))
+        ssh.expect('#')
+        print(ssh.before.decode('utf-8'))
 
-"""
+
+
+'''
 Example:
 
-$ python 1_pexpect.py "sh ip int br"
+$ python 1_pexpect.py 'sh ip int br'
 Username: nata
 Password:
 Enter enable secret:
@@ -78,4 +80,4 @@ FastEthernet0/1.60     10.3.60.1       YES manual up                    up
 FastEthernet0/1.70     10.3.70.1       YES manual up                    up
 R3
 
-"""
+'''

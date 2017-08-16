@@ -1,18 +1,21 @@
-from netmiko import ConnectHandler
 import sys
 import yaml
 import threading
 
+from netmiko import ConnectHandler
+
+
 COMMAND = sys.argv[1]
 devices = yaml.load(open('devices.yaml'))
 
-def connect_ssh(device_dict, command):
-    ssh = ConnectHandler(**device_dict)
-    ssh.enable()
-    result = ssh.send_command(command)
 
-    print("Connection to device {}".format( device_dict['ip'] ))
-    print(result)
+def connect_ssh(device_dict, command):
+    with ConnectHandler(**device_dict) as ssh:
+        ssh.enable()
+        result = ssh.send_command(command)
+
+        print('Connection to device {}'.format( device_dict['ip'] ))
+        print(result)
 
 
 def conn_threads(function, devices, command):
@@ -24,5 +27,6 @@ def conn_threads(function, devices, command):
 
     for th in threads:
         th.join()
+
 
 conn_threads(connect_ssh, devices['routers'], COMMAND)

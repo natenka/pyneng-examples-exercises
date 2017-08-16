@@ -1,30 +1,32 @@
-from netmiko import ConnectHandler
 import getpass
 import sys
 
+from netmiko import ConnectHandler
+
 
 COMMAND = sys.argv[1]
-USER = input("Username: ")
+USER = input('Username: ')
 PASSWORD = getpass.getpass()
 ENABLE_PASS = getpass.getpass(prompt='Enter enable password: ')
 
 DEVICES_IP = ['192.168.100.1','192.168.100.2','192.168.100.3']
 
+
 for IP in DEVICES_IP:
-    print("Connection to device {}".format( IP ))
+    print('Connection to device {}'.format(IP))
     DEVICE_PARAMS = {'device_type': 'cisco_ios',
                      'ip': IP,
-                     'username':USER,
-                     'password':PASSWORD,
-                     'secret':ENABLE_PASS }
+                     'username': USER,
+                     'password': PASSWORD,
+                     'secret': ENABLE_PASS}
 
-    ssh = ConnectHandler(**DEVICE_PARAMS)
-    ssh.enable()
+    with ConnectHandler(**DEVICE_PARAMS) as ssh:
+        ssh.enable()
 
-    result = ssh.send_command(COMMAND)
-    print(result)
+        result = ssh.send_command(COMMAND)
+        print(result)
 
-"""
+'''
 Examples:
 $ python 4_netmiko.py
 Username: cisco
@@ -63,4 +65,5 @@ FastEthernet0/1.40     10.3.40.1       YES manual up                    up
 FastEthernet0/1.50     10.3.50.1       YES manual up                    up
 FastEthernet0/1.60     10.3.60.1       YES manual up                    up
 FastEthernet0/1.70     10.3.70.1       YES manual up                    up
-"""
+'''
+

@@ -1,20 +1,24 @@
 # -*- coding: utf-8 -*-
-from netmiko import ConnectHandler
 import sys
 import yaml
 import threading
+from pprint import pprint
+
+from netmiko import ConnectHandler
+
 
 COMMAND = sys.argv[1]
 devices = yaml.load(open('devices.yaml'))
 
-def connect_ssh(device_dict, command, queue):
-    ssh = ConnectHandler(**device_dict)
-    ssh.enable()
-    result = ssh.send_command(command)
-    print("Connection to device {}".format( device_dict['ip'] ))
 
-    #Добавляем словарь в список
-    queue.append({ device_dict['ip']: result })
+def connect_ssh(device_dict, command, queue):
+    with ConnectHandler(**device_dict) as ssh:
+        ssh.enable()
+        result = ssh.send_command(command)
+        print('Connection to device {}'.format( device_dict['ip'] ))
+
+        #Добавляем словарь в список
+        queue.append({ device_dict['ip']: result })
 
 
 def conn_threads(function, devices, command):
@@ -30,13 +34,7 @@ def conn_threads(function, devices, command):
     for th in threads:
         th.join()
 
-    # Эта часть нам не нужна, так как, при использовании списка,
-    # мы просто можем вернуть его
-    #results = []
-    #for t in threads:
-    #    results.append(q.get())
-
     return q
 
-print(conn_threads(connect_ssh, devices['routers'], COMMAND))
-
+result = conn_threads(connect_ssh, devices['routers'], COMMAND)
+pprint(result)
