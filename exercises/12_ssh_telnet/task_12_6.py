@@ -16,7 +16,7 @@ def conn_processes(function, arg1, arg2, **kwargs):
         p = multiprocessing.Process(target=function,
                                     args=(arg1, arg2),
                                     kwargs=kwargs)
-                                    
+
 Пример из раздела:
 '''
 

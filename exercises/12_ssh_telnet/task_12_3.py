@@ -30,22 +30,8 @@
     * файла config.txt
 '''
 
-from netmiko import ConnectHandler
-
-commands = [ 'logging 10.255.255.1',
-             'logging buffered 20010',
-             'no logging console' ]
+commands = ['logging 10.255.255.1',
+            'logging buffered 20010',
+            'no logging console' ]
 command = 'sh ip int br'
-
-def send_show_command(device_list, show_command):
-    pass
-
-def send_config_commands(device_list, config_commands, output=True):
-    pass
-
-def send_commands_from_file(device_list, filename):
-    pass
-
-def send_commands(device_list, config=[], show='', filename=''):
-    pass
 
