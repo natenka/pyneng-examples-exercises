@@ -6,3 +6,10 @@
 * [Vagrant](https://github.com/natenka/pyneng-examples-exercises/blob/python3/exercises/vm/vagrant.md) - логин и пароль vagrant/vagrant
 * [VMware](https://github.com/natenka/pyneng-examples-exercises/blob/python3/exercises/vm/vmware.md) - логин и пароль python/python
 
+Установить модули, которые нужны для выполнения заданий можно таким образом:
+```
+pip install -r requirements.txt
+```
+
+Файл requirements.txt также находится в репозитории.
+
