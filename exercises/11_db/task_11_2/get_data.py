@@ -49,3 +49,4 @@ for row in result:
     for k in keys:
         print("{:12}: {}".format(k, row[k]))
     print('-' * 40)
+

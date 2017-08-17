@@ -17,6 +17,7 @@ Detailed information for host(s) with ip 10.1.10.2
 mac         : 00:09:BB:3D:D6:58
 vlan        : 10
 interface   : FastEthernet0/1
+switch      : sw1
 ----------------------------------------
 
 ----------------------------------------
@@ -25,6 +26,7 @@ Inactive values:
 mac         : 00:09:23:34:16:18
 vlan        : 10
 interface   : FastEthernet0/4
+switch      : sw1
 ----------------------------------------
 
 $ python get_data1.py
