@@ -51,8 +51,3 @@ def check_ignore(command, ignore):
     return any(word in command for word in ignore)
 
 
-def config_to_dict(config):
-    '''
-    config - имя конфигурационного файла
-    '''
-
