@@ -37,6 +37,5 @@ FastEthernet0/2            10.0.13.1       YES manual up                    up
 Loopback0                  10.1.1.1        YES manual up                    up
 Loopback100                100.0.0.1       YES manual up                    up
 
-Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 '''
