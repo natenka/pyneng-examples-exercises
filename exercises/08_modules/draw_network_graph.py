@@ -65,7 +65,10 @@ def draw_topology(topology_dict):
     Функция генерирует топологию, в формате svg.
     И записывает файл topology.svg в каталог img.
     '''
-    nodes = set([key[0] for key in list(topology_dict.keys()) + list(topology_dict.values())])
+    nodes = set([item[0]
+                 for item in list(topology_dict.keys())
+                           + list(topology_dict.values())])
+
 
     g1 = gv.Graph(format='svg')
 
