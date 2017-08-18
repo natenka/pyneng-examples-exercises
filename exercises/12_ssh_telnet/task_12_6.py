@@ -10,12 +10,12 @@
  * Проверить работу со списком команд, с командами из файла, с командой show
 
 Подсказка: multiprocessing.Process может передавать функции не только позиционные аргументы, но и ключевые:
-def conn_processes(function, arg1, arg2, **kwargs):
+def conn_processes(function, arg1, arg2, **kwargs_dict):
 
     for some in something:
         p = multiprocessing.Process(target=function,
                                     args=(arg1, arg2),
-                                    kwargs=kwargs)
+                                    kwargs=kwargs_dict)
 
 Пример из раздела:
 '''

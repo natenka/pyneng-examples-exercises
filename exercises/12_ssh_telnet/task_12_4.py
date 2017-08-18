@@ -10,15 +10,16 @@
  * Проверить работу со списком команд, с командами из файла, с командой show
 
 Подсказка: threading.Thread может передавать функции не только позиционные аргументы, но и ключевые:
-def conn_threads(function, arg1, arg2, **kwargs):
+def conn_threads(function, arg1, arg2, **kwargs_dict):
 
     for some in something:
         th = threading.Thread(target=function,
                               args=(arg1, arg2),
-                              kwargs=kwargs)
+                              kwargs=kwargs_dict)
 
 '''
 
+import sys
 import threading
 from queue import Queue
 from pprint import pprint
