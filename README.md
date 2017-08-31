@@ -1,15 +1,9 @@
 # pyneng-examples-exercises
+
 Задания и примеры из книги "Python для сетевых инженеров" для Python 3.6
 
-Для курса подготовлены два варианта виртуальных машин (по ссылкам инструкции для каждого варианта:
+В репозитории две ветки:
 
-* [Vagrant](https://github.com/natenka/pyneng-examples-exercises/blob/python3/exercises/vm/vagrant.md) - логин и пароль vagrant/vagrant
-* [VMware](https://github.com/natenka/pyneng-examples-exercises/blob/python3/exercises/vm/vmware.md) - логин и пароль python/python
-
-Установить модули, которые нужны для выполнения заданий можно таким образом:
-```
-pip install -r requirements.txt
-```
-
-Файл requirements.txt также находится в репозитории.
+* [master](https://github.com/natenka/pyneng-examples-exercises/) - все примеры и задания для Python 3.6
+* [python2.7](https://github.com/natenka/pyneng-examples-exercises/tree/python2.7) - все примеры и задания для Python 2.7
 
