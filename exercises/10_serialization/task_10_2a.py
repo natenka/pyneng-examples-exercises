@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 '''
-Задание 10.3a
+Задание 10.2a
 
-С помощью функции parse_sh_cdp_neighbors из задания 10.3,
+С помощью функции parse_sh_cdp_neighbors из задания 10.2,
 обработать вывод команды sh cdp neighbor из файлов:
 * sh_cdp_n_sw1.txt
 * sh_cdp_n_r1.txt
