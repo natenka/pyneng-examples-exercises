@@ -16,7 +16,7 @@ for IP in DEVICES_IP:
         ssh.expect('Password:')
         ssh.sendline(PASSWORD)
 
-        ssh.expect('>')
+        ssh.expect('[#>]')
         ssh.sendline('enable')
 
         ssh.expect('Password:')
