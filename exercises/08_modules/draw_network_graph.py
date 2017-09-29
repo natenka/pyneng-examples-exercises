@@ -51,7 +51,7 @@ def apply_styles(graph, styles):
     return graph
 
 
-def draw_topology(topology_dict):
+def draw_topology(topology_dict, output_filename='img/topology'):
     '''
     topology_dict - словарь с описанием топологии
 
@@ -81,6 +81,6 @@ def draw_topology(topology_dict):
         g1.edge(head, tail, headlabel=h_label, taillabel=t_label, label=" "*12)
 
     g1 = apply_styles(g1, styles)
-    filename = g1.render(filename='img/topology')
+    filename = g1.render(filename=output_filename)
     print( "Graph saved in", filename )
 
