@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-Задание 4.3
+Задание 5.3
 
 Скрипт должен запрашивать у пользователя:
 * информацию о режиме интерфейса (access/trunk),
@@ -25,7 +25,7 @@
 
 Пример выполнения скрипта, при выборе режима access:
 
-$ python task_4_3.py
+$ python task_5_3.py
 Enter interface mode (access/trunk): access
 Enter interface type and number: Fa0/6
 Enter vlan(s): 3
@@ -38,7 +38,7 @@ spanning-tree portfast
 spanning-tree bpduguard enable
 
 Пример выполнения скрипта, при выборе режима trunk:
-$ python task_4_3.py
+$ python task_5_3.py
 Enter interface mode (access/trunk): trunk
 Enter interface type and number: Fa0/7
 Enter vlan(s): 2,3,4,5
