@@ -14,5 +14,5 @@
         lines:
           - login local
           - transport input ssh
-        save: yes
+        save_when: modified
         provider: "{{ cli }}"
