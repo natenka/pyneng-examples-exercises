@@ -28,4 +28,23 @@
    * значение - вывод с выполнением команд
 
 Проверить функцию на команде с ошибкой.
+
+
+Примеры команд с ошибками:
+
+R1(config)#logging 0255.255.1
+                   ^
+% Invalid input detected at '^' marker.
+
+R1(config)#logging
+% Incomplete command.
+
+R1(config)#i
+% Ambiguous command:  "i"
 '''
+
+commands_with_errors = ['logging 0255.255.1', 'logging', 'i']
+correct_commands = ['logging buffered 20010', 'ip http server']
+
+commands = commands_with_errors+correct_commands
+
