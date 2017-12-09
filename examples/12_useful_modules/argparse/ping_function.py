@@ -1,6 +1,4 @@
 import subprocess
-from tempfile import TemporaryFile
-
 import argparse
 
 
@@ -10,14 +8,16 @@ def ping_ip(ip_address, count):
     On success: (return code = 0, command output)
     On failure: (return code, error output (stderr))
     '''
-    with TemporaryFile() as temp:
-        try:
-            output = subprocess.check_output(['ping', '-c', str(count), '-n', ip_address],
-                                             stderr=temp)
-            return 0, output.decode('utf-8')
-        except subprocess.CalledProcessError as e:
-            temp.seek(0)
-            return e.returncode, temp.read().decode('utf-8')
+    reply = subprocess.run('ping -c {count} -n {ip}'
+                           .format(count=count, ip=ip_address),
+                           shell=True,
+                           stdout=subprocess.PIPE,
+                           stderr=subprocess.PIPE,
+                           encoding='utf-8')
+    if reply.returncode == 0:
+        return True, reply.stdout
+    else:
+        return False, reply.stdout+reply.stderr
 
 
 parser = argparse.ArgumentParser(description='Ping script')
@@ -28,6 +28,6 @@ parser.add_argument('-c', action='store', dest='count', default=2, type=int)
 args = parser.parse_args()
 print(args)
 
-rc, message = ping_ip( args.ip, args.count )
+rc, message = ping_ip(args.ip, args.count)
 print(message)
 
