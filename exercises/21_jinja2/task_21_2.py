@@ -21,11 +21,10 @@
 При этом, нельзя копировать текст шаблонов.
 
 Проверьте шаблон templates/cisco_router_base.txt,
-с помощью функции generate_cfg_from_template из задания 21.1-21.1d.
+с помощью функции generate_cfg_from_template из задания 21.1-21.1c.
 Не копируйте код функции.
 
-В качестве данных, используйте словарь router_info
+В качестве данных, используйте файл data_files/router_info.yml
 
 '''
 
-router_info = {'hostname': 'R1'}
