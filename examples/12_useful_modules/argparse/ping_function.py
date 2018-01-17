@@ -8,16 +8,16 @@ def ping_ip(ip_address, count):
     On success: (return code = 0, command output)
     On failure: (return code, error output (stderr))
     '''
-    reply = subprocess.run('ping -c {count} -n {ip}'
-                           .format(count=count, ip=ip_address),
-                           shell=True,
-                           stdout=subprocess.PIPE,
-                           stderr=subprocess.PIPE,
-                           encoding='utf-8')
+    reply = subprocess.run(
+        'ping -c {count} -n {ip}'.format(count=count, ip=ip_address),
+        shell=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        encoding='utf-8')
     if reply.returncode == 0:
         return True, reply.stdout
     else:
-        return False, reply.stdout+reply.stderr
+        return False, reply.stdout + reply.stderr
 
 
 parser = argparse.ArgumentParser(description='Ping script')
@@ -30,4 +30,3 @@ print(args)
 
 rc, message = ping_ip(args.ip, args.count)
 print(message)
-

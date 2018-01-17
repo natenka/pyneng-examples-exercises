@@ -6,4 +6,3 @@ if reply.returncode == 0:
     print('Alive')
 else:
     print('Unreachable')
-
