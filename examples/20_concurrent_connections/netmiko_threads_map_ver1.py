@@ -23,4 +23,3 @@ if __name__ == '__main__':
     devices = yaml.load(open('devices.yaml'))
     all_done = threads_conn(connect_ssh, devices['routers'])
     pprint(all_done)
-

@@ -6,7 +6,6 @@ import time
 import yaml
 from netmiko import ConnectHandler
 
-
 start_msg = '===> {} Connection to device: {}'
 received_msg = '<=== {} Received result from device: {}'
 
@@ -32,4 +31,3 @@ if __name__ == '__main__':
     devices = yaml.load(open('devices.yaml'))
     all_done = threads_conn(connect_ssh, devices['routers'])
     pprint(all_done)
-

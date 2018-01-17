@@ -7,7 +7,6 @@ from itertools import repeat
 import yaml
 from netmiko import ConnectHandler
 
-
 start_msg = '===> {} Connection to device: {}'
 received_msg = '<=== {} Received result from device: {}'
 
@@ -26,8 +25,9 @@ def connect_ssh(device_dict, command):
 def threads_conn(function, devices, limit=2, command=''):
     all_results = []
     with ThreadPoolExecutor(max_workers=limit) as executor:
-        future_ssh = [executor.submit(function, device, command)
-                      for device in devices]
+        future_ssh = [
+            executor.submit(function, device, command) for device in devices
+        ]
         for f in as_completed(future_ssh):
             all_results.append(f.result())
     return all_results
@@ -35,8 +35,6 @@ def threads_conn(function, devices, limit=2, command=''):
 
 if __name__ == '__main__':
     devices = yaml.load(open('devices.yaml'))
-    all_done = threads_conn(connect_ssh,
-                            devices['routers'],
-                            command='sh clock')
+    all_done = threads_conn(
+        connect_ssh, devices['routers'], command='sh clock')
     pprint(all_done)
-
