@@ -5,8 +5,6 @@ with open('info.yaml') as f:
     templates = yaml.load(f)
 
 pprint(templates)
-
-
 '''
 Example:
 $ python yaml_read.py

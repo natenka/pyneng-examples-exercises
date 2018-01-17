@@ -8,7 +8,6 @@ print(templates)
 for section, commands in templates.items():
     print(section)
     print('\n'.join(commands))
-
 '''
 Example:
 $ python json_read.py

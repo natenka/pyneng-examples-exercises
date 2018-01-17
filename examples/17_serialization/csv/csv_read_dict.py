@@ -5,8 +5,6 @@ with open('sw_data.csv') as f:
     for row in reader:
         print(row)
         print(row['hostname'], row['model'])
-
-
 '''
 Example:
 $ python csv_read_dict.py

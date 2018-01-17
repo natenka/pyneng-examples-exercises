@@ -6,7 +6,6 @@ with open('sw_data.csv') as f:
     print('Headers: ', headers)
     for row in reader:
         print(row)
-
 '''
 Example:
 $ python csv_read_headers.py
@@ -16,4 +15,3 @@ Headers:  ['hostname', 'vendor', 'model', 'location']
 ['sw3', 'Cisco', '3650', 'Liverpool']
 ['sw4', 'Cisco', '3650', 'London']
 '''
-

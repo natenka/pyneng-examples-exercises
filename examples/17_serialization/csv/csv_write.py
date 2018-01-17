@@ -6,6 +6,7 @@ data = [['hostname', 'vendor', 'model', 'location'],
         ['sw3', 'Cisco', '3650', 'Liverpool, Better str'],
         ['sw4', 'Cisco', '3650', 'London, Best str']]
 
+
 with open('sw_data_new.csv', 'w') as f:
     writer = csv.writer(f)
     for row in data:
@@ -13,8 +14,6 @@ with open('sw_data_new.csv', 'w') as f:
 
 with open('sw_data_new.csv') as f:
     print(f.read())
-
-
 '''
 Example:
 
