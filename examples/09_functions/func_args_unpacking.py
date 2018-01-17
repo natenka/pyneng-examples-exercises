@@ -1,5 +1,5 @@
-
 # Unpacking positional arguments
+
 
 def config_interface(intf_name, ip_address, cidr_mask):
     interface = 'interface {}'
@@ -10,25 +10,22 @@ def config_interface(intf_name, ip_address, cidr_mask):
     result.append(no_shut)
 
     mask_bits = int(cidr_mask.split('/')[-1])
-    bin_mask = '1'*mask_bits + '0'*(32-mask_bits)
-    dec_mask = [str(int(bin_mask[i:i+8], 2)) for i in range(0,25,8)]
+    bin_mask = '1' * mask_bits + '0' * (32 - mask_bits)
+    dec_mask = [str(int(bin_mask[i:i + 8], 2)) for i in range(0, 25, 8)]
     dec_mask_str = '.'.join(dec_mask)
 
     result.append(ip_addr.format(ip_address, dec_mask_str))
     return result
 
+
 #print(config_interface('Fa0/1', '10.0.1.1', '/25'))
 
-interfaces_info = [['Fa0/1', '10.0.1.1', '/24'],
-                   ['Fa0/2', '10.0.2.1', '/24'],
-                   ['Fa0/3', '10.0.3.1', '/24'],
-                   ['Fa0/4', '10.0.4.1', '/24'],
+interfaces_info = [['Fa0/1', '10.0.1.1', '/24'], ['Fa0/2', '10.0.2.1', '/24'],
+                   ['Fa0/3', '10.0.3.1', '/24'], ['Fa0/4', '10.0.4.1', '/24'],
                    ['Lo0', '10.0.0.1', '/32']]
-
 
 for i in interfaces_info:
     print(config_interface(*i))
-
 '''
 Output:
 ['interface Fa0/1', 'no shutdown', 'ip address 10.0.1.1 255.255.255.0']
@@ -40,8 +37,11 @@ Output:
 
 # Unpacking keyword arguments
 
-def config_to_list(cfg_file, delete_excl=True,
-                   delete_empty=True, strip_end=True):
+
+def config_to_list(cfg_file,
+                   delete_excl=True,
+                   delete_empty=True,
+                   strip_end=True):
     result = []
     with open(cfg_file) as f:
         for line in f:
@@ -55,15 +55,32 @@ def config_to_list(cfg_file, delete_excl=True,
                 result.append(line)
     return result
 
-cfg = [dict(cfg_file='r1.txt', delete_excl=True, delete_empty=True, strip_end=True),
-       dict(cfg_file='r2.txt', delete_excl=False, delete_empty=True, strip_end=True),
-       dict(cfg_file='r3.txt', delete_excl=True, delete_empty=False, strip_end=True),
-       dict(cfg_file='r4.txt', delete_excl=True, delete_empty=True, strip_end=False)]
 
+cfg = [
+    dict(
+        cfg_file='r1.txt',
+        delete_excl=True,
+        delete_empty=True,
+        strip_end=True),
+    dict(
+        cfg_file='r2.txt',
+        delete_excl=False,
+        delete_empty=True,
+        strip_end=True),
+    dict(
+        cfg_file='r3.txt',
+        delete_excl=True,
+        delete_empty=False,
+        strip_end=True),
+    dict(
+        cfg_file='r4.txt',
+        delete_excl=True,
+        delete_empty=True,
+        strip_end=False)
+]
 
 for d in cfg:
     print(config_to_list(**d))
-
 '''
 Output:
 

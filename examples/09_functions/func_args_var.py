@@ -8,8 +8,6 @@ def sum_arg(*args):
     return sum(args)
 
 
-def sum_arg(a,**kwargs):
+def sum_arg(a, **kwargs):
     print(a, kwargs)
     return a + sum(kwargs.values())
-
-

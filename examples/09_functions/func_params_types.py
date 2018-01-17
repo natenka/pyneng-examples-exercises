@@ -1,7 +1,6 @@
-
 def cfg_to_list(cfg_file, delete_exclamation):
     result = []
-    with open( cfg_file ) as f:
+    with open(cfg_file) as f:
         for line in f:
             if delete_exclamation and line.startswith('!'):
                 pass
@@ -16,7 +15,7 @@ print(cfg_to_list('r1.txt', False))
 
 def cfg_to_list2(cfg_file, delete_exclamation=True):
     result = []
-    with open( cfg_file ) as f:
+    with open(cfg_file) as f:
         for line in f:
             if delete_exclamation and line.startswith('!'):
                 pass

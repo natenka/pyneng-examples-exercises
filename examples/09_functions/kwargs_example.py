@@ -1,5 +1,7 @@
-def config_to_list(cfg_file, delete_excl=True,
-                   delete_empty=True, strip_end=True):
+def config_to_list(cfg_file,
+                   delete_excl=True,
+                   delete_empty=True,
+                   strip_end=True):
     result = []
     with open(cfg_file) as f:
         for line in f:
