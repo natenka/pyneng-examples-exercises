@@ -30,10 +30,12 @@ def write_rows_to_db(connection, query, data, verbose=False):
                 connection.execute(query, row)
         except sqlite3.IntegrityError as e:
             if verbose:
-                print('При записи данных '{}' возникла ошибка'.format(', '.join(row), e))
+                print("При записи данных '{}' возникла ошибка".format(
+                    ', '.join(row), e))
         else:
             if verbose:
-                print('Запись данных '{}' прошла успешно'.format(', '.join(row)))
+                print("Запись данных '{}' прошла успешно".format(
+                    ', '.join(row)))
 
 
 con = dbf.create_connection('sw_inventory3.db')
@@ -44,7 +46,7 @@ query_get_all = 'SELECT * from switch'
 print('\nПроверка текущего содержимого БД')
 pprint(dbf.get_all_from_db(con, query_get_all))
 
-print('-'*60)
+print('-' * 60)
 print('Попытка записать данные с повторяющимся MAC-адресом:')
 pprint(data2)
 write_rows_to_db(con, query_insert, data2, verbose=True)
@@ -52,4 +54,3 @@ print('\nПроверка содержимого БД')
 pprint(dbf.get_all_from_db(con, query_get_all))
 
 con.close()
-

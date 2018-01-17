@@ -41,4 +41,3 @@ for row in result:
         print('Error occured: ', e)
 
 conn.close()
-
