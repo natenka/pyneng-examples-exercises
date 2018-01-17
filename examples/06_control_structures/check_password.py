@@ -9,7 +9,6 @@ elif username in password:
     print('Пароль содержит имя пользователя')
 else:
     print('Пароль для пользователя {} установлен'.format(username))
-
 '''
 Usage example:
 
@@ -33,4 +32,3 @@ $ python check_password.py
 Введите пароль: 123456789
 Пароль для пользователя nata установлен
 '''
-

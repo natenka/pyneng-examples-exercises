@@ -1,4 +1,3 @@
-
 username = input('Введите имя пользователя: ')
 password = input('Введите пароль: ')
 
@@ -14,4 +13,3 @@ while not password_correct:
         password_correct = True
         continue
     password = input('Введите пароль еще раз: ')
-

@@ -3,7 +3,7 @@ while True:
     a = input("Введите число: ")
     b = input("Введите второе число: ")
     try:
-        result = int(a)/int(b)
+        result = int(a) / int(b)
     except ValueError:
         print("Поддерживаются только числа")
     except ZeroDivisionError:
@@ -20,8 +20,7 @@ while True:
         if int(b) == 0:
             print("На ноль делить нельзя")
         else:
-            print(int(a)/int(b))
+            print(int(a) / int(b))
             break
     else:
         print("Поддерживаются только числа")
-

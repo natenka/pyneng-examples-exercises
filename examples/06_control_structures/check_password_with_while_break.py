@@ -1,4 +1,3 @@
-
 username = input('Введите имя пользователя: ')
 password = input('Введите пароль: ')
 
@@ -12,4 +11,3 @@ while True:
         # завершает цикл while
         break
     password = input('Введите пароль еще раз: ')
-
