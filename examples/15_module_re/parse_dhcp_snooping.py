@@ -2,7 +2,8 @@
 import re
 
 #'00:09:BB:3D:D6:58   10.1.10.2        86250       dhcp-snooping   10    FastEthernet0/1'
-regex = re.compile('(?P<mac>\S+) +(?P<ip>\S+) +\d+ +\S+ +(?P<vlan>\d+) +(?P<port>\S+)')
+regex = re.compile(
+    '(?P<mac>\S+) +(?P<ip>\S+) +\d+ +\S+ +(?P<vlan>\d+) +(?P<port>\S+)')
 result = []
 
 with open('dhcp_snooping.txt') as data:
@@ -16,9 +17,7 @@ print('К коммутатору подключено {} устройства'.f
 for num, comp in enumerate(result, 1):
     print('Параметры устройства {}:'.format(num))
     for key in comp:
-        print('{:10}: {:10}'.format(key,comp[key]))
-
-
+        print('{:10}: {:10}'.format(key, comp[key]))
 '''
 Example:
 

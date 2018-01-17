@@ -18,9 +18,10 @@ def parse_cdp(filename):
                     device = match.group(match.lastgroup)
                     result[device] = {}
                 elif device:
-                    result[device][match.lastgroup] = match.group(match.lastgroup)
+                    result[device][match.lastgroup] = match.group(
+                        match.lastgroup)
 
     return result
 
-pprint(parse_cdp('sh_cdp_neighbors_sw1.txt'))
 
+pprint(parse_cdp('sh_cdp_neighbors_sw1.txt'))

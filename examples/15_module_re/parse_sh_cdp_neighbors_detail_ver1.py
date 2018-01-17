@@ -17,9 +17,11 @@ def parse_cdp(filename):
                 platform = re.search('Platform: (\S+ \S+),', line).group(1)
                 result[neighbor]['platform'] = platform
             elif line.startswith('Cisco IOS Software'):
-                ios = re.search('Cisco IOS Software, (.+), RELEASE', line).group(1)
+                ios = re.search('Cisco IOS Software, (.+), RELEASE',
+                                line).group(1)
                 result[neighbor]['ios'] = ios
 
     return result
+
 
 pprint(parse_cdp('sh_cdp_neighbors_sw1.txt'))

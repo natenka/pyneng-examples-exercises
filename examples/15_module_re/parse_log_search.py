@@ -16,4 +16,3 @@ with open('log.txt') as f:
             ports.add(match.group(3))
 
 print('Петля между портами {} в VLAN {}'.format(', '.join(ports), vlan))
-

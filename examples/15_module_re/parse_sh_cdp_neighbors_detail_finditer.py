@@ -21,5 +21,5 @@ def parse_cdp(filename):
 
     return result
 
-pprint(parse_cdp('sh_cdp_neighbors_sw1.txt'))
 
+pprint(parse_cdp('sh_cdp_neighbors_sw1.txt'))
