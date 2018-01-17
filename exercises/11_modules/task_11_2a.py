@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 '''
 Задание 11.2a
 
@@ -33,4 +32,3 @@
 > pip install graphviz
 
 '''
-

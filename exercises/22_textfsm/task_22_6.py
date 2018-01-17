@@ -20,4 +20,3 @@ import yaml
 
 test_command = "sh ip int br"
 devices = yaml.load(open('devices.yaml'))
-

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 '''
 Задание 18.2a
 
@@ -19,4 +18,3 @@ $ python get_data_ver1.py vln 10
 Допустимые значения параметров: mac, ip, vlan, interface, switch
 
 '''
-

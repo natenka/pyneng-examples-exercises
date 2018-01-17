@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 '''
 Задание 21.1b
 
@@ -24,12 +23,22 @@
 
 '''
 
-data_dict = {'vlans': {
-                        10: 'Marketing',
-                        20: 'Voice',
-                        30: 'Management'},
-             'ospf': [{'network': '10.0.1.0 0.0.0.255', 'area': 0},
-                      {'network': '10.0.2.0 0.0.0.255', 'area': 2},
-                      {'network': '10.1.1.0 0.0.0.255', 'area': 0}],
-             'id': 3,
-             'name': 'R3'}
+data_dict = {
+    'vlans': {
+        10: 'Marketing',
+        20: 'Voice',
+        30: 'Management'
+    },
+    'ospf': [{
+        'network': '10.0.1.0 0.0.0.255',
+        'area': 0
+    }, {
+        'network': '10.0.2.0 0.0.0.255',
+        'area': 2
+    }, {
+        'network': '10.1.1.0 0.0.0.255',
+        'area': 0
+    }],
+    'id': 3,
+    'name': 'R3'
+}

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 """
 Задание 18.1
 
@@ -21,5 +20,3 @@ create_db.py
 
 db_filename = 'dhcp_snooping.db'
 schema_filename = 'dhcp_snooping_schema.sql'
-
-

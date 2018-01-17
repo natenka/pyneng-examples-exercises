@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 '''
 На основе файла get_data_ver1.py из раздела, создать скрипт get_data.py.
 
@@ -69,4 +68,3 @@ switch      : sw2
 $ python get_data.py vlan
 Пожалуйста, введите два или ноль аргументов
 '''
-

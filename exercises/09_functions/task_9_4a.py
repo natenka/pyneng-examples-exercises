@@ -49,5 +49,3 @@ def check_ignore(command, ignore):
 
     '''
     return any(word in command for word in ignore)
-
-

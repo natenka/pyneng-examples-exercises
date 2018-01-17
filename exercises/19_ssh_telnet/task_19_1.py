@@ -19,4 +19,3 @@
 '''
 
 command = 'sh ip int br'
-

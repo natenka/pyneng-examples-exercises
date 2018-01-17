@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 '''
 Задание 19.2d
 
@@ -35,5 +34,4 @@
 commands_with_errors = ['logging 0255.255.1', 'logging', 'i']
 correct_commands = ['logging buffered 20010', 'ip http server']
 
-commands = commands_with_errors+correct_commands
-
+commands = commands_with_errors + correct_commands

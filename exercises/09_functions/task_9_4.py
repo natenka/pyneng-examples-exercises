@@ -23,6 +23,7 @@
 
 ignore = ['duplex', 'alias', 'Current configuration']
 
+
 def ignore_command(command, ignore):
     '''
     Функция проверяет содержится ли в команде слово из списка ignore.
@@ -35,5 +36,3 @@ def ignore_command(command, ignore):
     * False - если нет
     '''
     return any(word in command for word in ignore)
-
-

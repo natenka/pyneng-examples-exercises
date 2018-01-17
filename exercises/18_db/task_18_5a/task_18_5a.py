@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 '''
 Задание 18.5a
 
@@ -19,10 +18,9 @@
 from datetime import timedelta, datetime
 
 now = datetime.today().replace(microsecond=0)
-week_ago = now - timedelta(days = 7)
+week_ago = now - timedelta(days=7)
 
 #print(now)
 #print(week_ago)
 #print(now > week_ago)
 #print(str(now) > str(week_ago))
-

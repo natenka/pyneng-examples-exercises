@@ -21,6 +21,7 @@
 
 '''
 
+
 def generate_access_config(access):
     '''
     access - словарь access-портов,
@@ -38,21 +39,22 @@ def generate_access_config(access):
     - значения: список команд, который надо выполнить на этом интерфейсе
     '''
 
-    access_template = ['switchport mode access',
-                       'switchport access vlan',
-                       'switchport nonegotiate',
-                       'spanning-tree portfast',
-                       'spanning-tree bpduguard enable']
+    access_template = [
+        'switchport mode access', 'switchport access vlan',
+        'switchport nonegotiate', 'spanning-tree portfast',
+        'spanning-tree bpduguard enable'
+    ]
 
-    port_security = ['switchport port-security maximum 2',
-                     'switchport port-security violation restrict',
-                     'switchport port-security']
+    port_security = [
+        'switchport port-security maximum 2',
+        'switchport port-security violation restrict',
+        'switchport port-security'
+    ]
 
 
-
-
-access_dict = { 'FastEthernet0/12':10,
-                'FastEthernet0/14':11,
-                'FastEthernet0/16':17,
-                'FastEthernet0/17':150 }
-
+access_dict = {
+    'FastEthernet0/12': 10,
+    'FastEthernet0/14': 11,
+    'FastEthernet0/16': 17,
+    'FastEthernet0/17': 150
+}

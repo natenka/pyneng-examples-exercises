@@ -31,4 +31,3 @@
 
 Проверить работу функции send_and_parse_command на команде sh ip int br.
 '''
-

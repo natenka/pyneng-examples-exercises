@@ -6,10 +6,9 @@ import sys
 try:
     import graphviz as gv
 except ImportError:
-    print( "Module graphviz needs to be installed" )
-    print( "pip install graphviz" )
+    print("Module graphviz needs to be installed")
+    print("pip install graphviz")
     sys.exit()
-
 
 styles = {
     'graph': {
@@ -38,16 +37,11 @@ styles = {
     }
 }
 
+
 def apply_styles(graph, styles):
-    graph.graph_attr.update(
-        ('graph' in styles and styles['graph']) or {}
-    )
-    graph.node_attr.update(
-        ('nodes' in styles and styles['nodes']) or {}
-    )
-    graph.edge_attr.update(
-        ('edges' in styles and styles['edges']) or {}
-    )
+    graph.graph_attr.update(('graph' in styles and styles['graph']) or {})
+    graph.node_attr.update(('nodes' in styles and styles['nodes']) or {})
+    graph.edge_attr.update(('edges' in styles and styles['edges']) or {})
     return graph
 
 
@@ -65,10 +59,10 @@ def draw_topology(topology_dict, output_filename='img/topology'):
     Функция генерирует топологию, в формате svg.
     И записывает файл topology.svg в каталог img.
     '''
-    nodes = set([item[0]
-                 for item in list(topology_dict.keys())
-                           + list(topology_dict.values())])
-
+    nodes = set([
+        item[0]
+        for item in list(topology_dict.keys()) + list(topology_dict.values())
+    ])
 
     g1 = gv.Graph(format='svg')
 
@@ -78,9 +72,9 @@ def draw_topology(topology_dict, output_filename='img/topology'):
     for key, value in topology_dict.items():
         head, t_label = key
         tail, h_label = value
-        g1.edge(head, tail, headlabel=h_label, taillabel=t_label, label=" "*12)
+        g1.edge(
+            head, tail, headlabel=h_label, taillabel=t_label, label=" " * 12)
 
     g1 = apply_styles(g1, styles)
     filename = g1.render(filename=output_filename)
-    print( "Graph saved in", filename )
-
+    print("Graph saved in", filename)

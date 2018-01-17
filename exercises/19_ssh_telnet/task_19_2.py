@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 '''
 Задание 19.2
 
@@ -19,8 +18,6 @@
 
 '''
 
-
-commands = [ 'logging 10.255.255.1',
-             'logging buffered 20010',
-             'no logging console' ]
-
+commands = [
+    'logging 10.255.255.1', 'logging buffered 20010', 'no logging console'
+]

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 '''
 Задание 18.4
 
@@ -47,4 +46,3 @@ Inactive values:
 00:A9:BB:3D:D6:58  10.1.10.20        10    FastEthernet0/7    sw2         0
 
 '''
-

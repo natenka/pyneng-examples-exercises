@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 '''
 Задание 5.3a
 
@@ -12,13 +11,13 @@
 То есть эту задачу можно решить без использования условия if и циклов for/while.
 '''
 
-access_template = ['switchport mode access',
-                   'switchport access vlan {}',
-                   'switchport nonegotiate',
-                   'spanning-tree portfast',
-                   'spanning-tree bpduguard enable']
+access_template = [
+    'switchport mode access', 'switchport access vlan {}',
+    'switchport nonegotiate', 'spanning-tree portfast',
+    'spanning-tree bpduguard enable'
+]
 
-trunk_template = ['switchport trunk encapsulation dot1q',
-                  'switchport mode trunk',
-                  'switchport trunk allowed vlan {}']
-
+trunk_template = [
+    'switchport trunk encapsulation dot1q', 'switchport mode trunk',
+    'switchport trunk allowed vlan {}'
+]

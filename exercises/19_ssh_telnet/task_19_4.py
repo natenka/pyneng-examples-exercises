@@ -18,4 +18,3 @@
 Функция send_commands_to_devices должна использовать функцию send_commands из задания 19.3.
 
 '''
-
