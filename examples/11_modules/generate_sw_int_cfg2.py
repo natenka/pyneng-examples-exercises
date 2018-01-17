@@ -13,6 +13,6 @@ def generate_access_cfg(sw_dict):
                 result.append(' {}'.format(command))
     return result
 
+
 if __name__ == '__main__':
     print('\n'.join(generate_access_cfg(sw1_fast_int)))
-

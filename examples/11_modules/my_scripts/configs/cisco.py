@@ -21,4 +21,3 @@ line vty 0 4
  transport input ssh
 !
 """
-
