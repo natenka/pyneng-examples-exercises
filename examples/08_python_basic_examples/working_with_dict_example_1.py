@@ -1,4 +1,3 @@
-
 result = {}
 
 with open('sh_ip_int_br.txt') as f:
@@ -9,7 +8,6 @@ with open('sh_ip_int_br.txt') as f:
             result[interface] = address
 
 print(result)
-
 '''
 $ python working_with_dict_example_1.py
 {'FastEthernet0/0': '15.0.15.1',

@@ -1,4 +1,3 @@
-
 result = {}
 
 with open('sh_ip_interface.txt') as f:
@@ -10,7 +9,6 @@ with open('sh_ip_interface.txt') as f:
             result[interface] = mtu
 
 print(result)
-
 '''
 $ python working_with_dict_example_2.py
 {'Ethernet0/0': '1500',
