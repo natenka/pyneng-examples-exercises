@@ -8,7 +8,7 @@ USER = input('Username: ').encode('utf-8')
 PASSWORD = getpass.getpass().encode('utf-8')
 ENABLE_PASS = getpass.getpass(prompt='Enter enable password: ').encode('utf-8')
 
-DEVICES_IP = ['192.168.100.1','192.168.100.2','192.168.100.3']
+DEVICES_IP = ['192.168.100.1', '192.168.100.2', '192.168.100.3']
 
 for IP in DEVICES_IP:
     print('Connection to device {}'.format(IP))
@@ -30,8 +30,6 @@ for IP in DEVICES_IP:
 
         output = t.read_very_eager().decode('utf-8')
         print(output)
-
-
 '''
 Example:
 

@@ -8,15 +8,19 @@ USER = input('Username: ')
 PASSWORD = getpass.getpass()
 ENABLE_PASS = getpass.getpass(prompt='Enter enable password: ')
 
-DEVICES_IP = ['192.168.100.1','192.168.100.2','192.168.100.3']
+DEVICES_IP = ['192.168.100.1', '192.168.100.2', '192.168.100.3']
 
 for IP in DEVICES_IP:
-    print('Connection to device {}'.format( IP ))
+    print('Connection to device {}'.format(IP))
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
-    client.connect(hostname=IP, username=USER, password=PASSWORD,
-                   look_for_keys=False, allow_agent=False)
+    client.connect(
+        hostname=IP,
+        username=USER,
+        password=PASSWORD,
+        look_for_keys=False,
+        allow_agent=False)
 
     with client.invoke_shell() as ssh:
         ssh.send('enable\n')
@@ -31,8 +35,6 @@ for IP in DEVICES_IP:
         time.sleep(2)
         result = ssh.recv(5000).decode('utf-8')
         print(result)
-
-
 '''
 Example:
 $ python 3_paramiko.py
