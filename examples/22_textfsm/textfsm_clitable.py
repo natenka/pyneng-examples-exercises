@@ -17,7 +17,6 @@ header = list(cli_table.header)
 print(header)
 for row in data_rows:
     print(row)
-
 '''
 Example:
 

@@ -4,7 +4,6 @@ import threading
 
 from netmiko import ConnectHandler
 
-
 COMMAND = sys.argv[1]
 devices = yaml.load(open('devices.yaml'))
 
@@ -14,14 +13,14 @@ def connect_ssh(device_dict, command):
         ssh.enable()
         result = ssh.send_command(command)
 
-        print('Connection to device {}'.format( device_dict['ip'] ))
+        print('Connection to device {}'.format(device_dict['ip']))
         print(result)
 
 
 def conn_threads(function, devices, command):
     threads = []
     for device in devices:
-        th = threading.Thread(target = function, args = (device, command))
+        th = threading.Thread(target=function, args=(device, command))
         th.start()
         threads.append(th)
 

@@ -6,7 +6,6 @@ from queue import Queue
 from pprint import pprint
 from netmiko import ConnectHandler
 
-
 COMMAND = sys.argv[1]
 devices = yaml.load(open('devices.yaml'))
 
@@ -41,5 +40,5 @@ def conn_threads(function, devices, command):
 
     return results
 
-pprint(conn_threads(connect_ssh, devices['routers'], COMMAND))
 
+pprint(conn_threads(connect_ssh, devices['routers'], COMMAND))

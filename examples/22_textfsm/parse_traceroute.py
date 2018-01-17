@@ -18,7 +18,6 @@ result = fsm.ParseText(traceroute)
 
 print(fsm.header)
 print(result)
-
 '''
 Example:
 
