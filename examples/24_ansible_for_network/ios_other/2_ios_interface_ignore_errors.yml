@@ -1,0 +1,19 @@
+---
+
+- name: Run show commands on routers
+  hosts: cisco-routers
+
+
+  tasks:
+
+    - name: Check interface E0/0
+      ios_interface:
+        name: Ethernet0/0
+        state: down
+        tx_rate: gt(0)
+      ignore_errors: yes
+      register: result
+
+    - name: Debug registered var
+      debug: var=result
+

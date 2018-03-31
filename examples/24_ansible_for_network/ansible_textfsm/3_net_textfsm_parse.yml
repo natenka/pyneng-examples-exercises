@@ -1,0 +1,20 @@
+---
+
+- name: Run show commands on routers
+  hosts: cisco-routers
+
+  vars:
+    platform: cisco_ios
+    command: show ip int brief
+
+  tasks:
+
+    - name: run sh ip int br
+      ios_command:
+        commands: "{{ command }}"
+      register: result
+
+    - name: Debug registered var
+      debug:
+        msg: "{{ result.stdout[0] | net_textfsm_parse(platform, command) }}"
+#ansible-playbook 3_net_textfsm_parse.yml --extra-vars "command=\"sh cdp neigh\" platform=cisco_ios"

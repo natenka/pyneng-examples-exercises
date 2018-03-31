@@ -1,0 +1,19 @@
+---
+
+- name: Run show commands on routers
+  hosts: cisco-routers
+
+  vars:
+    command: sh ip int br
+
+  tasks:
+
+    - name: run sh ip int br
+      ios_command:
+        commands: "{{ command }}"
+      register: result
+
+    - name: Save parsed data
+      copy:
+        content: "{{ result.stdout[0] | parse_cli_textfsm('library/templates/cisco_ios_show_ip_int_brief.template') | to_nice_json }}"
+        dest: "parsed_data/{{inventory_hostname}}_{{ command }}.json"

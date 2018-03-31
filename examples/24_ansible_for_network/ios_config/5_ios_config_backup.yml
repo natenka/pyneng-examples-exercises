@@ -2,8 +2,6 @@
 
 - name: Run cfg commands on routers
   hosts: cisco-routers
-  gather_facts: false
-  connection: local
 
   tasks:
 
@@ -13,6 +11,5 @@
           - line vty 0 4
         lines:
           - login local
-          - transport input ssh
+          - transport input ssh telnet
         backup: yes
-        provider: "{{ cli }}"

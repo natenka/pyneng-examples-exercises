@@ -2,9 +2,6 @@
 
 - name: Run show commands on routers
   hosts: cisco-routers
-  #connection: network_cli
-  #gather_facts: false
-
 
   tasks:
 
@@ -14,5 +11,6 @@
       register: sh_ip_int_br_result
 
     - name: Debug registered var
-      debug: var=sh_ip_int_br_result.stdout_lines
+      debug:
+        msg: "{{ sh_ip_int_br_result.stdout[0] | parse_cli_textfsm('library/templates/cisco_ios_show_ip_int_brief.template') }}"
 

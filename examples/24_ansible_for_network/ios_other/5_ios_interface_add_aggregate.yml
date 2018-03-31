@@ -1,0 +1,15 @@
+---
+
+- name: Run show commands on routers
+  hosts: 192.168.100.1
+
+
+  tasks:
+
+    - name: Add interface using aggregate
+      ios_interface:
+        aggregate:
+        - { name: Loopback100, description: loopback-interface-100 }
+        - { name: Loopback200, description: loopback-interface-200 }
+        state: present
+

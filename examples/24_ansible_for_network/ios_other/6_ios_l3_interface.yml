@@ -1,0 +1,20 @@
+---
+
+- name: Run show commands on routers
+  hosts: 192.168.100.1
+
+
+  tasks:
+
+    - name: Check interface E0/0
+      ios_l3_interface:
+        name: Loopback100
+        ipv4: 1.1.1.1/32
+        state: present
+
+    - name: Set IP addresses on aggregate
+      ios_l3_interface:
+        aggregate:
+          - { name: Loopback100, ipv4: 1.1.1.1/32 }
+          - { name: Loopback200, ipv4: 2.2.2.2/32 }
+        state: present

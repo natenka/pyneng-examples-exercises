@@ -1,0 +1,12 @@
+---
+
+- name: Run show commands on routers
+  hosts: cisco-routers
+
+
+  tasks:
+
+    - name: Ping address
+      ios_ping:
+        dest: 192.168.100.100
+

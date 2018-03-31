@@ -2,8 +2,6 @@
 
 - name: Run cfg commands on routers
   hosts: cisco-routers
-  gather_facts: false
-  connection: local
 
   tasks:
 
@@ -14,4 +12,3 @@
           - no ip http server
           - no ip http secure-server
           - no ip domain lookup
-        provider: "{{ cli }}"

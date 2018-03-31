@@ -1,0 +1,16 @@
+---
+
+- name: Run show commands on routers
+  hosts: cisco-routers
+
+
+  tasks:
+
+    - name: Check interface E0/0
+      ios_interface:
+        aggregate:
+          - name: Ethernet0/3.100
+          - name: Ethernet0/3.200
+          - name: Ethernet0/3.300
+        state: absent
+

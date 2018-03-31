@@ -2,14 +2,11 @@
 
 - name: Run show commands on routers
   hosts: cisco-routers
-  gather_facts: false
-  connection: local
 
   tasks:
 
-    - name: run show commands
+    - name: Ping host
       ios_command:
         commands: ping 192.168.100.100
         wait_for:
           - result[0] contains 'Success rate is 100 percent'
-        provider: "{{ cli }}"

@@ -1,0 +1,19 @@
+---
+
+- name: Run show commands on routers
+  hosts: cisco-routers
+  #connection: network_cli
+  #gather_facts: false
+
+
+  tasks:
+
+    - name: Check interface E0/0
+      ios_interface:
+        name: Ethernet0/0
+        state: up
+        tx_rate: gt(0)
+      ignore_errors: yes
+      register: result
+
+

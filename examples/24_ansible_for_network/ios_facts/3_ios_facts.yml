@@ -1,16 +1,13 @@
 ---
 
 - name: Collect IOS facts
-  hosts: cisco-routers
-  gather_facts: false
-  connection: local
+  hosts: cisco-ios
 
   tasks:
 
     - name: Facts
       ios_facts:
         gather_subset: all
-        provider: "{{ cli }}"
       register: ios_facts_result
 
     - name: Create all_facts dir
