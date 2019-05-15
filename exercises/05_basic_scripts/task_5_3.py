@@ -3,12 +3,9 @@
 Задание 5.3
 
 Скрипт должен запрашивать у пользователя:
-* информацию о режиме интерфейса (access/trunk),
-  * пример текста запроса: 'Enter interface mode (access/trunk): '
+* информацию о режиме интерфейса (access/trunk)
 * номере интерфейса (тип и номер, вида Gi0/3)
-  * пример текста запроса: 'Enter interface type and number: '
 * номер VLANа (для режима trunk будет вводиться список VLANов)
-  * пример текста запроса: 'Enter vlan(s): '
 
 В зависимости от выбранного режима, на стандартный поток вывода,
 должна возвращаться соответствующая конфигурация access или trunk
@@ -25,9 +22,9 @@
 Пример выполнения скрипта, при выборе режима access:
 
 $ python task_5_3.py
-Enter interface mode (access/trunk): access
-Enter interface type and number: Fa0/6
-Enter vlan(s): 3
+Введите режим работы интерфейса (access/trunk): access
+Введите тип и номер интерфейса: Fa0/6
+Введите номер влан(ов): 3
 
 interface Fa0/6
 switchport mode access
@@ -38,9 +35,9 @@ spanning-tree bpduguard enable
 
 Пример выполнения скрипта, при выборе режима trunk:
 $ python task_5_3.py
-Enter interface mode (access/trunk): trunk
-Enter interface type and number: Fa0/7
-Enter vlan(s): 2,3,4,5
+Введите режим работы интерфейса (access/trunk): trunk
+Введите тип и номер интерфейса: Fa0/7
+Введите номер влан(ов): 2,3,4,5
 
 interface Fa0/7
 switchport trunk encapsulation dot1q
