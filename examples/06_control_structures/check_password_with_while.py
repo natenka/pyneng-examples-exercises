@@ -15,6 +15,7 @@ while not password_correct:
     else:
         print('Пароль для пользователя {} установлен'.format(username))
         password_correct = True
+
 '''
 Example:
 $ python check_password_with_while.py

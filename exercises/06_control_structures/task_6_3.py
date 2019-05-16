@@ -12,9 +12,9 @@
 Поэтому в соответствии каждому порту стоит список
 и первый (нулевой) элемент списка указывает как воспринимать номера VLAN,
 которые идут дальше:
-	add - значит VLANы надо будет добавить (команда switchport trunk allowed vlan add 10,20)
-	del - значит VLANы надо удалить из списка разрешенных (команда switchport trunk allowed vlan remove 17)
-	only - значит, что на интерфейсе должны остаться разрешенными только указанные VLANы (команда switchport trunk allowed vlan 11,30)
+	add - VLANы надо будет добавить (команда switchport trunk allowed vlan add 10,20)
+	del - VLANы надо удалить из списка разрешенных (команда switchport trunk allowed vlan remove 17)
+	only - на интерфейсе должны остаться разрешенными только указанные VLANы (команда switchport trunk allowed vlan 11,30)
 
 Задача для портов 0/1, 0/2, 0/4:
 - сгенерировать конфигурацию на основе шаблона trunk_template

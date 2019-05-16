@@ -9,6 +9,7 @@ elif username in password:
     print('Пароль содержит имя пользователя')
 else:
     print('Пароль для пользователя {} установлен'.format(username))
+
 '''
 Usage example:
 
