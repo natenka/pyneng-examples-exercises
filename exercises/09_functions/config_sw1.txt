@@ -38,7 +38,7 @@ interface FastEthernet0/2
 !         
 interface FastEthernet0/3
  switchport trunk encapsulation dot1q
- switchport trunk allowed vlan 100,300
+ switchport trunk allowed vlan 100,300,400,500,600
  duplex auto
  switchport mode trunk
 !         
@@ -54,7 +54,7 @@ interface FastEthernet1/1
 !
 interface FastEthernet1/2
  switchport trunk encapsulation dot1q
- switchport trunk allowed vlan 400,500
+ switchport trunk allowed vlan 400,500,600
  switchport mode trunk
  duplex auto
 !
