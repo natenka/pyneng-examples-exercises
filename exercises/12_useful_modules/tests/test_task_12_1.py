@@ -12,7 +12,8 @@ def test_function_created():
 
 @pytest.mark.skipif(not hasattr(task_12_1, 'ping_ip_addresses'),
                     reason="Этот тест работает только если создана функция ping_ip_addresses")
-def test_function_return_value(list_of_ips):
+def test_function_return_value():
+    list_of_ips = ['1.1.1', '8.8.8.8', '8.8.4.4', '8.8.7.1']
     correct_return_value = get_reach_unreach(list_of_ips)
 
     return_value = task_12_1.ping_ip_addresses(list_of_ips)

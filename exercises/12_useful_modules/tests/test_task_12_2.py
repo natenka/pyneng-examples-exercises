@@ -10,7 +10,8 @@ def test_function_created():
     check_function_exists(task_12_2, 'convert_ranges_to_ip_list')
 
 
-def test_function_return_value(list_of_ips_and_ranges):
+def test_function_return_value():
+    list_of_ips_and_ranges = ['8.8.4.4', '1.1.1.1-3', '172.21.41.128-172.21.41.132']
     correct_return_value = ['8.8.4.4', '1.1.1.1', '1.1.1.2', '1.1.1.3',
                             '172.21.41.128', '172.21.41.129', '172.21.41.130',
                             '172.21.41.131', '172.21.41.132']
