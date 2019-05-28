@@ -1,6 +1,0 @@
-logging 10.255.100.1
-ntp server 10.255.100.1
-
- username user2 secret pass2
- username user3 secret pass3
- username user1 secret pass1
