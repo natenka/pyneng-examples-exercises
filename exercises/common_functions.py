@@ -3,7 +3,17 @@ import inspect
 from platform import system as system_name
 from subprocess import run, PIPE
 from concurrent.futures import ThreadPoolExecutor
+import re
+import yaml
 
+
+def strip_empty_lines(output):
+    lines = []
+    for line in output.strip().split('\n'):
+        line = line.strip()
+        if line:
+            lines.append(re.sub(' +', ' ', line.strip()))
+    return '\n'.join(lines)
 
 
 def check_function_exists(module, function_name):
