@@ -4,16 +4,6 @@ import pytest
 from netmiko import ConnectHandler
 
 
-
-def strip_empty_lines(output):
-    lines = []
-    for line in output.strip().split('\n'):
-        line = line.strip()
-        if line:
-            lines.append(re.sub(' +', ' ', line.strip()))
-    return '\n'.join(lines)
-
-
 def test_attr_or_method(obj, attr=None, method=None):
     if attr:
         assert getattr(obj, attr, None) != None, "Атрибут не найден"

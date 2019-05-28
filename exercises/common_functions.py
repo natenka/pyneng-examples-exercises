@@ -7,6 +7,21 @@ import re
 import yaml
 
 
+stdout_incorrect_warning = '''
+Сообщение отличается от указанного в задании.
+Должно быть: {}
+А выведено: {}
+'''
+
+def check_attr_or_method(obj, attr=None, method=None):
+    if attr:
+        assert getattr(obj, attr, None) != None, "Атрибут не найден"
+        assert not inspect.ismethod(getattr(obj, attr)), f"{attr} должен быть переменной, а не методом"
+    if method:
+        assert getattr(obj, method, None) != None, "Метод не найден"
+        assert inspect.ismethod(getattr(obj, method)), f"{method} должен быть методом, а не переменной"
+
+
 def strip_empty_lines(output):
     lines = []
     for line in output.strip().split('\n'):
@@ -14,6 +29,10 @@ def strip_empty_lines(output):
         if line:
             lines.append(re.sub(' +', ' ', line.strip()))
     return '\n'.join(lines)
+
+
+def check_class_exists(module, class_name):
+    assert hasattr(module, class_name) and inspect.isclass(getattr(module, class_name)), f"Надо создать класс с именем {class_name}"
 
 
 def check_function_exists(module, function_name):

@@ -1,12 +1,18 @@
 import os
 import pytest
-from task_25_2b import CiscoTelnet
-from common_functions import check_attr_or_method
-from conftest import strip_empty_lines
+import task_25_2b
+import sys
+sys.path.append('..')
+
+from common_functions import check_class_exists, check_attr_or_method, strip_empty_lines
+
+
+def test_class_created():
+    check_class_exists(task_25_2b, 'CiscoTelnet')
 
 
 def test_class(first_router_from_devices_yaml):
-    r1 = CiscoTelnet(**first_router_from_devices_yaml)
+    r1 = task_25_2b.CiscoTelnet(**first_router_from_devices_yaml)
     assert getattr(r1, 'send_config_commands', None) != None,\
             'У класса CiscoTelnet должен быть метод send_config_commands'
 

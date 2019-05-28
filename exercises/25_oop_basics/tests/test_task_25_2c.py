@@ -1,13 +1,19 @@
 import os
 import pytest
-from task_25_2c import CiscoTelnet
-from conftest import strip_empty_lines
+import task_25_2c
+import sys
+sys.path.append('..')
+
+from common_functions import check_class_exists, check_attr_or_method, strip_empty_lines
+
+
+def test_class_created():
+    check_class_exists(task_25_2c, 'CiscoTelnet')
 
 
 def test_class(first_router_from_devices_yaml, capsys):
-    r1 = CiscoTelnet(**first_router_from_devices_yaml)
-    assert getattr(r1, 'send_config_commands', None) != None,\
-            'У класса CiscoTelnet должен быть метод send_config_commands'
+    r1 = task_25_2c.CiscoTelnet(**first_router_from_devices_yaml)
+    check_attr_or_method(r1, 'send_config_commands')
 
     # команды без ошибок
     correct_commands = ['interface loop55', 'ip address 5.5.5.5 255.255.255.255']

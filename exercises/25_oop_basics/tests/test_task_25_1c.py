@@ -1,24 +1,32 @@
 import pytest
-from task_25_1c import Topology
 import warnings
-from common_functions import check_attr_or_method, stdout_incorrect_warning
+import task_25_1c
+import sys
+sys.path.append('..')
+
+from common_functions import (check_class_exists, check_attr_or_method,
+                              stdout_incorrect_warning)
+
+
+def test_class_created():
+    check_class_exists(task_25_1c, 'Topology')
 
 
 def test_attr_topology(topology_with_dupl_links):
     '''Проверяем, что в объекте Topology есть атрибут topology'''
-    top_with_data = Topology(topology_with_dupl_links)
+    top_with_data = task_25_1c.Topology(topology_with_dupl_links)
     check_attr_or_method(top_with_data, attr='topology')
 
 
 def test_topology_normalization(topology_with_dupl_links, normalized_topology_example):
     '''Проверка удаления дублей в топологии'''
-    top_with_data = Topology(topology_with_dupl_links)
+    top_with_data = task_25_1c.Topology(topology_with_dupl_links)
     assert len(top_with_data.topology) == len(normalized_topology_example)
 
 
 def test_method_delete_node(normalized_topology_example, capsys):
     '''Проверка наличия метода delete_node и его работы'''
-    norm_top = Topology(normalized_topology_example)
+    norm_top = task_25_1c.Topology(normalized_topology_example)
     check_attr_or_method(norm_top, method='delete_node')
 
     node = 'SW1'
@@ -33,7 +41,7 @@ def test_method_delete_node(normalized_topology_example, capsys):
     #проверка удаления несуществующего устройства
     norm_top.delete_node(node)
     out, err = capsys.readouterr()
-    node_msg = 'Такого устройства нет\n'
+    node_msg = 'Такого устройства нет'
     if not out == node_msg:
         warnings.warn(UserWarning(stdout_incorrect_warning.format(node_msg, out)))
 
