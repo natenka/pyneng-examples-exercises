@@ -2,43 +2,19 @@
 '''
 Задание 22.4
 
-На основе примера textfsm_clitable.py из раздела TextFSM
-сделать функцию parse_command_dynamic.
+Создать функцию send_and_parse_show_command.
 
 Параметры функции:
-* словарь атрибутов, в котором находятся такие пары ключ: значение:
- * 'Command': команда
- * 'Vendor': вендор (обратите внимание, что файл index отличается от примера, который использовался в разделе, поэтому вам нужно подставить тут правильное значение)
-* имя файла, где хранится соответствие между командами и шаблонами (строка)
- * значение по умолчанию аргумента - index
-* каталог, где хранятся шаблоны и файл с соответствиями (строка)
- * значение по умолчанию аргумента - templates
-* вывод команды (строка)
+* device_dict - словарь с параметрами подключения к одному устройству
+* command - команда, которую надо выполнить
+* templates_path - путь к каталогу с шаблонами TextFSM
+
+Функция должна подключаться к одному устройству, отправлять команду show с помощью netmiko,
+а затем парсить вывод команды с помощью TextFSM.
 
 Функция должна возвращать список словарей с результатами обработки вывода команды (как в задании 22.1a):
-* ключи - названия столбцов
-* значения - соответствующие значения в столбцах
+* ключи - имена переменных в шаблоне TextFSM
+* значения - части вывода, которые соответствуют переменным
 
-Проверить работу функции на примере вывода команды sh ip int br.
-
-Пример из раздела:
+Проверить работу функции на примере вывода команды sh ip int br и устройствах из devices.yaml.
 '''
-
-import clitable
-
-output_sh_ip_route_ospf = open('output/sh_ip_route_ospf.txt').read()
-
-cli_table = clitable.CliTable('index', 'templates')
-attributes = {'Command': 'show ip route ospf', 'Vendor': 'Cisco'}
-
-cli_table.ParseCmd(output_sh_ip_route_ospf, attributes)
-
-print('CLI Table output:\n', cli_table)
-print('Formatted Table:\n', cli_table.FormattedTable())
-
-data_rows = [list(row) for row in cli_table]
-header = list(cli_table.header)
-
-print(header)
-for row in data_rows:
-    print(row)

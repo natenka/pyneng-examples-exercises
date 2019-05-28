@@ -2,31 +2,15 @@
 '''
 Задание 22.1
 
-Переделать пример, который использовался в разделе TextFSM, в функцию.
-
-Функция должна называться parse_output. Параметры функции:
-* template - шаблон TextFSM (это должно быть имя файла, в котором находится шаблон)
-* output - вывод соответствующей команды show (строка)
+Создать функцию parse_command_output. Параметры функции:
+* template - шаблон TextFSM. Имя файла, в котором находится шаблон
+* command_output - вывод соответствующей команды show (строка)
 
 Функция должна возвращать список:
-* первый элемент - это список с названиями столбцов (в примере ниже, находится в переменной header)
-* остальные элементы это списки, в котором находятся результаты обработки вывода (в примере ниже, находится в переменной result)
+* первый элемент - это список с названиями столбцов
+* остальные элементы это списки, в котором находятся результаты обработки вывода
 
-Проверить работу функции на каком-то из примеров раздела.
+Проверить работу функции на выводе команды output/sh_ip_int_br.txt и шаблоне templates/sh_ip_int_br.template.
 
-Пример из раздела:
 '''
 
-import sys
-import textfsm
-from tabulate import tabulate
-
-template = sys.argv[1]
-output_file = sys.argv[2]
-
-with open(template) as f, open(output_file) as output:
-    re_table = textfsm.TextFSM(f)
-    header = re_table.header
-    result = re_table.ParseText(output.read())
-    print(result)
-    print(tabulate(result, headers=header))
