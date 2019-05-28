@@ -6,7 +6,7 @@ from netmiko import ConnectHandler
 @pytest.fixture(scope='module')
 def three_routers_from_devices_yaml():
     with open('devices.yaml') as f:
-        devices = yaml.load(f)
+        devices = yaml.safe_load(f)
         devices = devices[:3]
         options = {'timeout': 5, 'fast_cli': True}
         for device in devices:
