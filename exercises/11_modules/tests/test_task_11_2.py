@@ -16,7 +16,16 @@ def test_function_params():
                           param_count=1, param_names=['filenames'])
 
 
-def test_function_return_value(sh_cdp_n_sw1):
+def test_function_return_value():
+    sh_cdp_n_sw1 = (
+        'SW1>show cdp neighbors\n\n'
+        'Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge\n'
+        '                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone\n\n'
+        'Device ID    Local Intrfce   Holdtme     Capability       Platform    Port ID\n'
+        'R1           Eth 0/1         122           R S I           2811       Eth 0/0\n'
+        'R2           Eth 0/2         143           R S I           2811       Eth 0/0\n'
+        'R3           Eth 0/3         151           R S I           2811       Eth 0/0\n'
+        'R6           Eth 0/5         121           R S I           2811       Eth 0/1')
     correct_return_value = {('R1', 'Eth0/0'): ('SW1', 'Eth0/1'),
                             ('R2', 'Eth0/0'): ('SW1', 'Eth0/2'),
                             ('R2', 'Eth0/1'): ('SW2', 'Eth0/11'),
