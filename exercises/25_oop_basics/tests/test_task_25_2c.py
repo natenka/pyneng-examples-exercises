@@ -13,7 +13,7 @@ def test_class_created():
 
 def test_class(first_router_from_devices_yaml, capsys):
     r1 = task_25_2c.CiscoTelnet(**first_router_from_devices_yaml)
-    check_attr_or_method(r1, 'send_config_commands')
+    check_attr_or_method(r1, method='send_config_commands')
 
     # команды без ошибок
     correct_commands = ['interface loop55', 'ip address 5.5.5.5 255.255.255.255']

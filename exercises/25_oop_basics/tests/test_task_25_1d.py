@@ -39,13 +39,13 @@ def test_method_add_link(normalized_topology_example, capsys):
     norm_top.add_link(('R1', 'Eth0/4'), ('R7', 'Eth0/0'))
     out, err = capsys.readouterr()
     link_msg = 'Такое соединение существует'
-    if not out == link_msg:
+    if not link_msg in out:
         warnings.warn(UserWarning(stdout_incorrect_warning.format(link_msg, out)))
 
     #проверка добавления линка с существующим портом
     norm_top.add_link(('R1', 'Eth0/4'), ('R7', 'Eth0/5'))
     out, err = capsys.readouterr()
     port_msg = 'Cоединение с одним из портов существует'
-    if not out == port_msg:
+    if not port_msg in out:
         warnings.warn(UserWarning(stdout_incorrect_warning.format(port_msg, out)))
 

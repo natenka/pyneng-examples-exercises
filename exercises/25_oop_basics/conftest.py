@@ -39,7 +39,7 @@ def normalized_topology_example():
 @pytest.fixture(scope='module')
 def first_router_from_devices_yaml():
     with open('devices.yaml') as f:
-        devices = yaml.load(f)
+        devices = yaml.safe_load(f)
         r1 = devices[0]
     return r1
 
@@ -47,7 +47,7 @@ def first_router_from_devices_yaml():
 @pytest.fixture(scope='module')
 def r1_test_telnet_connection():
     with open('devices.yaml') as f:
-        devices = yaml.load(f)
+        devices = yaml.safe_load(f)
     r1_params = devices[0]
     options = {'device_type': 'cisco_ios_telnet',
                'timeout': 5,

@@ -42,6 +42,6 @@ def test_method_delete_node(normalized_topology_example, capsys):
     norm_top.delete_node(node)
     out, err = capsys.readouterr()
     node_msg = 'Такого устройства нет'
-    if not out == node_msg:
+    if not node_msg in out:
         warnings.warn(UserWarning(stdout_incorrect_warning.format(node_msg, out)))
 
