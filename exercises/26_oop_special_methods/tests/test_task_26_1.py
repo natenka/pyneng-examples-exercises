@@ -32,7 +32,7 @@ def test_method__add__(normalized_topology_example):
 
     check_attr_or_method(top1, method='__add__')
     top3 = top1 + top2
-    assert isinstance(top3, Topology), 'Метод __add__ должен возвращать новый экземпляр класса Topology'
+    assert isinstance(top3, task_26_1.Topology), 'Метод __add__ должен возвращать новый экземпляр класса Topology'
     assert len(top3.topology) == 8
     assert len(top1.topology) == top1_size_before_add,\
             'После сложения изменился размер первой топологии. Метод __add__ не должен менять исходные топологии'
