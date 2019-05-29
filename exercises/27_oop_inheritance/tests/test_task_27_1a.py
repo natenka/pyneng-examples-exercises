@@ -1,11 +1,14 @@
 import pytest
 import task_27_1a
-from common_functions import check_attr_or_method
 from base_connect_class import BaseSSH
+import sys
+sys.path.append('..')
+
+from common_functions import check_class_exists, check_attr_or_method
 
 
 def test_class_created():
-    assert hasattr(task_27_1a, 'CiscoSSH'), "Надо создать класс CiscoSSH"
+    check_class_exists(task_27_1a, 'CiscoSSH')
 
 
 def test_class_inheritance(first_router_from_devices_yaml):

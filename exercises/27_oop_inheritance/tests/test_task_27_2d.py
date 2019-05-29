@@ -2,12 +2,14 @@ import pytest
 import task_27_2d
 import task_27_2a
 from netmiko.cisco.cisco_ios import CiscoIosBase
-from common_functions import check_attr_or_method
-from base_connect_class import BaseSSH
+import sys
+sys.path.append('..')
+
+from common_functions import check_class_exists, check_attr_or_method
 
 
 def test_class_created():
-    assert hasattr(task_27_2d, 'MyNetmiko'), "Надо создать класс MyNetmiko"
+    check_class_exists(task_27_2d, 'MyNetmiko')
 
 
 def test_class_inheritance(first_router_from_devices_yaml):
