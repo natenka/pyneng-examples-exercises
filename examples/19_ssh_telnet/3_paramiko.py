@@ -3,38 +3,39 @@ import getpass
 import sys
 import time
 
-COMMAND = sys.argv[1]
-USER = input('Username: ')
-PASSWORD = getpass.getpass()
-ENABLE_PASS = getpass.getpass(prompt='Enter enable password: ')
+command = sys.argv[1]
+user = input('Username: ')
+password = getpass.getpass()
+enable_pass = getpass.getpass(prompt='Enter enable password: ')
 
-DEVICES_IP = ['192.168.100.1', '192.168.100.2', '192.168.100.3']
+devices_ip = ['192.168.100.1', '192.168.100.2', '192.168.100.3']
 
-for IP in DEVICES_IP:
-    print('Connection to device {}'.format(IP))
+for ip in devices_ip:
+    print('Connection to device {}'.format(ip))
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
     client.connect(
-        hostname=IP,
-        username=USER,
-        password=PASSWORD,
+        hostname=ip,
+        username=user,
+        password=password,
         look_for_keys=False,
         allow_agent=False)
 
     with client.invoke_shell() as ssh:
         ssh.send('enable\n')
-        ssh.send(ENABLE_PASS + '\n')
-        time.sleep(1)
+        ssh.send(enable_pass + '\n')
+        time.sleep(0.5)
 
         ssh.send('terminal length 0\n')
         time.sleep(1)
-        ssh.recv(1000).decode('utf-8')
+        ssh.recv(1000).decode('ascii')
 
-        ssh.send(COMMAND + '\n')
+        ssh.send(command + '\n')
         time.sleep(2)
-        result = ssh.recv(5000).decode('utf-8')
+        result = ssh.recv(5000).decode('ascii')
         print(result)
+
 '''
 Example:
 $ python 3_paramiko.py

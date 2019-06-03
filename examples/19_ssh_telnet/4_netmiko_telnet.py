@@ -4,25 +4,25 @@ import time
 
 from netmiko import ConnectHandler
 
-COMMAND = sys.argv[1]
-USER = input('Username: ')
-PASSWORD = getpass.getpass()
-ENABLE_PASS = getpass.getpass(prompt='Enter enable password: ')
+command = sys.argv[1]
+user = input('Username: ')
+password = getpass.getpass()
+enable_pass = getpass.getpass(prompt='Enter enable password: ')
 
-DEVICES_IP = ['192.168.100.1', '192.168.100.2', '192.168.100.3']
+devices_ip = ['192.168.100.1', '192.168.100.2', '192.168.100.3']
 
-for IP in DEVICES_IP:
-    print('Connection to device {}'.format(IP))
-    DEVICE_PARAMS = {
+for ip in devices_ip:
+    print('connection to device {}'.format(ip))
+    device_params = {
         'device_type': 'cisco_ios_telnet',
-        'ip': IP,
-        'username': USER,
-        'password': PASSWORD,
-        'secret': ENABLE_PASS,
+        'ip': ip,
+        'username': user,
+        'password': password,
+        'secret': enable_pass,
         'verbose': True
     }
-    with ConnectHandler(**DEVICE_PARAMS) as telnet:
+    with ConnectHandler(**device_params) as telnet:
         telnet.enable()
 
-        result = telnet.send_command(COMMAND)
+        result = telnet.send_command(command)
         print(result)

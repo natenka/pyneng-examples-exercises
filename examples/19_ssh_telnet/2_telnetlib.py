@@ -3,32 +3,32 @@ import time
 import getpass
 import sys
 
-COMMAND = sys.argv[1].encode('utf-8')
-USER = input('Username: ').encode('utf-8')
-PASSWORD = getpass.getpass().encode('utf-8')
-ENABLE_PASS = getpass.getpass(prompt='Enter enable password: ').encode('utf-8')
+command = sys.argv[1].encode('ascii')
+user = input('Username: ').encode('ascii')
+password = getpass.getpass().encode('ascii')
+enable_pass = getpass.getpass(prompt='Enter enable password: ').encode('ascii')
 
-DEVICES_IP = ['192.168.100.1', '192.168.100.2', '192.168.100.3']
+devices_ip = ['192.168.100.1', '192.168.100.2', '192.168.100.3']
 
-for IP in DEVICES_IP:
-    print('Connection to device {}'.format(IP))
-    with telnetlib.Telnet(IP) as t:
+for ip in devices_ip:
+    print('Connection to device {}'.format(ip))
+    with telnetlib.Telnet(ip) as t:
 
         t.read_until(b'Username:')
-        t.write(USER + b'\n')
+        t.write(user + b'\n')
 
         t.read_until(b'Password:')
-        t.write(PASSWORD + b'\n')
+        t.write(password + b'\n')
         t.write(b'enable\n')
 
         t.read_until(b'Password:')
-        t.write(ENABLE_PASS + b'\n')
+        t.write(enable_pass + b'\n')
         t.write(b'terminal length 0\n')
-        t.write(COMMAND + b'\n')
+        t.write(command + b'\n')
 
-        time.sleep(5)
+        time.sleep(1)
 
-        output = t.read_very_eager().decode('utf-8')
+        output = t.read_very_eager().decode('ascii')
         print(output)
 '''
 Example:
