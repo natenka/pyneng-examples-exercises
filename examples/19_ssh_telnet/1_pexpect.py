@@ -2,6 +2,7 @@ import pexpect
 import getpass
 import sys
 
+
 command = sys.argv[1]
 user = input('Username: ')
 password = getpass.getpass()
