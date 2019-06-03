@@ -3,6 +3,7 @@ import getpass
 import sys
 import time
 
+
 command = sys.argv[1]
 user = input('Username: ')
 password = getpass.getpass()

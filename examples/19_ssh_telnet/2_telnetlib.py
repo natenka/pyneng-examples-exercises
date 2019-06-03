@@ -3,6 +3,7 @@ import time
 import getpass
 import sys
 
+
 command = sys.argv[1].encode('ascii')
 user = input('Username: ').encode('ascii')
 password = getpass.getpass().encode('ascii')
