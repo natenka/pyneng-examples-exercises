@@ -39,11 +39,12 @@ def send_command_paramiko(ipaddress, username, password, enable_pass, command):
     return result
 
 
-command = 'sh run'
-user = password = enable_pass = 'cisco'
-ip = '192.168.100.1'
+if __name__ == "__main__":
+    command = 'sh run'
+    user = password = enable_pass = 'cisco'
+    ip = '192.168.100.1'
 
-result = send_command_paramiko(ip, user, password, enable_pass, 'sh run')
-with open('result.txt', 'w') as f:
-    f.write(result)
+    result = send_command_paramiko(ip, user, password, enable_pass, 'sh run')
+    with open('result.txt', 'w') as f:
+        f.write(result)
 

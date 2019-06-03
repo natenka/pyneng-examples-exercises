@@ -38,5 +38,3 @@ if __name__ == "__main__":
     for ip in devices_ip:
         print(send_ios_show_pexpect(ip, command, *['cisco']*3))
 
-
-

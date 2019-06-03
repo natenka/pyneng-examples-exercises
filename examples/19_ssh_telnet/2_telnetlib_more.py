@@ -31,9 +31,10 @@ def send_command_telnetlib(ipaddress, username, password, enable_pass, command):
     return result
 
 
-command = 'sh run'
-user = password = enable_pass = 'cisco'
-ip = '192.168.100.1'
+if __name__ == "__main__":
+    command = 'sh run'
+    user = password = enable_pass = 'cisco'
+    ip = '192.168.100.1'
 
-print(send_command_telnetlib(ip, user, password, enable_pass, 'sh run'))
+    print(send_command_telnetlib(ip, user, password, enable_pass, 'sh run'))
 

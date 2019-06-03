@@ -25,6 +25,7 @@ device_params = {
     'secret': enable_pass
 }
 
-with ConnectHandler(**device_params) as ssh:
-    ssh.enable()
-    cfg_comand(ssh, 'interface Loopback55', 'ip address 5.5.5.5 255.255.255.255')
+if __name__ == "__main__":
+    with ConnectHandler(**device_params) as ssh:
+        ssh.enable()
+        cfg_comand(ssh, 'interface Loopback55', 'ip address 5.5.5.5 255.255.255.255')
