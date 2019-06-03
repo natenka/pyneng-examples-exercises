@@ -4,6 +4,8 @@ from datetime import datetime
 import time
 from itertools import repeat
 import logging
+import re
+import csv
 
 import yaml
 from netmiko import ConnectHandler
@@ -17,7 +19,7 @@ logging.basicConfig(
 
 start_msg = '===> {} Connection: {}'
 received_msg = '<=== {} Received: {}'
-
+parsed_msg = '#### {} Parsed: {}'
 
 def send_show(device_dict, command):
     ip = device_dict['ip']
@@ -27,27 +29,38 @@ def send_show(device_dict, command):
         ssh.enable()
         result = ssh.send_command(command)
         logging.info(received_msg.format(datetime.now().time(), ip))
-    return {ip: result}
+    return (ip, result)
 
 
-def send_command_to_devices(devices, command):
+def parse_sh_ip_int_br(future):
+    regex = (r'(\S+) +([\d.]+) +\w+ +\w+ +'
+             r'(up|down|administratively down) +(up|down)')
+    ip, output = future.result()
+    parsed = [match.groups() for match in re.finditer(regex, output)]
+    logging.info(parsed_msg.format(datetime.now().time(), ip))
+    with open(f'parsed_{ip}_sh_ip_int_br.txt', 'w', encoding='utf-8') as f:
+        writer = csv.writer(f)
+        writer.writerows(parsed)
+
+
+def send_command_to_devices(devices, command, callback=None):
     data = {}
     with ThreadPoolExecutor(max_workers=2) as executor:
-        future_ssh = [
-            executor.submit(send_show, device, command) for device in devices
-        ]
+        future_ssh = []
+        for device in devices:
+            future = executor.submit(send_show, device, command)
+            if callback:
+                future.add_done_callback(callback)
+            future_ssh.append(future)
         for f in as_completed(future_ssh):
-            try:
-                result = f.result()
-            except NetMikoAuthenticationException as e:
-                print(e)
-            else:
-                data.update(result)
+            ip, result = f.result()
+            data[ip] = result
     return data
 
 
 if __name__ == '__main__':
     with open('devices.yaml') as f:
         devices = yaml.load(f, Loader=yaml.FullLoader)
-    pprint(send_command_to_devices(devices, 'sh ip int br'))
+    done = send_command_to_devices(devices, 'sh ip int br', callback=parse_sh_ip_int_br)
+    pprint(done, width=120)
 

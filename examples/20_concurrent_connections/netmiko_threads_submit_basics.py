@@ -6,8 +6,8 @@ from itertools import repeat
 import logging
 
 import yaml
-from netmiko import ConnectHandler
-from netmiko.ssh_exception import NetMikoAuthenticationException
+from netmiko import ConnectHandler, NetMikoAuthenticationException
+
 
 logging.getLogger("paramiko").setLevel(logging.WARNING)
 
@@ -30,24 +30,12 @@ def send_show(device_dict, command):
     return {ip: result}
 
 
-def send_command_to_devices(devices, command):
-    data = {}
-    with ThreadPoolExecutor(max_workers=2) as executor:
-        future_ssh = [
-            executor.submit(send_show, device, command) for device in devices
-        ]
-        for f in as_completed(future_ssh):
-            try:
-                result = f.result()
-            except NetMikoAuthenticationException as e:
-                print(e)
-            else:
-                data.update(result)
-    return data
+with open('devices.yaml') as f:
+    devices = yaml.load(f, Loader=yaml.FullLoader)
 
-
-if __name__ == '__main__':
-    with open('devices.yaml') as f:
-        devices = yaml.load(f, Loader=yaml.FullLoader)
-    pprint(send_command_to_devices(devices, 'sh ip int br'))
+with ThreadPoolExecutor(max_workers=2) as executor:
+    futures = [executor.submit(send_show, device, 'sh clock')
+               for device in devices]
+    for f in as_completed(futures):
+        print(f.result())
 

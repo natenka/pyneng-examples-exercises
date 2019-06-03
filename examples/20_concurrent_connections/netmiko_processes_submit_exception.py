@@ -42,5 +42,5 @@ def processes_conn(function, devices, limit=2, command=''):
 if __name__ == '__main__':
     devices = yaml.load(open('devices.yaml'))
     all_done = processes_conn(
-        connect_ssh, devices['routers'], command='sh clock')
+        connect_ssh, devices, command='sh clock')
     pprint(all_done)

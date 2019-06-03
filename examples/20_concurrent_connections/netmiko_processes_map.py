@@ -1,4 +1,4 @@
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ProcessPoolExecutor
 from pprint import pprint
 from datetime import datetime
 import time
@@ -23,22 +23,13 @@ def connect_ssh(device_dict, command):
 
 
 def threads_conn(function, devices, limit=2, command=''):
-    all_results = {}
-    with ThreadPoolExecutor(max_workers=limit) as executor:
-        future_ssh = []
-        for device in devices:
-            future = executor.submit(function, device, command)
-            future_ssh.append(future)
-            print('Future: {} for device {}'.format(future, device['ip']))
-        for f in as_completed(future_ssh):
-            result = f.result()
-            print('Future done {}'.format(f))
-            all_results.update(result)
-    return all_results
+    with ProcessPoolExecutor(max_workers=limit) as executor:
+        f_result = executor.map(function, devices, repeat(command))
+    return list(f_result)
 
 
 if __name__ == '__main__':
     devices = yaml.load(open('devices.yaml'))
     all_done = threads_conn(
-        connect_ssh, devices['routers'], command='sh clock')
+        connect_ssh, devices, command='sh clock')
     pprint(all_done)
