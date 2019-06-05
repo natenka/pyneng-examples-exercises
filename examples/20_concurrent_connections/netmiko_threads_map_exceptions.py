@@ -44,6 +44,6 @@ def send_command_to_devices(devices, command):
 
 if __name__ == '__main__':
     with open('devices.yaml') as f:
-        devices = yaml.load(f, Loader=yaml.FullLoader)
+        devices = yaml.safe_load(f)
     pprint(send_command_to_devices(devices, 'sh ip int br'))
 
