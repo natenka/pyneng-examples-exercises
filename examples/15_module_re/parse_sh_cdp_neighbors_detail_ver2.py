@@ -10,7 +10,7 @@ def parse_cdp(filename):
 
     result = {}
 
-    with open('sh_cdp_neighbors_sw1.txt') as f:
+    with open(filename) as f:
         for line in f:
             match = re.search(regex, line)
             if match:
