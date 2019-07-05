@@ -2,7 +2,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pprint import pprint
 from datetime import datetime
 import time
-from itertools import repeat
 import logging
 
 import yaml
@@ -15,14 +14,15 @@ logging.basicConfig(
     format = '%(threadName)s %(name)s %(levelname)s: %(message)s',
     level=logging.INFO)
 
-start_msg = '===> {} Connection: {}'
-received_msg = '<=== {} Received: {}'
-
 
 def send_show(device_dict, command):
+    start_msg = '===> {} Connection: {}'
+    received_msg = '<=== {} Received: {}'
     ip = device_dict['ip']
     logging.info(start_msg.format(datetime.now().time(), ip))
-    if ip == '192.168.100.1': time.sleep(5)
+    if ip == '192.168.100.1':
+        time.sleep(5)
+
     with ConnectHandler(**device_dict) as ssh:
         ssh.enable()
         result = ssh.send_command(command)
@@ -34,8 +34,12 @@ with open('devices.yaml') as f:
     devices = yaml.load(f, Loader=yaml.FullLoader)
 
 with ThreadPoolExecutor(max_workers=2) as executor:
-    futures = [executor.submit(send_show, device, 'sh clock')
-               for device in devices]
-    for f in as_completed(futures):
+    future_list = []
+    for device in devices:
+        future = executor.submit(send_show, device, 'sh clock')
+        future_list.append(future)
+    # то же самое в виде list comprehensions:
+    # future_list = [executor.submit(send_show, device, 'sh clock') for device in devices]
+    for f in as_completed(future_list):
         print(f.result())
 
