@@ -30,7 +30,7 @@ for ip in devices_ip:
 
         ssh.send('terminal length 0\n')
         time.sleep(1)
-        ssh.recv(1000).decode('ascii')
+        ssh.recv(1000)
 
         ssh.send(command + '\n')
         time.sleep(2)

@@ -12,9 +12,9 @@ VRF info: (vrf in name/id, vrf out name/id)
   4 79.0.0.9  4 msec *  1 msec
 '''
 
-template = open('traceroute.template')
-fsm = textfsm.TextFSM(template)
-result = fsm.ParseText(traceroute)
+with open('traceroute.template') as template:
+    fsm = textfsm.TextFSM(template)
+    result = fsm.ParseText(traceroute)
 
 print(fsm.header)
 print(result)
