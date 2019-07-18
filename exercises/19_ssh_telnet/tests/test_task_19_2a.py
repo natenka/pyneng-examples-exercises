@@ -25,7 +25,7 @@ def test_function_return_value(capsys, r1_test_connection,
 
     # по умолчанию, verbose должно быть равным True
     # и на stdout должно выводиться сообщение
-    correct_stdout = f'{r1_test_connection.ip}'
+    correct_stdout = f'{r1_test_connection.host}'
     out, err = capsys.readouterr()
     assert out != '', "Сообщение об ошибке не выведено на stdout"
     assert correct_stdout in out, "Выведено неправильное сообщение об ошибке"
