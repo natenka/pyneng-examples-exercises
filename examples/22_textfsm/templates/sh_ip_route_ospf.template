@@ -1,12 +1,11 @@
-Value Network (([0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}))
-Value Mask (\/\d{1,2})
-Value Distance (\d+)
-Value Metric (\d+)
-Value List NextHop ([0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3})
-Value List Intf (\S+)
+Value network (\S+)
+Value mask (\d+)
+Value distance (\d+)
+Value metric (\d+)
+Value List nexthop (\S+)
 
 Start
   ^O -> Continue.Record
-  ^O +${Network}${Mask}\s\[${Distance}\/${Metric}\]\svia\s${NextHop}, \w+, ${Intf}
-  ^\s+\[${Distance}\/${Metric}\]\svia\s${NextHop}, \w+, ${Intf}
+  ^O +${network}/${mask}\s\[${distance}/${metric}\]\svia\s${nexthop},
+  ^\s+\[${distance}/${metric}\]\svia\s${nexthop},
 

@@ -11,11 +11,12 @@ Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
 Gateway of last resort is not set
 
       10.0.0.0/8 is variably subnetted, 10 subnets, 2 masks
-O        10.0.24.0/24 [110/20] via 10.0.12.2, 1w2d, Ethernet0/1
-O        10.0.34.0/24 [110/20] via 10.0.13.3, 1w2d, Ethernet0/2
-O        10.2.2.2/32 [110/11] via 10.0.12.2, 1w2d, Ethernet0/1
-O        10.3.3.3/32 [110/11] via 10.0.13.3, 1w2d, Ethernet0/2
-O        10.4.4.4/32 [110/21] via 10.0.13.3, 1w2d, Ethernet0/2
+O        10.1.1.0/24 [110/20] via 10.0.12.2, 1w2d, Ethernet0/1
+O        10.2.2.0/24 [110/20] via 10.0.13.3, 1w2d, Ethernet0/2
+O        10.3.3.3/32 [110/11] via 10.0.12.2, 1w2d, Ethernet0/1
+O        10.4.4.4/32 [110/11] via 10.0.13.3, 1w2d, Ethernet0/2
+                     [110/11] via 10.0.14.4, 1w2d, Ethernet0/3
+O        10.5.5.5/32 [110/21] via 10.0.13.3, 1w2d, Ethernet0/2
                      [110/21] via 10.0.12.2, 1w2d, Ethernet0/1
                      [110/21] via 10.0.14.4, 1w2d, Ethernet0/3
-O        10.5.35.0/24 [110/20] via 10.0.13.3, 1w2d, Ethernet0/2
+O        10.6.6.0/24 [110/20] via 10.0.13.3, 1w2d, Ethernet0/2
