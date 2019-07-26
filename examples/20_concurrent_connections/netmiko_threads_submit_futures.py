@@ -2,12 +2,11 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pprint import pprint
 from datetime import datetime
 import time
-from itertools import repeat
 import logging
 
 import yaml
-from netmiko import ConnectHandler
-from netmiko.ssh_exception import NetMikoAuthenticationException
+from netmiko import ConnectHandler, NetMikoAuthenticationException
+
 
 logging.getLogger("paramiko").setLevel(logging.WARNING)
 
@@ -15,14 +14,15 @@ logging.basicConfig(
     format = '%(threadName)s %(name)s %(levelname)s: %(message)s',
     level=logging.INFO)
 
-start_msg = '===> {} Connection: {}'
-received_msg = '<=== {} Received: {}'
-
 
 def send_show(device_dict, command):
+    start_msg = '===> {} Connection: {}'
+    received_msg = '<=== {} Received: {}'
     ip = device_dict['ip']
     logging.info(start_msg.format(datetime.now().time(), ip))
-    if ip == '192.168.100.1': time.sleep(5)
+    if ip == '192.168.100.1':
+        time.sleep(5)
+
     with ConnectHandler(**device_dict) as ssh:
         ssh.enable()
         result = ssh.send_command(command)
@@ -33,16 +33,15 @@ def send_show(device_dict, command):
 def send_command_to_devices(devices, command):
     data = {}
     with ThreadPoolExecutor(max_workers=2) as executor:
-        future_ssh = [
-            executor.submit(send_show, device, command) for device in devices
-        ]
-        for f in as_completed(future_ssh):
-            try:
-                result = f.result()
-            except NetMikoAuthenticationException as e:
-                print(e)
-            else:
-                data.update(result)
+        future_list = []
+        for device in devices:
+            future = executor.submit(send_show, device, command)
+            future_list.append(future)
+            print('Future: {} for device {}'.format(future, device['ip']))
+        for f in as_completed(future_list):
+            result = f.result()
+            print('Future done {}'.format(f))
+            data.update(result)
     return data
 
 
