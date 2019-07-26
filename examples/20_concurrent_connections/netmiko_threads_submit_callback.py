@@ -60,7 +60,7 @@ def send_command_to_devices(devices, command, callback=None):
 
 if __name__ == '__main__':
     with open('devices.yaml') as f:
-        devices = yaml.load(f, Loader=yaml.FullLoader)
+        devices = yaml.safe_load(f)
     done = send_command_to_devices(devices, 'sh ip int br', callback=parse_sh_ip_int_br)
     pprint(done, width=120)
 

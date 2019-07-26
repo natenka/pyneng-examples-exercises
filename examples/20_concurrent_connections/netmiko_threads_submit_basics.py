@@ -31,7 +31,7 @@ def send_show(device_dict, command):
 
 
 with open('devices.yaml') as f:
-    devices = yaml.load(f, Loader=yaml.FullLoader)
+    devices = yaml.safe_load(f)
 
 with ThreadPoolExecutor(max_workers=2) as executor:
     future_list = []

@@ -3,31 +3,38 @@ from pprint import pprint
 from datetime import datetime
 import time
 from itertools import repeat
+import logging
 
 import yaml
 from netmiko import ConnectHandler
 from netmiko.ssh_exception import NetMikoAuthenticationException
 
-start_msg = '===> {} Connection to device: {}'
-received_msg = '<=== {} Received result from device: {}'
+logging.getLogger("paramiko").setLevel(logging.WARNING)
+
+logging.basicConfig(
+    format = '%(threadName)s %(name)s %(levelname)s: %(message)s',
+    level=logging.INFO)
+
+start_msg = '===> {} Connection: {}'
+received_msg = '<=== {} Received: {}'
 
 
-def connect_ssh(device_dict, command):
-    print(start_msg.format(datetime.now().time(), device_dict['ip']))
-    if device_dict['ip'] == '192.168.100.1':
-        time.sleep(10)
+def send_show(device_dict, command):
+    ip = device_dict['ip']
+    logging.info(start_msg.format(datetime.now().time(), ip))
+    if ip == '192.168.100.1': time.sleep(5)
     with ConnectHandler(**device_dict) as ssh:
         ssh.enable()
         result = ssh.send_command(command)
-        print(received_msg.format(datetime.now().time(), device_dict['ip']))
-    return {device_dict['ip']: result}
+        logging.info(received_msg.format(datetime.now().time(), ip))
+    return {ip: result}
 
 
-def processes_conn(function, devices, limit=2, command=''):
-    all_results = {}
-    with ProcessPoolExecutor(max_workers=limit) as executor:
+def send_command_to_devices(devices, command):
+    data = {}
+    with ProcessPoolExecutor(max_workers=2) as executor:
         future_ssh = [
-            executor.submit(function, device, command) for device in devices
+            executor.submit(send_show, device, command) for device in devices
         ]
         for f in as_completed(future_ssh):
             try:
@@ -35,12 +42,12 @@ def processes_conn(function, devices, limit=2, command=''):
             except NetMikoAuthenticationException as e:
                 print(e)
             else:
-                all_results.update(result)
-    return all_results
+                data.update(result)
+    return data
 
 
 if __name__ == '__main__':
-    devices = yaml.load(open('devices.yaml'))
-    all_done = processes_conn(
-        connect_ssh, devices, command='sh clock')
-    pprint(all_done)
+    with open('devices.yaml') as f:
+        devices = yaml.safe_load(f)
+    pprint(send_command_to_devices(devices, 'sh clock'))
+
