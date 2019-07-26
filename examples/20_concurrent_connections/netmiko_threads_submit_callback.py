@@ -38,7 +38,7 @@ def parse_sh_ip_int_br(future):
     ip, output = future.result()
     parsed = [match.groups() for match in re.finditer(regex, output)]
     logging.info(parsed_msg.format(datetime.now().time(), ip))
-    with open(f'parsed_{ip}_sh_ip_int_br.txt', 'w', encoding='utf-8') as f:
+    with open(f'parsed_{ip}_sh_ip_int_br.csv', 'w', encoding='utf-8') as f:
         writer = csv.writer(f)
         writer.writerows(parsed)
 
