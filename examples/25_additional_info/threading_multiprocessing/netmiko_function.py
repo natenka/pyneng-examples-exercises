@@ -3,7 +3,8 @@ import yaml
 from netmiko import ConnectHandler
 
 #COMMAND = sys.argv[1]
-devices = yaml.load(open('devices.yaml'))
+with open('devices.yaml') as f:
+    devices = yaml.safe_load(f)
 
 
 def connect_ssh(device_dict, commands):

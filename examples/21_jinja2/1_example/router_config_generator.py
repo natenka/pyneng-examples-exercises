@@ -2,7 +2,8 @@
 import yaml
 from router_template import template_r1
 
-routers = yaml.load(open('routers_info.yml'))
+with open('routers_info.yml') as f
+    routers = yaml.safe_load(f)
 
 for router in routers:
     r1_conf = router['name'] + '_r1.txt'
