@@ -10,12 +10,12 @@
 а значения подставлены из второго.
 
 Например, если функции передать как аргументы список headers и список
-[('FastEthernet0/0', 'up', 'up', '10.0.1.1'),
- 'FastEthernet0/1', 'up', 'up', '10.0.2.1')]
+[('FastEthernet0/0', '10.0.1.1', 'up', 'up'),
+ 'FastEthernet0/1', '10.0.2.1', 'up', 'up')]
 
 Функция должна вернуть такой список со словарями (порядок полей может быть другой):
-[{'interface': 'FastEthernet0/0', 'status': 'up', 'protocol': 'up', 'address': '10.0.1.1'},
- {'interface': 'FastEthernet0/1', 'status': 'up', 'protocol': 'up', 'address': '10.0.2.1'}]
+[{'interface': 'FastEthernet0/0', 'address': '10.0.1.1', 'status': 'up', 'protocol': 'up'},
+ {'interface': 'FastEthernet0/1', 'address': '10.0.2.1', 'status': 'up', 'protocol': 'up'}]
 
 Проверить работу функции:
 * первый аргумент - список headers
@@ -25,3 +25,5 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
+
+headers = ['interface', 'address', 'status', 'protocol']
