@@ -19,3 +19,21 @@ Mask:
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
+
+ip, prefix = input('Enter IP address in a format (10.1.1.0/24): ').split('/')
+ip1, ip2, ip3, ip4 = ip.split('.')
+
+mask_bin = ('1' * int(prefix)) + ((32 - int(prefix)) * '0')
+oc1, oc2, oc3, oc4 = mask_bin[0:8], mask_bin[8:16], mask_bin[16:24], mask_bin[24:32]
+
+show = f"""
+{ip1:<8}  {ip2:<8}  {ip3:<8}  {ip4:<8}
+{int(ip1):08b}  {int(ip2):08b}  {int(ip3):08b}  {int(ip4):08b}
+
+Mask:
+/{prefix}
+{int(oc1, 2):<8}  {int(oc2, 2):<8}  {int(oc3, 2):<8}  {int(oc4, 2):<8}
+{int(oc1, 2):8b}  {int(oc2, 2):8b}  {int(oc3, 2):8b}  {int(oc4, 2):08b}
+
+"""
+print(show)
