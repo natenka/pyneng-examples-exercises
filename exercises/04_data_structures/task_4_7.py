@@ -10,3 +10,6 @@
 '''
 
 mac = 'AAAA:BBBB:CCCC'
+mac_bin = bin(int(mac.replace(':', ''), 16))[2:]
+print(mac_bin)
+
