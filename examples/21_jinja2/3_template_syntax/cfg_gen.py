@@ -5,7 +5,7 @@ import sys
 import os
 
 #$ python cfg_gen.py templates/for.txt data_files/for.yml
-template_dir, template = os.path.split(sys.argv[1])
+template_dir, template_file = os.path.split(sys.argv[1])
 
 vars_file = sys.argv[2]
 
