@@ -19,10 +19,10 @@ correct_return_value = (
                            'Enter configuration commands, one per line.  End with CNTL/Z.\n'
                            'R1(config)#logging buffered 20010\n'
                            'R1(config)#'},
-{'sh i': 'config term\n'
+{'a': 'config term\n'
          'Enter configuration commands, one per line.  End with CNTL/Z.\n'
-         'R1(config)#sh i\n'
-         '% Ambiguous command:  "sh i"\n'
+         'R1(config)#a\n'
+         '% Ambiguous command:  "a"\n'
          'R1(config)#',
  'logging': 'config term\n'
             'Enter configuration commands, one per line.  End with CNTL/Z.\n'
@@ -38,7 +38,7 @@ correct_return_value = (
                        '\n'
                        'R1(config)#'})
 
-commands_with_errors = ['logging 0255.255.1', 'logging', 'sh i']
+commands_with_errors = ['logging 0255.255.1', 'logging', 'a']
 correct_commands = ['logging buffered 20010', 'ip http server']
 test_commands = commands_with_errors + correct_commands
 
@@ -50,7 +50,7 @@ def test_functions_created():
 @pytest.mark.parametrize("error,command", [
     ('Invalid input detected', 'logging 0255.255.1'),
     ('Incomplete command', 'logging'),
-    ('Ambiguous command', 'sh i')
+    ('Ambiguous command', 'a')
 ])
 def test_function_stdout(error, command, first_router_from_devices_yaml,
                          capsys, monkeypatch):

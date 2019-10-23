@@ -50,7 +50,7 @@ In [12]: pprint(result)
 '''
 
 # списки команд с ошибками и без:
-commands_with_errors = ['logging 0255.255.1', 'logging', 'sh i']
+commands_with_errors = ['logging 0255.255.1', 'logging', 'a']
 correct_commands = ['logging buffered 20010', 'ip http server']
 
 commands = commands_with_errors + correct_commands
