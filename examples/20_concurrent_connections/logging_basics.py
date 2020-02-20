@@ -4,7 +4,7 @@ import netmiko
 import yaml
 
 
-# эта строка указывает ,что лог-сообщения paramiko юудут выводиться
+# эта строка указывает, что лог-сообщения paramiko будут выводиться
 # только если они уровня WARNING и выше
 logging.getLogger("paramiko").setLevel(logging.WARNING)
 
