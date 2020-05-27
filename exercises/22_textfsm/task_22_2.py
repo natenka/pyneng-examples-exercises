@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 22.2
 
 Сделать шаблон TextFSM для обработки вывода sh ip dhcp snooping binding и записать его в файл templates/sh_ip_dhcp_snooping.template
@@ -13,4 +13,4 @@
 * intf - FastEthernet0/10
 
 Проверить работу шаблона с помощью функции parse_command_output из задания 22.1.
-'''
+"""

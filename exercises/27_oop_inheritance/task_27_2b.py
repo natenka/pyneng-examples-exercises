@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
 Задание 27.2b
 
-Дополнить класс MyNetmiko из задания 27.2a.
+Скопировать класс MyNetmiko из задания 27.2a.
 
-Переписать метод send_config_set netmiko, добавив в него проверку на ошибки с помощью метода _check_error_in_command.
+Дополнить функционал метода send_config_set netmiko и добавить в него проверку на ошибки с помощью метода _check_error_in_command.
 
 Метод send_config_set должен отправлять команды по одной и проверять каждую на ошибки.
 Если при выполнении команд не обнаружены ошибки, метод send_config_set возвращает вывод команд.
@@ -23,4 +23,4 @@ ErrorInCommand                            Traceback (most recent call last)
 ...
 ErrorInCommand: При выполнении команды "lo" на устройстве 192.168.100.1 возникла ошибка "Incomplete command."
 
-'''
+"""

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 15.2a
 
 Создать функцию convert_to_dict, которая ожидает два аргумента:
@@ -11,9 +11,9 @@
 
 Например, если функции передать как аргументы список headers и список
 [('FastEthernet0/0', '10.0.1.1', 'up', 'up'),
- 'FastEthernet0/1', '10.0.2.1', 'up', 'up')]
+ ('FastEthernet0/1', '10.0.2.1', 'up', 'up')]
 
-Функция должна вернуть такой список со словарями (порядок полей может быть другой):
+Функция должна вернуть такой список со словарями:
 [{'interface': 'FastEthernet0/0', 'address': '10.0.1.1', 'status': 'up', 'protocol': 'up'},
  {'interface': 'FastEthernet0/1', 'address': '10.0.2.1', 'status': 'up', 'protocol': 'up'}]
 
@@ -24,6 +24,6 @@
 Функцию parse_sh_ip_int_br не нужно копировать.
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
-'''
+"""
 
-headers = ['interface', 'address', 'status', 'protocol']
+headers = ["interface", "address", "status", "protocol"]

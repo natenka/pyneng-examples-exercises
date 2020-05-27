@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 5.3
 
 Скрипт должен запрашивать у пользователя:
@@ -16,6 +16,11 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 То есть эту задачу можно решить без использования условия if и циклов for/while.
+
+Подсказка:
+Подводящим к этому заданию было задание 5.1.
+Чтобы было легче решить это задание, можно посмотреть на задание 5.1 и разобраться как там получилось
+вывести разную информацию в зависимости от ввода пользователя.
 
 Ниже примеры выполнения скрипта, чтобы было проще понять задачу.
 
@@ -43,15 +48,18 @@ interface Fa0/7
 switchport trunk encapsulation dot1q
 switchport mode trunk
 switchport trunk allowed vlan 2,3,4,5
-'''
+"""
 
 access_template = [
-    'switchport mode access', 'switchport access vlan {}',
-    'switchport nonegotiate', 'spanning-tree portfast',
-    'spanning-tree bpduguard enable'
+    "switchport mode access",
+    "switchport access vlan {}",
+    "switchport nonegotiate",
+    "spanning-tree portfast",
+    "spanning-tree bpduguard enable",
 ]
 
 trunk_template = [
-    'switchport trunk encapsulation dot1q', 'switchport mode trunk',
-    'switchport trunk allowed vlan {}'
+    "switchport trunk encapsulation dot1q",
+    "switchport mode trunk",
+    "switchport trunk allowed vlan {}",
 ]

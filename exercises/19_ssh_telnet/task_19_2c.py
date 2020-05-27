@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 19.2c
 
 Скопировать функцию send_config_commands из задания 19.2b и переделать ее таким образом:
@@ -47,10 +47,10 @@ In [12]: pprint(result)
                         '\n'
                         'R1(config)#'})
 
-'''
+"""
 
 # списки команд с ошибками и без:
-commands_with_errors = ['logging 0255.255.1', 'logging', 'a']
-correct_commands = ['logging buffered 20010', 'ip http server']
+commands_with_errors = ["logging 0255.255.1", "logging", "a"]
+correct_commands = ["logging buffered 20010", "ip http server"]
 
 commands = commands_with_errors + correct_commands

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 15.5
 
 Создать функцию generate_description_from_cdp, которая ожидает как аргумент
@@ -23,4 +23,4 @@ description Connected to SW1 port Eth 0/1
 
 
 Проверить работу функции на файле sh_cdp_n_sw1.txt.
-'''
+"""

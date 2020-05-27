@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 20.4
 
 Создать функцию send_commands_to_devices, которая отправляет команду show или config на разные устройства в параллельных потоках, а затем записывает вывод команд в файл.
@@ -47,11 +47,13 @@ config term
 Enter configuration commands, one per line.  End with CNTL/Z.
 R1(config)#logging 10.5.5.5
 R1(config)#end
-R1#config term
+R1#
+config term
 Enter configuration commands, one per line.  End with CNTL/Z.
 R2(config)#logging 10.5.5.5
 R2(config)#end
-R2#config term
+R2#
+config term
 Enter configuration commands, one per line.  End with CNTL/Z.
 R3(config)#logging 10.5.5.5
 R3(config)#end
@@ -67,12 +69,14 @@ Enter configuration commands, one per line.  End with CNTL/Z.
 R1(config)#router ospf 55
 R1(config-router)#network 0.0.0.0 255.255.255.255 area 0
 R1(config-router)#end
-R1#config term
+R1#
+config term
 Enter configuration commands, one per line.  End with CNTL/Z.
 R2(config)#router ospf 55
 R2(config-router)#network 0.0.0.0 255.255.255.255 area 0
 R2(config-router)#end
-R2#config term
+R2#
+config term
 Enter configuration commands, one per line.  End with CNTL/Z.
 R3(config)#router ospf 55
 R3(config-router)#network 0.0.0.0 255.255.255.255 area 0
@@ -81,4 +85,4 @@ R3#
 
 
 Для выполнения задания можно создавать любые дополнительные функции.
-'''
+"""

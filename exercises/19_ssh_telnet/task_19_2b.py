@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 19.2b
 
 Скопировать функцию send_config_commands из задания 19.2a и добавить проверку на ошибки.
@@ -12,8 +12,8 @@
 о том, какая ошибка возникла, при выполнении какой команды и на каком устройстве, например:
 Команда "logging" выполнилась с ошибкой "Incomplete command." на устройстве 192.168.100.1
 
-Ошибки должны выводиться всегда, независимо от значения параметра verbose.
-При этом, verbose по-прежнему должен контролировать будет ли выводиться сообщение:
+Ошибки должны выводиться всегда, независимо от значения параметра log.
+При этом, параметр log по-прежнему должен контролировать будет ли выводиться сообщение:
 Подключаюсь к 192.168.100.1...
 
 
@@ -91,10 +91,10 @@ R1(config)#logging
 
 R1(config)#a
 % Ambiguous command:  "a"
-'''
+"""
 
 # списки команд с ошибками и без:
-commands_with_errors = ['logging 0255.255.1', 'logging', 'a']
-correct_commands = ['logging buffered 20010', 'ip http server']
+commands_with_errors = ["logging 0255.255.1", "logging", "a"]
+correct_commands = ["logging buffered 20010", "ip http server"]
 
 commands = commands_with_errors + correct_commands

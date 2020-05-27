@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
 Задание 26.2
 
 Добавить к классу CiscoTelnet из задания 25.2x поддержку работы в менеджере контекста.
@@ -40,5 +40,4 @@ ValueError                                Traceback (most recent call last)
       4
 
 ValueError: Возникла ошибка
-'''
-
+"""

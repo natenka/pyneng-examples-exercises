@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 9.4
 
 Создать функцию convert_config_to_dict, которая обрабатывает конфигурационный файл коммутатора и возвращает словарь:
@@ -18,13 +18,13 @@
 
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
-'''
+"""
 
-ignore = ['duplex', 'alias', 'Current configuration']
+ignore = ["duplex", "alias", "Current configuration"]
 
 
 def ignore_command(command, ignore):
-    '''
+    """
     Функция проверяет содержится ли в команде слово из списка ignore.
 
     command - строка. Команда, которую надо проверить
@@ -33,5 +33,5 @@ def ignore_command(command, ignore):
     Возвращает
     * True, если в команде содержится слово из списка ignore
     * False - если нет
-    '''
+    """
     return any(word in command for word in ignore)

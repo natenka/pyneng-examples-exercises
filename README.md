@@ -1,12 +1,13 @@
 # Задания и примеры из книги "Python для сетевых инженеров"
 
-[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/) [![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
+[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/) [![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/) [![Python 3.8](https://img.shields.io/badge/python-3.8-blue.svg)](https://www.python.org/downloads/release/python-380/)
 
-Все примеры и задания были проверены на Python 3.6 и 3.7.
+Все примеры и задания были проверены на Python 3.7 и 3.8.
 
 ## Виртуалки
 
-Для курса подготовлены два варианта виртуальных машин: vmware и Vagrant (по ссылке есть инструкции для каждого варианта):
+Для курса подготовлены два варианта виртуальных машин: vmware и Vagrant.
+По ссылке есть инструкции для каждого варианта, а также инструкция по выполнению заданий на Windows:
 
 * https://pyneng.github.io/docs/course-vm/
 

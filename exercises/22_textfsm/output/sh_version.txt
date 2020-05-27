@@ -1,0 +1,28 @@
+Cisco IOS Software, IOS-XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 15.3(2)S1, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2013 by Cisco Systems, Inc.
+Compiled Mon 27-May-13 13:56 by mcpre
+
+IOS XE Version: 03.09.01.S
+
+Cisco IOS-XE software, Copyright (c) 2005-2013 by cisco Systems, Inc.
+All rights reserved.  Certain components of Cisco IOS-XE software are
+licensed under the GNU General Public License ("GPL") Version 2.0.  The
+software code licensed under GPL Version 2.0 is free software that comes
+with ABSOLUTELY NO WARRANTY.  You can redistribute and/or modify such
+GPL code under the terms of GPL Version 2.0.  For more details, see the
+documentation or "License Notice" file accompanying the IOS-XE software,
+or the applicable URL provided on the flyer accompanying the IOS-XE
+software.
+
+
+ROM: IOS-XE ROMMON
+
+R1_LONDON uptime is 1 day, 15 hours, 32 minutes
+Uptime for this control processor is 1 day, 15 hours, 34 minutes
+System returned to ROM by reload at 22:55:31 MET-DST Fri Jul 25 2014
+System restarted at 23:02:42 MET-DST Fri Jul 25 2014
+System image file is "bootflash:asr1001-universalk9.03.09.01.S.153-2.S1.bin"
+Last reload reason: LocalSoft
+
+ 

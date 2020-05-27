@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 7.2a
 
 Сделать копию скрипта задания 7.2.
@@ -10,6 +10,6 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
-'''
+"""
 
-ignore = ['duplex', 'alias', 'Current configuration']
+ignore = ["duplex", "alias", "Current configuration"]

@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
 Задание 25.2c
 
 Скопировать класс CiscoTelnet из задания 25.2b и изменить метод send_config_commands добавив проверку команд на ошибки.
 
 У метода send_config_commands должен быть дополнительный параметр strict:
-* strict=True значит, что при обнаружении ошибки, необходимо сгенерировать исключение ValueError
+* strict=True значит, что при обнаружении ошибки, необходимо сгенерировать исключение ValueError (значение по умолчанию)
 * strict=False значит, что при обнаружении ошибки, надо только вывести на стандартный поток вывода сообщене об ошибке
 
 Метод дожен возвращать вывод аналогичный методу send_config_set у netmiko (пример вывода ниже).
@@ -23,7 +23,7 @@ In [2]: r1_params = {
 
 In [3]: r1 = CiscoTelnet(**r1_params)
 
-In [4]: commands_with_errors = ['logging 0255.255.1', 'logging', 'i']
+In [4]: commands_with_errors = ['logging 0255.255.1', 'logging', 'a']
 In [5]: correct_commands = ['logging buffered 20010', 'ip http server']
 In [6]: commands = commands_with_errors+correct_commands
 
@@ -32,7 +32,7 @@ In [6]: commands = commands_with_errors+correct_commands
 In [7]: print(r1.send_config_commands(commands, strict=False))
 При выполнении команды "logging 0255.255.1" на устройстве 192.168.100.1 возникла ошибка -> Invalid input detected at '^' marker.
 При выполнении команды "logging" на устройстве 192.168.100.1 возникла ошибка -> Incomplete command.
-При выполнении команды "i" на устройстве 192.168.100.1 возникла ошибка -> Ambiguous command:  "i"
+При выполнении команды "a" на устройстве 192.168.100.1 возникла ошибка -> Ambiguous command:  "a"
 conf t
 Enter configuration commands, one per line.  End with CNTL/Z.
 R1(config)#logging 0255.255.1
@@ -42,8 +42,8 @@ R1(config)#logging 0255.255.1
 R1(config)#logging
 % Incomplete command.
 
-R1(config)#i
-% Ambiguous command:  "i"
+R1(config)#a
+% Ambiguous command:  "a"
 R1(config)#logging buffered 20010
 R1(config)#ip http server
 R1(config)#end
@@ -59,5 +59,4 @@ ValueError                                Traceback (most recent call last)
 
 ValueError: При выполнении команды "logging 0255.255.1" на устройстве 192.168.100.1 возникла ошибка -> Invalid input detected at '^' marker.
 
-'''
-
+"""

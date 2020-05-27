@@ -1,0 +1,150 @@
+Current configuration : 4052 bytes
+!
+! Last configuration change at 13:13:40 UTC Tue Mar 1 2016
+version 15.2
+no service timestamps debug uptime
+no service timestamps log uptime
+no service password-encryption
+!
+hostname r3
+!
+boot-start-marker
+boot-end-marker
+!
+!
+logging buffered 50000
+!
+no aaa new-model
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+ip auth-proxy max-login-attempts 5
+ip admission max-login-attempts 5
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+mpls label range 1000 1999
+mpls label protocol ldp
+mpls ldp explicit-null
+mpls ldp discovery targeted-hello accept
+mpls traffic-eng tunnels
+xconnect logging redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.3.3.3 255.255.255.255
+!
+interface Ethernet0/0
+ description To PE_r1 Ethernet0/0
+ bandwidth 100000
+ ip address 10.0.13.3 255.255.255.0
+ mpls traffic-eng tunnels
+ ip rsvp bandwidth 100000 10000
+!
+interface Ethernet0/1
+ no ip address
+!
+interface Ethernet0/3
+ description To sw1 Ethernet0/3
+ no ip address
+!
+interface Ethernet0/3.100
+ encapsulation dot1Q 100
+ xconnect 10.2.2.2 12100 encapsulation mpls
+  backup peer 10.4.4.4 14100
+  backup delay 1 1
+!
+interface Ethernet1/0
+ no ip address
+ shutdown
+!
+router ospf 1
+ mpls ldp autoconfig area 0
+ mpls traffic-eng router-id Loopback0
+ mpls traffic-eng area 0
+ network 10.0.0.0 0.255.255.255 area 0
+!
+router bgp 100
+ bgp log-neighbor-changes
+ bgp bestpath igp-metric ignore
+ neighbor 10.2.2.2 remote-as 100
+ neighbor 10.2.2.2 update-source Loopback0
+ neighbor 10.2.2.2 next-hop-self
+ neighbor 10.4.4.4 remote-as 40
+ !
+ address-family vpnv4
+  neighbor 10.2.2.2 activate
+  neighbor 10.2.2.2 send-community both
+  exit-address-family
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip route 10.2.2.2 255.255.255.255 Tunnel0
+!
+ip access-list standard LDP
+ deny   10.0.0.0 0.0.255.255
+ permit 10.0.0.0 0.255.255.255
+!
+!
+ip prefix-list TEST seq 5 permit 10.6.6.6/32
+!
+!
+mpls ldp router-id Loopback0 force
+!
+control-plane
+!
+!
+!
+!
+alias configure sh do sh
+alias exec ospf sh run | s ^router ospf
+alias exec bri show ip int bri | exc unass
+alias exec id show int desc
+alias exec top sh proc cpu sorted | excl 0.00%__0.00%__0.00%
+alias exec c conf t
+alias exec diff sh archive config differences nvram:startup-config system:running-config
+alias exec shcr sh run | s ^crypto
+alias exec desc sh int desc | ex down
+alias exec bgp sh run | s ^router bgp
+alias exec xc sh xconnect all
+alias exec vc sh mpls l2tr vc
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+line vty 0 4
+ login
+ transport input all
+!
+event manager applet update-int-desc
+ event neighbor-discovery interface regexp .*Ethernet.* cdp add
+ action 1.0 cli command "enable"
+ action 2.0 cli command "config t"
+ action 3.0 cli command "interface $_nd_local_intf_name"
+ action 4.0 cli command "description To $_nd_cdp_entry_name $_nd_port_id"
+ action 5.0 syslog msg "Description for $_nd_local_intf_name changed to $_nd_cdp_entry_name $_nd_port_id"
+ action 6.0 cli command "end"
+ action 7.0 cli command "exit"
+!
+end
