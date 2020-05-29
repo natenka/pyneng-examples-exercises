@@ -14,7 +14,7 @@ access_template = [
 to_yaml = {'trunk': trunk_template, 'access': access_template}
 
 with open('sw_templates.yaml', 'w') as f:
-    yaml.dump(to_yaml, f)
+    yaml.dump(to_yaml, f, default_flow_style=False)
 
 with open('sw_templates.yaml') as f:
     print(f.read())
