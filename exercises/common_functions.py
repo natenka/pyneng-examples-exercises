@@ -5,6 +5,7 @@ from subprocess import run, PIPE
 from concurrent.futures import ThreadPoolExecutor
 import re
 import yaml
+from netmiko import ConnectHandler
 
 
 stdout_incorrect_warning = """
