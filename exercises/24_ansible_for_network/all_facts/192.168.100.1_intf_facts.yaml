@@ -1,0 +1,54 @@
+Ethernet0/0:
+    bandwidth: 10000
+    description: null
+    duplex: null
+    ipv4:
+    -   address: 192.168.101.1
+        subnet: '24'
+    -   address: 192.168.102.1
+        subnet: '24'
+    -   address: 192.168.100.1
+        subnet: '24'
+    lineprotocol: up
+    macaddress: aabb.cc00.6500
+    mediatype: null
+    mtu: 1500
+    operstatus: up
+    type: AmdP2
+Ethernet0/1:
+    bandwidth: 10000
+    description: null
+    duplex: null
+    ipv4:
+    -   address: 192.168.200.1
+        subnet: '24'
+    lineprotocol: up
+    macaddress: 0203.e800.6510
+    mediatype: null
+    mtu: 1500
+    operstatus: up
+    type: AmdP2
+Ethernet0/2:
+    bandwidth: 10000
+    description: null
+    duplex: null
+    ipv4: []
+    lineprotocol: up
+    macaddress: aabb.cc00.6520
+    mediatype: null
+    mtu: 1500
+    operstatus: up
+    type: AmdP2
+Ethernet0/3:
+    bandwidth: 10000
+    description: null
+    duplex: null
+    ipv4:
+    -   address: 192.168.130.1
+        subnet: '24'
+    lineprotocol: up
+    macaddress: aabb.cc00.6530
+    mediatype: null
+    mtu: 1500
+    operstatus: up
+    type: AmdP2

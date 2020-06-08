@@ -1,7 +1,7 @@
 ---
 
 - name: Run cfg commands on routers
-  hosts: cisco-routers
+  hosts: cisco_routers
   gather_facts: false
 
   tasks:
@@ -10,3 +10,4 @@
       ios_config:
         lines:
           - logging console debugging
+        defaults: yes

@@ -1,0 +1,94 @@
+Ethernet0/0:
+    bandwidth: 10000
+    description: null
+    duplex: null
+    ipv4:
+    -   address: 192.168.100.2
+        subnet: '24'
+    lineprotocol: up
+    macaddress: aabb.cc00.6600
+    mediatype: null
+    mtu: 1500
+    operstatus: up
+    type: AmdP2
+Ethernet0/1:
+    bandwidth: 10000
+    description: null
+    duplex: null
+    ipv4: []
+    lineprotocol: up
+    macaddress: aabb.cc00.6610
+    mediatype: null
+    mtu: 1500
+    operstatus: up
+    type: AmdP2
+Ethernet0/2:
+    bandwidth: 10000
+    description: null
+    duplex: null
+    ipv4: []
+    lineprotocol: down
+    macaddress: aabb.cc00.6620
+    mediatype: null
+    mtu: 1500
+    operstatus: administratively down
+    type: AmdP2
+Ethernet0/3:
+    bandwidth: 10000
+    description: null
+    duplex: null
+    ipv4: []
+    lineprotocol: down
+    macaddress: aabb.cc00.6630
+    mediatype: null
+    mtu: 1500
+    operstatus: administratively down
+    type: AmdP2
+Loopback0:
+    bandwidth: 8000000
+    description: null
+    duplex: null
+    ipv4:
+    -   address: 10.2.2.2
+        subnet: '24'
+    lineprotocol: up
+    macaddress: null
+    mediatype: null
+    mtu: 1514
+    operstatus: up
+    type: null
+Loopback100:
+    bandwidth: 8000000
+    description: null
+    duplex: null
+    ipv4:
+    -   address: 10.100.100.2
+        subnet: '24'
+    lineprotocol: up
+    macaddress: null
+    mediatype: null
+    mtu: 1514
+    operstatus: up
+    type: null
+Loopback19:
+    bandwidth: 8000000
+    description: null
+    duplex: null
+    ipv4: []
+    lineprotocol: up
+    macaddress: null
+    mediatype: null
+    mtu: 1514
+    operstatus: up
+    type: null
+Loopback9:
+    bandwidth: 8000000
+    description: null
+    duplex: null
+    ipv4: []
+    lineprotocol: up
+    macaddress: null
+    mediatype: null
+    mtu: 1514
+    operstatus: up
+    type: null

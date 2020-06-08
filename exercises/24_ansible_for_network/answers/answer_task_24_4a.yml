@@ -1,0 +1,26 @@
+---
+
+- name: Run cfg commands on routers
+  hosts: 192.168.100.1
+  gather_facts: false
+
+  tasks:
+
+    - name: Config ACL
+      ios_config:
+        before:
+          - interface Ethernet 0/3
+          - no ip access-group INET-to-LAN in
+          - exit
+          - no ip access-list extended INET-to-LAN
+        parents:
+          - ip access-list extended INET-to-LAN
+        lines:
+          - permit tcp 10.0.1.0 0.0.0.255 any eq www
+          - permit tcp 10.0.1.0 0.0.0.255 any eq 22
+          - permit icmp any any
+        after:
+          - interface Ethernet 0/3
+          - ip access-group INET-to-LAN in
+        match: exact
+
