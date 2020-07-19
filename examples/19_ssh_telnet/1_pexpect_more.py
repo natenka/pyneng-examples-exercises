@@ -3,7 +3,7 @@ import re
 from pprint import pprint
 
 
-def send_show_command(ip, username, password, enable, command):
+def send_show_command(ip, username, password, enable, command, prompt="#"):
     with pexpect.spawn(f"ssh {username}@{ip}", timeout=10, encoding="utf-8") as ssh:
         ssh.expect("[Pp]assword")
         ssh.sendline(password)
@@ -12,13 +12,13 @@ def send_show_command(ip, username, password, enable, command):
             ssh.sendline("enable")
             ssh.expect("[Pp]assword")
             ssh.sendline(enable)
-            ssh.expect("#")
+            ssh.expect(prompt)
 
         ssh.sendline(command)
         output = ""
 
         while True:
-            match = ssh.expect(["#", "--More--"])
+            match = ssh.expect([prompt, "--More--", pexpect.TIMEOUT])
             page = ssh.before.replace("\r\n", "\n")
             page = re.sub(" +\x08+ +\x08+", "\n", page)
             output += page
