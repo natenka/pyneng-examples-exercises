@@ -1,47 +1,41 @@
 import pexpect
 import re
+from pprint import pprint
 
 
-def send_command_pexpect(ipaddress, username, password, enable_pass, command):
-    print('Connection to device {}'.format(ipaddress))
-    with pexpect.spawn('ssh {}@{}'.format(username, ipaddress), timeout=10) as ssh:
-
-        ssh.expect('Password:')
+def send_show_command(ip, username, password, enable, command):
+    with pexpect.spawn(f"ssh {username}@{ip}", timeout=10, encoding="utf-8") as ssh:
+        ssh.expect("[Pp]assword")
         ssh.sendline(password)
-
-        ssh.expect('[#>]')
-        ssh.sendline('enable')
-
-        output = ssh.expect(['[#>]', '[Pp]assword:'])
-        if output == 1:
-            ssh.sendline(enable_pass)
-            ssh.expect('#')
+        enable_status = ssh.expect([">", "#"])
+        if enable_status == 0:
+            ssh.sendline("enable")
+            ssh.expect("[Pp]assword")
+            ssh.sendline(enable)
+            ssh.expect("#")
 
         ssh.sendline(command)
-        command_output= ''
+        output = ""
 
         while True:
-            match = ssh.expect(['--More--', '#', pexpect.TIMEOUT])
-            page = ssh.before.decode('ascii')
-            # delete backspace
-            page = re.sub('\x08+', '\n', page)
-            command_output += page
-            if match == 1:
+            match = ssh.expect(["#", "--More--"])
+            page = ssh.before.replace("\r\n", "\n")
+            page = re.sub(" +\x08+ +\x08+", "\n", page)
+            output += page
+            if match == 0:
                 break
-            elif match == 2:
-                print('Timeout')
+            elif match == 1:
+                ssh.send(" ")
+            else:
+                print("Ошибка: timeout")
                 break
-            ssh.send(' ')
+        output = re.sub("\n +\n", "\n", output)
+        return output
 
-    return command_output
 
-
-if __name__ == '__main__':
-    command = 'sh run'
-    user = password = enable_pass = 'cisco'
-    ip = '192.168.100.1'
-
-    result = send_command_pexpect(ip, user, password, enable_pass, 'sh run')
-    with open('result.txt', 'w') as f:
-        f.write(result)
-
+if __name__ == "__main__":
+    devices = ["192.168.100.1", "192.168.100.2", "192.168.100.3"]
+    for ip in devices:
+        result = send_show_command(ip, "cisco", "cisco", "cisco", "sh run")
+        with open(f"{ip}_result.txt", "w") as f:
+            f.write(result)

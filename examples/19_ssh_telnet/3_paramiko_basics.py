@@ -9,7 +9,7 @@ def send_show_command(
     username,
     password,
     enable,
-    command,
+    commands,
     max_bytes=60000,
     short_pause=1,
     long_pause=5,
@@ -23,35 +23,24 @@ def send_show_command(
         look_for_keys=False,
         allow_agent=False,
     )
+    result = {}
     with cl.invoke_shell() as ssh:
         ssh.send("enable\n")
         ssh.send(enable + "\n")
         time.sleep(short_pause)
-        ssh.send("terminal length 0\n")
-        time.sleep(short_pause)
         ssh.recv(max_bytes)
-
-        result = {}
         for command in commands:
             ssh.send(f"{command}\n")
-            ssh.settimeout(5)
-
-            output = ""
-            while True:
-                try:
-                    part = ssh.recv(20).decode("utf-8")
-                    output += part
-                    print(part)
-                    time.sleep(0.5)
-                except socket.timeout:
-                    break
+            time.sleep(short_pause)
+            output = ssh.recv(max_bytes).decode("utf-8")
             result[command] = output
-
-        return result
+    return result
 
 
 if __name__ == "__main__":
     devices = ["192.168.100.1", "192.168.100.2", "192.168.100.3"]
     commands = ["sh clock", "sh arp"]
-    result = send_show_command("192.168.100.1", "cisco", "cisco", "cisco", commands)
-    pprint(result, width=120)
+    for ip in devices:
+        result = send_show_command(ip, "cisco", "cisco", "cisco", commands)
+        pprint(result, width=120)
+        break

@@ -5,7 +5,10 @@ from pprint import pprint
 
 def send_show_command(ip, username, password, enable, commands):
     with pexpect.spawn(f"ssh {username}@{ip}", timeout=10, encoding="utf-8") as ssh:
-        ssh.expect("[Pp]assword")
+        yes_or_password = ssh.expect(["[Pp]assword", "yes/no"])
+        if yes_or_password == 1:
+            ssh.sendline("yes")
+            ssh.expect("[Pp]assword")
         ssh.sendline(password)
         enable_status = ssh.expect([">", "#"])
         if enable_status == 0:

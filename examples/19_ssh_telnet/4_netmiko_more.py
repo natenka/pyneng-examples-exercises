@@ -1,33 +1,28 @@
-from netmiko import ConnectHandler, NetMikoTimeoutException
+from netmiko import ConnectHandler, NetmikoTimeoutException
+import yaml
 
 
-def send_command_netmiko(device, command):
-    with ConnectHandler(**device) as ssh:
+def send_show_command(device_params, command):
+    with ConnectHandler(**device_params) as ssh:
         ssh.enable()
-        ssh.send_command('terminal length 40')
-        ssh.write_channel(command+'\n')
-
-        result = ''
+        prompt = ssh.find_prompt()
+        ssh.send_command("terminal length 100")
+        ssh.write_channel(f"{command}\n")
+        output = ""
         while True:
             try:
-                page = ssh.read_until_pattern('More|end')
-            except NetMikoTimeoutException:
+                page = ssh.read_until_pattern(f"More|{prompt}")
+                output += page
+                if "More" in page:
+                    ssh.write_channel(" ")
+                elif prompt in output:
+                    break
+            except NetmikoTimeoutException:
                 break
-            result += page
-            if 'More' in page:
-                ssh.write_channel(' ')
-    return result
-
-
-device_dict = {'device_type':'cisco_ios',
-               'username': 'cisco',
-               'password': 'cisco',
-               'secret': 'cisco',
-               'ip': '192.168.100.1' }
+    return output
 
 
 if __name__ == "__main__":
-    command = 'sh run'
-    result = send_command_netmiko(device_dict, 'sh run')
-    print(result)
-
+    with open("devices.yaml") as f:
+        devices = yaml.safe_load(f)
+    print(send_show_command(devices[0], "sh run"))

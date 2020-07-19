@@ -1,34 +1,40 @@
 import telnetlib
 import time
-import getpass
-import sys
+from pprint import pprint
 
 
-command = sys.argv[1].encode('ascii')
-user = input('Username: ').encode('ascii')
-password = getpass.getpass().encode('ascii')
-enable_pass = getpass.getpass(prompt='Enter enable password: ').encode('ascii')
+def to_bytes(line):
+    return f"{line}\n".encode("utf-8")
 
-devices_ip = ['192.168.100.1', '192.168.100.2', '192.168.100.3']
 
-for ip in devices_ip:
-    print('Connection to device {}'.format(ip))
-    with telnetlib.Telnet(ip) as t:
+def send_show_command(ip, username, password, enable, commands):
+    with telnetlib.Telnet(ip) as telnet:
+        telnet.read_until(b"Username")
+        telnet.write(to_bytes(username))
+        telnet.read_until(b"Password")
+        telnet.write(to_bytes(password))
+        index, m, output = telnet.expect([b">", b"#"])
+        if index == 0:
+            telnet.write(b"enable\n")
+            telnet.read_until(b"Password")
+            telnet.write(to_bytes(enable))
+            telnet.read_until(b"#", timeout=5)
+        telnet.write(b"terminal length 0\n")
+        telnet.read_until(b"#", timeout=5)
+        time.sleep(3)
+        telnet.read_very_eager()
 
-        t.read_until(b'Username:')
-        t.write(user + b'\n')
+        result = {}
+        for command in commands:
+            telnet.write(to_bytes(command))
+            output = telnet.read_until(b"#", timeout=5).decode("utf-8")
+            result[command] = output.replace("\r\n", "\n")
+        return result
 
-        t.read_until(b'Password:')
-        t.write(password + b'\n')
-        t.write(b'enable\n')
 
-        t.read_until(b'Password:')
-        t.write(enable_pass + b'\n')
-        t.write(b'terminal length 0\n')
-        t.write(command + b'\n')
-
-        time.sleep(1)
-
-        output = t.read_very_eager().decode('ascii')
-        print(output)
-
+if __name__ == "__main__":
+    devices = ["192.168.100.1", "192.168.100.2", "192.168.100.3"]
+    commands = ["sh ip int br", "sh arp"]
+    for ip in devices:
+        result = send_show_command(ip, "cisco", "cisco", "cisco", commands)
+        pprint(result, width=120)
