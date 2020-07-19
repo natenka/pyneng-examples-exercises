@@ -102,7 +102,7 @@ def test_function_stdout(error, command, capsys, first_router_from_devices_yaml)
     # ошибка, IP устройства, команда
     # в тесте проверяется наличие этих полей
     out, err = capsys.readouterr()
-    ip = first_router_from_devices_yaml["ip"]
+    ip = first_router_from_devices_yaml["host"]
     assert error in out, "В сообщении об ошибке нет самой ошибки"
     assert command in out, "В сообщении об ошибке нет выполняемой команды"
     assert ip in out, "В сообщении об ошибке нет IP-адреса устройства"
