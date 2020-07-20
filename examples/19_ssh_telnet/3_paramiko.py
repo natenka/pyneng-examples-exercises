@@ -39,9 +39,8 @@ def send_show_command(
             output = ""
             while True:
                 try:
-                    part = ssh.recv(20).decode("utf-8")
+                    part = ssh.recv(max_bytes).decode("utf-8")
                     output += part
-                    print(part)
                     time.sleep(0.5)
                 except socket.timeout:
                     break

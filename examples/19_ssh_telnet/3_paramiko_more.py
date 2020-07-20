@@ -1,50 +1,58 @@
 import paramiko
 import time
 import socket
+from pprint import pprint
+import re
 
 
-def send_command_paramiko(ipaddress, username, password, enable_pass, command):
-    print("Connection to device {}".format(ipaddress))
-    client = paramiko.SSHClient()
-    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-
-    client.connect(
-        hostname=ipaddress,
+def send_show_command(
+    ip,
+    username,
+    password,
+    enable,
+    command,
+    max_bytes=60000,
+    short_pause=1,
+    long_pause=5,
+):
+    cl = paramiko.SSHClient()
+    cl.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    cl.connect(
+        hostname=ip,
         username=username,
         password=password,
         look_for_keys=False,
         allow_agent=False,
     )
-
-    with client.invoke_shell() as ssh:
-        ssh.settimeout(5)
-
+    with cl.invoke_shell() as ssh:
         ssh.send("enable\n")
-        ssh.send(enable_pass + "\n")
-        time.sleep(1)
+        ssh.send(enable + "\n")
+        time.sleep(short_pause)
+        ssh.recv(max_bytes)
 
-        ssh.recv(1000)
-        ssh.send(command + "\n")
-        time.sleep(1)
+        result = {}
+        for command in commands:
+            ssh.send(f"{command}\n")
+            ssh.settimeout(5)
 
-        result = ""
-        while True:
-            try:
-                page = ssh.recv(5000).decode("ascii")
-            except socket.timeout:
-                break
-            result += page
-            if "More" in page:
-                ssh.send(" ")
+            output = ""
+            while True:
+                try:
+                    page = ssh.recv(max_bytes).decode("utf-8")
+                    output += page
+                    time.sleep(0.5)
+                except socket.timeout:
+                    break
+                if "More" in page:
+                    ssh.send(" ")
+            output = re.sub(" +--More--| +\x08+ +\x08+", "\n", output)
+            result[command] = output
 
-    return result
+        return result
 
 
 if __name__ == "__main__":
-    command = "sh run"
-    user = password = enable_pass = "cisco"
-    ip = "192.168.100.1"
-
-    result = send_command_paramiko(ip, user, password, enable_pass, "sh run")
-    with open("result.txt", "w") as f:
-        f.write(result)
+    devices = ["192.168.100.1", "192.168.100.2", "192.168.100.3"]
+    commands = ["sh run"]
+    result = send_show_command("192.168.100.1", "cisco", "cisco", "cisco", commands)
+    pprint(result, width=120)
