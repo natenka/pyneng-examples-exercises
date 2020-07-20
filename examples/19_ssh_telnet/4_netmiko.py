@@ -24,4 +24,5 @@ if __name__ == "__main__":
     with open("devices.yaml") as f:
         devices = yaml.safe_load(f)
     for device in devices:
-        pprint(send_show_command(device, ["sh clock", "sh run"]))
+        result = send_show_command(device, ["sh clock", "sh ip int br"])
+        pprint(result, width=120)

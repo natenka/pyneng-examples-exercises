@@ -1,28 +1,32 @@
-import getpass
-import sys
-import time
+from pprint import pprint
+import yaml
+from netmiko import (
+    ConnectHandler,
+    NetmikoTimeoutException,
+    NetmikoAuthenticationException,
+)
 
-from netmiko import ConnectHandler
 
-command = sys.argv[1]
-user = input("Username: ")
-password = getpass.getpass()
-enable_pass = getpass.getpass(prompt="Enter enable password: ")
+def send_show_command(device, commands):
+    result = {}
+    try:
+        with ConnectHandler(**device) as ssh:
+            ssh.enable()
+            for command in commands:
+                output = ssh.send_command(command)
+                result[command] = output
+        return result
+    except (NetmikoTimeoutException, NetmikoAuthenticationException) as error:
+        print(error)
 
-devices_ip = ["192.168.100.1", "192.168.100.2", "192.168.100.3"]
 
-for ip in devices_ip:
-    print("connection to device {}".format(ip))
-    device_params = {
+if __name__ == "__main__":
+    device = {
         "device_type": "cisco_ios_telnet",
-        "ip": ip,
-        "username": user,
-        "password": password,
-        "secret": enable_pass,
-        "verbose": True,
+        "ip": "192.168.100.1",
+        "username": "cisco",
+        "password": "cisco",
+        "secret": "cisco",
     }
-    with ConnectHandler(**device_params) as telnet:
-        telnet.enable()
-
-        result = telnet.send_command(command)
-        print(result)
+    result = send_show_command(device, ["sh clock", "sh ip int br"])
+    pprint(result, width=120)
