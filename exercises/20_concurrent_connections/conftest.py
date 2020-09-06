@@ -8,9 +8,6 @@ def three_routers_from_devices_yaml():
     with open("devices.yaml") as f:
         devices = yaml.safe_load(f)
         devices = devices[:3]
-        options = {"timeout": 5, "fast_cli": True}
-        for device in devices:
-            device.update(options)
     return devices
 
 

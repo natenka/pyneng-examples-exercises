@@ -22,9 +22,6 @@ if not isinstance(__loader__, AssertionRewritingHook):
 with open("devices.yaml") as f:
     devices = yaml.safe_load(f)
     devices = devices[:3]
-    options = {"timeout": 5, "fast_cli": True}
-    for device in devices:
-        device.update(options)
     r1, r2, r3 = devices
 
 

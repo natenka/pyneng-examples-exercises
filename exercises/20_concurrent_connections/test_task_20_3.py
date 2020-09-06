@@ -22,9 +22,6 @@ if not isinstance(__loader__, AssertionRewritingHook):
 with open("devices.yaml") as f:
     devices = yaml.safe_load(f)
     devices = devices[:3]
-    options = {"timeout": 5, "fast_cli": True}
-    for device in devices:
-        device.update(options)
     r1, r2, r3 = devices
 
 
@@ -38,9 +35,9 @@ def test_functions_created():
 @pytest.mark.parametrize(
     "device,command_dict",
     [
-        (r1, {"192.168.100.1": "sh version | include IOS"}),
-        (r2, {"192.168.100.2": "sh ip int br"}),
-        (r3, {"192.168.100.3": "sh int desc"}),
+        (r1, {r1["host"]: "sh version | include IOS"}),
+        (r2, {r2["host"]: "sh ip int br"}),
+        (r3, {r3["host"]: "sh int desc"}),
     ],
 )
 def test_function_return_value_from_single_device(

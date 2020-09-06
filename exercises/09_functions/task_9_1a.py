@@ -19,8 +19,8 @@
 с генерацией конфигурации port-security и без.
 
 Пример вызова функции:
-print(generate_access_config(access_mode_template, access_config))
-print(generate_access_config(access_mode_template, access_config, port_security_template))
+print(generate_access_config(access_config, access_mode_template))
+print(generate_access_config(access_config, access_mode_template, port_security_template))
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 

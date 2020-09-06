@@ -25,12 +25,8 @@ def test_function_return_value():
     correct_value_access = (
         "interface Fa0/1\n" "switchport mode access\n" "switchport access vlan 10"
     )
-    correct_value_trunk = (
-        "interface Fa0/23\n"
-        "switchport trunk allowed vlan add 10\n"
-        "interface Fa0/24\n"
-        "switchport trunk allowed vlan add 10"
-    )
+    correct_value_trunk1 = "interface Fa0/23\n" "switchport trunk allowed vlan add 10\n"
+    correct_value_trunk2 = "interface Fa0/24\n" "switchport trunk allowed vlan add 10"
 
     template = "templates/add_vlan_to_switch.txt"
     data = {
@@ -50,5 +46,5 @@ def test_function_return_value():
         correct_value_access in return_value
     ), "В итоговой конфигурации неправильная настройка access"
     assert (
-        correct_value_trunk in return_value
+        correct_value_trunk1 in return_value and correct_value_trunk2 in return_value
     ), "В итоговой конфигурации неправильная настройка trunk"

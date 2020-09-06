@@ -49,6 +49,9 @@ def test_topology_normalization():
     }
 
     top_with_data = task_25_1.Topology(topology_with_dupl_links)
+    assert (
+        type(top_with_data.topology) == dict
+    ), f"По заданию в переменной topology должен быть словарь, а не {type(top_with_data.topology).__name__}"
     assert len(top_with_data.topology) == len(
         normalized_topology_example
     ), "После создания экземпляра, в переменной topology должна находиться топология без дублей"

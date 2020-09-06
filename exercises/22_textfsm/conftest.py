@@ -8,8 +8,6 @@ def first_router_from_devices_yaml():
     with open("devices.yaml") as f:
         devices = yaml.safe_load(f)
         r1 = devices[0]
-        options = {"timeout": 5, "fast_cli": True}
-        r1.update(options)
     return r1
 
 

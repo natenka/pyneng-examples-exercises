@@ -40,9 +40,9 @@ def test_send_show_command_different_command(
     r1 = task_25_2.CiscoTelnet(**first_router_from_devices_yaml)
 
     correct_return_value = strip_empty_lines(
-        r1_test_telnet_connection.send_command("sh cdp neighbors")
+        r1_test_telnet_connection.send_command("sh ip int | i address")
     )
-    return_value = strip_empty_lines(r1.send_show_command("sh cdp neighbors"))
+    return_value = strip_empty_lines(r1.send_show_command("sh ip int | i address"))
     assert (
         correct_return_value in return_value
     ), "Метод send_show_command возвращает неправильное значение"

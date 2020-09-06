@@ -34,6 +34,9 @@ def test_attr_topology(topology_with_dupl_links):
 def test_topology_normalization(topology_with_dupl_links, normalized_topology_example):
     """Проверка удаления дублей в топологии"""
     top_with_data = task_25_1d.Topology(topology_with_dupl_links)
+    assert (
+        type(top_with_data.topology) == dict
+    ), f"По заданию в переменной topology должен быть словарь, а не {type(top_with_data.topology).__name__}"
     assert len(top_with_data.topology) == len(
         normalized_topology_example
     ), "После создания экземпляра, в переменной topology должна находиться топология без дублей"

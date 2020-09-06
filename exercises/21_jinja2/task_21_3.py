@@ -35,5 +35,22 @@
 с помощью функции generate_config из задания 21.1.
 Не копируйте код функции generate_config.
 
-
+В результате должна получиться конфигурация такого вида
+(команды в режиме router ospf не обязательно должны быть в таком порядке, главное чтобы они были в нужном режиме):
+router ospf 10
+ router-id 10.0.0.1
+ auto-cost reference-bandwidth 20000
+ network 10.255.0.1 0.0.0.0 area 0
+ network 10.255.1.1 0.0.0.0 area 0
+ network 10.255.2.1 0.0.0.0 area 0
+ network 10.0.10.1 0.0.0.0 area 2
+ network 10.0.20.1 0.0.0.0 area 2
+ passive-interface Fa0/0.10
+ passive-interface Fa0/0.20
+interface Fa0/1
+ ip ospf hello-interval 1
+interface Fa0/1.100
+ ip ospf hello-interval 1
+interface Fa0/1.200
+ ip ospf hello-interval 1
 """

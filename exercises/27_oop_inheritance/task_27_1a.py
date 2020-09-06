@@ -14,7 +14,7 @@ In [1]: from task_27_1a import CiscoSSH
 
 In [2]: device_params = {
    ...:         'device_type': 'cisco_ios',
-   ...:         'ip': '192.168.100.1',
+   ...:         'host': '192.168.100.1',
    ...: }
 
 In [3]: r1 = CiscoSSH(**device_params)
@@ -27,4 +27,4 @@ Out[4]: 'Interface                  IP-Address      OK? Method Status           
 
 """
 
-device_params = {"device_type": "cisco_ios", "ip": "192.168.100.1"}
+device_params = {"device_type": "cisco_ios", "host": "192.168.100.1"}

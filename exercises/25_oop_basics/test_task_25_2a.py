@@ -67,10 +67,10 @@ def test_send_show_command_different_command(
     check_attr_or_method(r1, method="send_show_command")
 
     correct_return_value = r1_test_telnet_connection.send_command(
-        "sh version", use_textfsm=True, strip_command=False, strip_prompt=False
+        "sh int desc", use_textfsm=True, strip_command=False, strip_prompt=False
     )
     return_value = r1.send_show_command(
-        "sh version", parse=True, templates="templates", index="index"
+        "sh int desc", parse=True, templates="templates", index="index"
     )
     assert (
         correct_return_value == return_value

@@ -53,7 +53,7 @@ def r1_test_telnet_connection():
     with open("devices.yaml") as f:
         devices = yaml.safe_load(f)
     r1_params = devices[0]
-    options = {"device_type": "cisco_ios_telnet", "timeout": 5, "fast_cli": True}
+    options = {"device_type": "cisco_ios_telnet"}
     r1_params.update(options)
     r1 = ConnectHandler(**r1_params)
     r1.enable()

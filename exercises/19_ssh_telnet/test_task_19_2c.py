@@ -124,19 +124,20 @@ def test_function_return_value_continue_yes(
 
 
 @pytest.mark.parametrize(
-    "commands,len_good,len_bad",
+    "c_map,commands_1,commands_2",
     [
-        ([*correct_commands[:2], *commands_with_errors[:2]], 2, 1),
-        ([commands_with_errors[0], *correct_commands], 0, 1),
-        ([correct_commands[0], commands_with_errors[1], correct_commands[1]], 1, 1),
+        (("good", "bad"), correct_commands[:2], commands_with_errors[:2]),
+        (("bad", "good"), commands_with_errors[:1], correct_commands),
+        (("good", "bad"), correct_commands[:1], commands_with_errors[1:2]),
     ],
 )
 def test_function_return_value_continue_no(
-    first_router_from_devices_yaml, capsys, monkeypatch, commands, len_good, len_bad
+    first_router_from_devices_yaml, capsys, monkeypatch, c_map, commands_1, commands_2
 ):
     # проверяем сообщения об ошибках, при условии,
     # что после первой команды с ошибкой, была сделана остановка
     monkeypatch.setattr("builtins.input", lambda x=None: "n")
+    commands = commands_1 + commands_2
 
     return_value = task_19_2c.send_config_commands(
         first_router_from_devices_yaml, commands, log=False
@@ -148,6 +149,13 @@ def test_function_return_value_continue_no(
         type(item) == dict for item in return_value
     ), "Функция должна возвращать кортеж с двумя словарями"
     return_good, return_bad = return_value
-    assert (
-        len(return_good) == len_good and len(return_bad) == len_bad
-    ), "Функция возвращает неправильное значение"
+    if c_map[0] == "bad":
+        commands_with_errors, correct_commands = commands_1, commands_2
+        assert (
+            list(return_good) == [] and sorted(return_bad) == commands_with_errors[:1]
+        ), "Функция возвращает неправильное значение"
+    else:
+        commands_with_errors, correct_commands = commands_2, commands_1
+        assert (
+            list(return_good) == correct_commands and list(return_bad) == commands_with_errors[:1]
+        ), "Функция возвращает неправильное значение"
