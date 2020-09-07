@@ -16,6 +16,7 @@
 from netmiko import ConnectHandler
 
 
+# вызов функции должен выглядеть так
 if __name__ == "__main__":
     r1_params = {
         "device_type": "cisco_ios",

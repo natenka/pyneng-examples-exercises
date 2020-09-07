@@ -13,3 +13,13 @@
 Проверить работу функции на шаблоне templates/for.txt и данных из файла data_files/for.yml.
 
 """
+import yaml
+
+
+# так должен выглядеть вызов функции
+if __name__ == "__main__":
+    data_file = "data_files/for.yml"
+    template_file = "templates/for.txt"
+    with open(data_file) as f:
+        data = yaml.safe_load(f)
+    print(generate_config(template_file, data))

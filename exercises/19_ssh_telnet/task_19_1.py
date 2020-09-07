@@ -12,8 +12,17 @@
 
 Функция возвращает строку с выводом команды.
 
-Скрипт должен отправлять команду command на все устройства из файла devices.yaml с помощью функции send_show_command.
+Скрипт должен отправлять команду command на все устройства из файла devices.yaml с помощью функции send_show_command (эта часть кода написана).
 
 """
+import yaml
 
-command = "sh ip int br"
+
+
+if __name__ == "__main__":
+    command = "sh ip int br"
+    with open("devices.yaml") as f:
+        devices = yaml.safe_load(f)
+
+    for dev in devices:
+        print(send_show_command(dev, command))
