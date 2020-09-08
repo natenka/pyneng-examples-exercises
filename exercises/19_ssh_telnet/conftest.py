@@ -29,5 +29,5 @@ def first_router_wrong_pass(first_router_from_devices_yaml):
 @pytest.fixture(scope="module")
 def first_router_wrong_ip(first_router_from_devices_yaml):
     r1 = first_router_from_devices_yaml.copy()
-    r1["ip"] = "unreachable"
+    r1["ip"] = "169.254.1.1"
     return r1
