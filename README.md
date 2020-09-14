@@ -13,6 +13,8 @@
 Соответственно изменен порядок разделов в этом репозитории.
 Старый порядок сохранен в ветке [old_chapter_order](https://github.com/natenka/pyneng-examples-exercises/tree/old_chapter_order).
 
+Все новые правки будут идти только в обновленную версию, так что лучше, по возможности, переходить на новую.
+
 # Задания и примеры из книги "Python для сетевых инженеров"
 
 [![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/) [![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/) [![Python 3.8](https://img.shields.io/badge/python-3.8-blue.svg)](https://www.python.org/downloads/release/python-380/) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
