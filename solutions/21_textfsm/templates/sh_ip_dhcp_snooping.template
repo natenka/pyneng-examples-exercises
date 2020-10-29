@@ -1,0 +1,9 @@
+Value mac (\S+)
+Value ip (\S+)
+Value vlan (\d+)
+Value intf (\S+)
+
+
+Start
+  ^${mac}\s+${ip}\s+\d+\s+\S+\s+${vlan}\s+${intf} -> Record
+

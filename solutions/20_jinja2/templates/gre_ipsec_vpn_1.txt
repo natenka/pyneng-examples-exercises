@@ -1,0 +1,20 @@
+crypto isakmp policy 10
+ encr aes
+ authentication pre-share
+ group 5
+ hash sha
+
+crypto isakmp key cisco address {{ wan_ip_2 }}
+
+crypto ipsec transform-set AESSHA esp-aes esp-sha-hmac
+ mode transport
+
+crypto ipsec profile GRE
+ set transform-set AESSHA
+
+interface Tunnel {{ tun_num }}
+ ip address {{ tun_ip_1 }}
+ tunnel source {{ wan_ip_1 }}
+ tunnel destination {{ wan_ip_2 }}
+ tunnel protection ipsec profile GRE
+

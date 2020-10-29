@@ -1,0 +1,13 @@
+Value Required dest_host (\S+)
+Value mngmnt_ip (.*)
+Value platform (.*)
+Value local_port (.*)
+Value remote_port (.*)
+Value ios_version ([^\s,]+)
+
+Start
+  ^Device ID: ${dest_host}
+  ^.*IP address: ${mngmnt_ip}
+  ^Platform: ${platform},
+  ^Interface: ${local_port},  Port ID \(outgoing port\): ${remote_port}
+  ^Cisco IOS Software.*Version ${ios_version} -> Record

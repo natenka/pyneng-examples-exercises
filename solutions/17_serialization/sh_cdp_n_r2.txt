@@ -1,0 +1,9 @@
+R2>show cdp neighbors
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater
+
+Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
+SW1              Eth 0/0            125          S I      WS-C3750- Eth 0/2
+R5               Eth 0/1            150        R S I      2811      Eth 0/0
+R6               Eth 0/2            150        R S I      2811      Eth 0/1
+

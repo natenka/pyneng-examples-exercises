@@ -1,0 +1,7 @@
+Value version (.+?)
+Value hostname (\S+)
+Value uptime (.+)
+
+Start
+  ^.*Software\s.+\),\sVersion\s${version},*\s+RELEASE.*
+  ^\s*${hostname}\s+uptime\s+is\s+${uptime}

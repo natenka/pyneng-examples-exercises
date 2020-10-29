@@ -1,0 +1,7 @@
+Value port (\S+)
+Value status (up|down|deleted|admin\s+down)
+Value protocol (up|down)
+Value descrip (\S.*?)
+
+Start
+  ^${port}\s+${status}\s+${protocol}(?:\s+${descrip})?\s*$$ -> Record
