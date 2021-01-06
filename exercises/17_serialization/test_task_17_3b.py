@@ -6,7 +6,7 @@ import sys
 
 sys.path.append("..")
 
-from common_functions import check_function_exists, unify_topology_dict
+from pyneng_common_functions import check_function_exists, unify_topology_dict
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook

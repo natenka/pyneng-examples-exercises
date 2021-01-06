@@ -5,7 +5,7 @@ import sys
 
 sys.path.append("..")
 
-from common_functions import (
+from pyneng_common_functions import (
     check_function_exists,
     strip_empty_lines,
 )
