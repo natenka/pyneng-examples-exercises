@@ -1,9 +1,0 @@
-Value time (..:..:..)
-Value timezone (\S+)
-Value weekday (\w+)
-Value month (\w+)
-Value monthday (\d+)
-Value year (\d+)
-
-Start
-  ^\*${time}.* ${timezone} ${weekday} ${month} ${monthday} ${year} -> Record

@@ -1,9 +1,0 @@
-event manager applet update-int-desc
- event neighbor-discovery interface regexp .*Ethernet.* cdp add
- action 1.0 cli command "enable"
- action 2.0 cli command "config t"
- action 3.0 cli command "interface $_nd_local_intf_name"
- action 4.0 cli command "description To $_nd_cdp_entry_name $_nd_port_id"
- action 5.0 syslog msg "Description for $_nd_local_intf_name changed to $_nd_cdp_entry_name $_nd_port_id"
- action 6.0 cli command "end"
- action 7.0 cli command "exit"

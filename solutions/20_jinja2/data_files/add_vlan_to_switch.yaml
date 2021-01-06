@@ -1,7 +1,0 @@
-vlan_id: 10
-name: Marketing
-access:
-  - Fa0/1
-trunk:
-  - Fa0/23
-  - Fa0/24
