@@ -38,16 +38,6 @@ def test_function_return_value():
     """
     Проверка работы функции
     """
-    sh_cdp_n_sw1 = (
-        "SW1>show cdp neighbors\n\n"
-        "Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge\n"
-        "                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone\n\n"
-        "Device ID    Local Intrfce   Holdtme     Capability       Platform    Port ID\n"
-        "R1           Eth 0/1         122           R S I           2811       Eth 0/0\n"
-        "R2           Eth 0/2         143           R S I           2811       Eth 0/0\n"
-        "R3           Eth 0/3         151           R S I           2811       Eth 0/0\n"
-        "R6           Eth 0/5         121           R S I           2811       Eth 0/1"
-    )
     correct_return_value = {
         ("R1", "Eth0/0"): ("SW1", "Eth0/1"),
         ("R2", "Eth0/0"): ("SW1", "Eth0/2"),
@@ -55,20 +45,19 @@ def test_function_return_value():
         ("R3", "Eth0/0"): ("SW1", "Eth0/3"),
         ("R3", "Eth0/1"): ("R4", "Eth0/0"),
         ("R3", "Eth0/2"): ("R5", "Eth0/0"),
-        ("R6", "Eth0/1"): ("SW1", "Eth0/5"),
+        ("SW1", "Eth0/1"): ("R1", "Eth0/0"),
+        ("SW1", "Eth0/2"): ("R2", "Eth0/0"),
+        ("SW1", "Eth0/3"): ("R3", "Eth0/0"),
+        ("SW1", "Eth0/5"): ("R6", "Eth0/1"),
     }
 
     return_value = task_11_2.create_network_map(
-        ['sh_cdp_n_r2.txt', 'sh_cdp_n_r1.txt', 'sh_cdp_n_sw1.txt', 'sh_cdp_n_r3.txt']
+        ["sh_cdp_n_r2.txt", "sh_cdp_n_r1.txt", "sh_cdp_n_sw1.txt", "sh_cdp_n_r3.txt"]
     )
     assert return_value != None, "Функция ничего не возвращает"
     assert (
         type(return_value) == dict
     ), f"По заданию функция должна возвращать словарь, а возвращает {type(return_value).__name__}"
-    assert len(return_value) == len(
-        correct_return_value
-    ), "В словаре, который описывает топологию есть дублирующиеся линки"
-    unified_return_value = unify_topology_dict(return_value)
     assert (
-        unified_return_value == correct_return_value
+        return_value == correct_return_value
     ), "Функция возвращает неправильное значение"

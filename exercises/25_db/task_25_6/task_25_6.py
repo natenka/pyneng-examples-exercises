@@ -16,8 +16,8 @@
 В файле parse_dhcp_snooping.py есть такая строка:
 import parse_dhcp_snooping_functions as pds
 
-И задача этого задания в том, чтобы создать все необходимые функции,
-в файле parse_dhcp_snooping_functions.py на основе информации в файле parse_dhcp_snooping.py.
+И задача этого задания в том, чтобы создать все необходимые функции, в файле
+parse_dhcp_snooping_functions.py на основе информации в файле parse_dhcp_snooping.py.
 
 Из файла parse_dhcp_snooping.py, необходимо определить:
 * какие функции должны быть в файле parse_dhcp_snooping_functions.py
@@ -29,8 +29,9 @@ import parse_dhcp_snooping_functions as pds
 Вся необходимая информация, присутствует в функциях create, add, get,
 в файле parse_dhcp_snooping.py.
 
-В принципе, для выполнения задания, не обязательно разбираться с модулем argparse.
-Но, вы можете почитать о нем в разделе https://natenka.gitbook.io/pyneng/part_ii/12_useful_modules/argparse.
+В принципе, для выполнения задания, не обязательно разбираться с модулем argparse, но,
+можно почитать о нем в разделе
+https://pyneng.readthedocs.io/ru/latest/book/12_useful_modules/argparse.html
 
 Для того, чтобы было проще начать, попробуйте создать необходимые функции в файле
 parse_dhcp_snooping_functions.py и просто выведите аргументы функций, используя print.

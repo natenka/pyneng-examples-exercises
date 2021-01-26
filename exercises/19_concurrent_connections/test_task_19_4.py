@@ -20,6 +20,28 @@ def test_functions_created():
     check_function_exists(task_19_4, "send_commands_to_devices")
 
 
+def test_function_params(first_router_from_devices_yaml, tmpdir):
+    """
+    Проверка параметров
+    """
+    command = "sh ip int br"
+    cfg_commands = ["logging buffered 20010"]
+    dest_filename = tmpdir.mkdir("test_tasks").join("task_19_4.txt")
+    with pytest.raises(TypeError) as excinfo:
+        # если аргументы show/config передаются не как ключевые,
+        # должно генерироваться исключение TypeError
+        task_19_4.send_commands_to_devices(
+            [first_router_from_devices_yaml], dest_filename, command
+        )
+
+    with pytest.raises(ValueError) as excinfo:
+        # Если передаются оба аргумента и show и config,
+        # должно генерироваться исключение ValueError
+        task_19_4.send_commands_to_devices(
+            [first_router_from_devices_yaml], dest_filename, show=command, config=cfg_commands
+        )
+
+
 def test_function_return_value_show(
     three_routers_from_devices_yaml, r1_r2_r3_test_connection, tmpdir
 ):

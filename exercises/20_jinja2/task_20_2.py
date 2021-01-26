@@ -3,6 +3,7 @@
 Задание 20.2
 
 Создать шаблон templates/cisco_router_base.txt.
+
 В шаблон templates/cisco_router_base.txt должно быть включено содержимое шаблонов:
 * templates/cisco_base.txt
 * templates/alias.txt

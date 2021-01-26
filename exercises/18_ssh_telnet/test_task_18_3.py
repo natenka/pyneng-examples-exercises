@@ -24,15 +24,23 @@ def test_functions_created():
     check_function_exists(task_18_3, "send_commands")
 
 
-def test_function_params():
+def test_function_params(r1_test_connection, first_router_from_devices_yaml):
     """
-    Проверка имен и количества параметров
+    Проверка параметров
     """
-    check_function_params(
-        function=task_18_3.send_commands,
-        param_count=3,
-        param_names=["device", "config", "show"],
-    )
+    show_command = "sh ip int br"
+    cfg_commands = ["logging buffered 20010"]
+    with pytest.raises(TypeError) as excinfo:
+        # если аргументы show/config передаются не как ключевые,
+        # должно генерироваться исключение TypeError
+        task_18_3.send_commands(first_router_from_devices_yaml, show_command)
+
+    with pytest.raises(ValueError) as excinfo:
+        # Если передаются оба аргумента и show и config,
+        # должно генерироваться исключение ValueError
+        task_18_3.send_commands(
+            first_router_from_devices_yaml, show=show_command, config=cfg_commands
+        )
 
 
 def test_function_return_value(r1_test_connection, first_router_from_devices_yaml):
