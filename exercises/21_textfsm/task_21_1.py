@@ -3,14 +3,16 @@
 Задание 21.1
 
 Создать функцию parse_command_output. Параметры функции:
-* template - имя файла, в котором находится шаблон TextFSM (templates/sh_ip_int_br.template)
+* template - имя файла, в котором находится шаблон TextFSM
+  Например, templates/sh_ip_int_br.template
 * command_output - вывод соответствующей команды show (строка)
 
 Функция должна возвращать список:
 * первый элемент - это список с названиями столбцов
 * остальные элементы это списки, в котором находятся результаты обработки вывода
 
-Проверить работу функции на выводе команды sh ip int br с оборудования и шаблоне templates/sh_ip_int_br.template.
+Проверить работу функции на выводе команды sh ip int br с оборудования
+и шаблоне templates/sh_ip_int_br.template.
 
 """
 from netmiko import ConnectHandler

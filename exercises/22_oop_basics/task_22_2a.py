@@ -3,11 +3,16 @@
 """
 Задание 22.2a
 
-Скопировать класс CiscoTelnet из задания 22.2 и изменить метод send_show_command добавив три параметра:
+Скопировать класс CiscoTelnet из задания 22.2 и изменить
+метод send_show_command добавив три параметра:
 
-* parse - контролирует то, будет возвращаться обычный вывод команды или список словарей, полученные после обработки с помощью TextFSM. При parse=True должен возвращаться список словарей, а parse=False обычный вывод. Значение по умолчанию - True.
+* parse - контролирует то, будет возвращаться обычный вывод команды или список словарей,
+  полученный после обработки с помощью TextFSM.
+  При parse=True должен возвращаться список словарей, а parse=False обычный вывод.
+  Значение по умолчанию - True.
 * templates - путь к каталогу с шаблонами. Значение по умолчанию - "templates"
-* index - имя файла, где хранится соответствие между командами и шаблонами. Значение по умолчанию - "index"
+* index - имя файла, где хранится соответствие между командами и шаблонами.
+  Значение по умолчанию - "index"
 
 
 Пример создания экземпляра класса:
@@ -39,7 +44,9 @@ Out[4]:
   'protocol': 'up'}]
 
 In [5]: r1.send_show_command("sh ip int br", parse=False)
-Out[5]: 'sh ip int br | exclude unassigned\r\nInterface                  IP-Address      OK? Method Status                Protocol\r\nEthernet0/0                192.168.100.1   YES NVRAM  up                    up      \r\nEthernet0/1                192.168.200.1   YES NVRAM  up                    up      \r\nEthernet0/2                192.168.130.1   YES NVRAM  up                    up      \r\n\r\nR1#'
+Out[5]: 'sh ip int br\r\nInterface                  IP-Address      OK? Method Status
+Protocol\r\nEthernet0/0                192.168.100.1   YES NVRAM  up
+up      \r\nEthernet0/1                192.168.200.1   YES NVRAM  up...'
 
 
 """

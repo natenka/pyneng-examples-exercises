@@ -4,7 +4,8 @@
 
 Создать функцию send_config_commands
 
-Функция подключается по SSH (с помощью netmiko) к ОДНОМУ устройству и выполняет перечень команд в конфигурационном режиме на основании переданных аргументов.
+Функция подключается по SSH (с помощью netmiko) к ОДНОМУ устройству и выполняет
+перечень команд в конфигурационном режиме на основании переданных аргументов.
 
 Параметры функции:
 * device - словарь с параметрами подключения к устройству
@@ -26,7 +27,9 @@ Out[8]: ['logging 10.255.255.1', 'logging buffered 20010', 'no logging console']
 In [9]: result = send_config_commands(r1, commands)
 
 In [10]: result
-Out[10]: 'config term\nEnter configuration commands, one per line.  End with CNTL/Z.\nR1(config)#logging 10.255.255.1\nR1(config)#logging buffered 20010\nR1(config)#no logging console\nR1(config)#end\nR1#'
+Out[10]: 'config term\nEnter configuration commands, one per line.  End with CNTL/Z.
+         \nR1(config)#logging 10.255.255.1\nR1(config)#logging buffered 20010\n
+         R1(config)#no logging console\nR1(config)#end\nR1#'
 
 In [11]: print(result)
 config term
@@ -38,7 +41,8 @@ R1(config)#end
 R1#
 
 
-Скрипт должен отправлять команду command на все устройства из файла devices.yaml с помощью функции send_config_commands.
+Скрипт должен отправлять команду command на все устройства из файла devices.yaml
+с помощью функции send_config_commands.
 """
 
 commands = ["logging 10.255.255.1", "logging buffered 20010", "no logging console"]
