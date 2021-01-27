@@ -1,9 +1,9 @@
 from setuptools import setup
 
 setup(
-    name="ptest",
+    name="pyneng",
     version="1.0",
-    py_modules=["ptest"],
+    py_modules=["pyneng"],
     install_requires=[
         "Click",
         "pytest",
@@ -13,6 +13,6 @@ setup(
     ],
     entry_points="""
         [console_scripts]
-        ptest=ptest:cli
+        pyneng=pyneng:cli
     """,
 )
