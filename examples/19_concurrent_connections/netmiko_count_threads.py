@@ -12,7 +12,7 @@ from netmiko.ssh_exception import NetMikoAuthenticationException
 def send_show(device_dict, commands):
     if type(commands) == str:
         commands = [commands]
-    ip = device_dict['ip']
+    ip = device_dict['host']
     result = ''
     with ConnectHandler(**device_dict) as ssh:
         ssh.enable()

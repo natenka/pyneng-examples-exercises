@@ -16,7 +16,7 @@ logging.basicConfig(
 def send_show(device, show):
     start_msg = '===> {} Connection: {}'
     received_msg = '<=== {} Received:   {}'
-    ip = device["ip"]
+    ip = device["host"]
     logging.info(start_msg.format(datetime.now().time(), ip))
 
     with netmiko.ConnectHandler(**device) as ssh:

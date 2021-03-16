@@ -1,4 +1,4 @@
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pprint import pprint
 from datetime import datetime
 import time
@@ -38,6 +38,8 @@ with ThreadPoolExecutor(max_workers=2) as executor:
     for device in devices:
         future = executor.submit(send_show, device, 'sh clock')
         future_list.append(future)
-    for f in future_list:
+    # то же самое в виде list comprehensions:
+    # future_list = [executor.submit(send_show, device, 'sh clock') for device in devices]
+    for f in as_completed(future_list):
         print(f.result())
 
