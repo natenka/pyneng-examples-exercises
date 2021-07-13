@@ -30,7 +30,9 @@ def test_function_params():
     Проверка имен и количества параметров
     """
     check_function_params(
-        function=task_11_2a.unique_network_map, param_count=1, param_names=["topology_dict"]
+        function=task_11_2a.unique_network_map,
+        param_count=1,
+        param_names=["topology_dict"],
     )
 
 

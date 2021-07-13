@@ -15,7 +15,9 @@ def test_task_stdout(capsys):
     import task_6_1
 
     out, err = capsys.readouterr()
-    correct_stdout = "['aabb.cc80.7000', 'aabb.dd80.7340', 'aabb.ee80.7000', 'aabb.ff80.7000']"
+    correct_stdout = (
+        "['aabb.cc80.7000', 'aabb.dd80.7340', 'aabb.ee80.7000', 'aabb.ff80.7000']"
+    )
     assert (
         out
     ), "Ничего не выведено на стандартный поток вывода. Надо не только получить нужный результат, но и вывести его на стандартный поток вывода с помощью print"
@@ -34,7 +36,12 @@ def test_task_variables():
     # переменные созданные в задании:
     task_vars = [var for var in dir(task_6_1) if not var.startswith("_")]
 
-    correct_result = ['aabb.cc80.7000', 'aabb.dd80.7340', 'aabb.ee80.7000', 'aabb.ff80.7000']
+    correct_result = [
+        "aabb.cc80.7000",
+        "aabb.dd80.7340",
+        "aabb.ee80.7000",
+        "aabb.ff80.7000",
+    ]
 
     assert (
         "result" in task_vars
@@ -45,5 +52,3 @@ def test_task_variables():
     assert (
         correct_result == task_6_1.result
     ), f"В переменной result должен быть список {correct_result}"
-
-

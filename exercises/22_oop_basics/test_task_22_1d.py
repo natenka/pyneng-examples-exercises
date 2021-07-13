@@ -58,10 +58,11 @@ def test_method_add_link(normalized_topology_example, capsys):
     assert None == add_link_result, "Метод add_link не должен ничего возвращать"
 
     assert (
-        ("R1", "Eth0/4") in return_value.topology
-    ), "После добавления соединения через метод add_link, оно должно существовать в топологии"
-    assert (
-        7 == len(return_value.topology)
+        "R1",
+        "Eth0/4",
+    ) in return_value.topology, "После добавления соединения через метод add_link, оно должно существовать в топологии"
+    assert 7 == len(
+        return_value.topology
     ), "После добавления соединения количество соединений должно быть равно 7"
 
     # проверка добавления существующего линка
@@ -77,4 +78,3 @@ def test_method_add_link(normalized_topology_example, capsys):
     assert (
         "Cоединение с одним из портов существует" in out
     ), "При добавлении соединения с существующим портом, не было выведено сообщение 'Cоединение с одним из портов существует'"
-

@@ -22,22 +22,23 @@ def test_attr_topology():
     return_ip = task_23_1a.IPAddress("10.1.1.1/24")
     check_attr_or_method(return_ip, attr="ip")
     check_attr_or_method(return_ip, attr="mask")
-    assert "10.1.1.1" == return_ip.ip, "Значение return_ip.ip должно быть равным 10.1.1.1"
+    assert (
+        "10.1.1.1" == return_ip.ip
+    ), "Значение return_ip.ip должно быть равным 10.1.1.1"
     assert 24 == return_ip.mask, "Значение return_ip.mask должно быть равным 24"
 
 
 def test_str_method():
     """Проверяем __str__"""
     return_ip = task_23_1a.IPAddress("10.5.5.5/24")
-    assert (
-        "IP address 10.5.5.5/24" == str(return_ip)
+    assert "IP address 10.5.5.5/24" == str(
+        return_ip
     ), "Метод __str__ должен возвращать 'IP address 10.5.5.5/24'"
 
 
 def test_repr_method():
     """Проверяем __repr__"""
     return_ip = task_23_1a.IPAddress("10.5.5.5/24")
-    assert (
-        "IPAddress('10.5.5.5/24')" == repr(return_ip).replace('"', "'")
+    assert "IPAddress('10.5.5.5/24')" == repr(return_ip).replace(
+        '"', "'"
     ), "Метод __repr__ должен возвращать IPAddress('10.5.5.5/24')"
-

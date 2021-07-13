@@ -153,11 +153,11 @@ def test_function_return_value_continue_no(
     return_good, return_bad = return_value
     if c_map[0] == "bad":
         commands_with_errors, correct_commands = commands_1, commands_2
-        assert (
-            [] == list(return_good) and commands_with_errors[:1] == sorted(return_bad)
+        assert [] == list(return_good) and commands_with_errors[:1] == sorted(
+            return_bad
         ), "Функция возвращает неправильное значение"
     else:
         commands_with_errors, correct_commands = commands_2, commands_1
-        assert (
-            correct_commands == list(return_good) and commands_with_errors[:1] == list(return_bad)
-        ), "Функция возвращает неправильное значение"
+        assert correct_commands == list(return_good) and commands_with_errors[
+            :1
+        ] == list(return_bad), "Функция возвращает неправильное значение"

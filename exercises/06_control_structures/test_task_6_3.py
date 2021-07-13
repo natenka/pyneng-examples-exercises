@@ -45,4 +45,3 @@ def test_task(capsys):
     assert (
         correct_stdout == out.strip()
     ), "На стандартный поток вывода выводится неправильный вывод"
-

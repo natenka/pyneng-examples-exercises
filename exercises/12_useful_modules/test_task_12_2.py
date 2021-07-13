@@ -40,8 +40,8 @@ def test_function_return_value():
     return_value = task_12_2.convert_ranges_to_ip_list(list_of_ips_and_ranges)
     assert return_value != None, "Функция ничего не возвращает"
     assert type(return_value) == list, "Функция должна возвращать список"
-    assert (
-        sorted(correct_return_value) == sorted(return_value)
+    assert sorted(correct_return_value) == sorted(
+        return_value
     ), "Функция возвращает неправильное значение"
 
 
@@ -67,6 +67,6 @@ def test_function_return_value_different_args():
     assert (
         type(return_value) == list
     ), f"По заданию функция должна возвращать список, а возвращает {type(return_value).__name__}"
-    assert (
-        sorted(correct_return_value) == sorted(return_value)
+    assert sorted(correct_return_value) == sorted(
+        return_value
     ), "Функция возвращает неправильное значение"

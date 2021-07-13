@@ -44,5 +44,3 @@ def test_task_variables():
     assert (
         correct_result == task_4_4.result
     ), f"В переменной result должен быть список {correct_result}"
-
-

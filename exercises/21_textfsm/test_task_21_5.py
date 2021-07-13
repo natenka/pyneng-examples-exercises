@@ -48,5 +48,3 @@ def test_function_return_value(r1_test_connection, first_router_from_devices_yam
     assert (
         correct_return_value == return_value
     ), "Функция возвращает неправильное значение"
-
-

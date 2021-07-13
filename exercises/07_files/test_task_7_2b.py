@@ -16,6 +16,7 @@ def test_task(monkeypatch, tmpdir):
 
     monkeypatch.setattr("sys.argv", ["task_7_2b.py", "config_sw1.txt", dest_filename])
     import task_7_2b
+
     dest_file_content = dest_filename.read().strip()
 
     correct_file_content = (
@@ -56,4 +57,3 @@ def test_task(monkeypatch, tmpdir):
     assert (
         correct_file_content == dest_file_content
     ), "На стандартный поток вывода выводится неправильный вывод"
-

@@ -19,6 +19,7 @@ def count_calls(func):
         wrapper.total_calls += 1
         result = func(*args, **kwargs)
         return result
+
     wrapper.total_calls = 0
     return wrapper
 

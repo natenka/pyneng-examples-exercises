@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 25.6
 
 Для заданий 25 раздела нет тестов!
@@ -163,4 +163,4 @@ usage: parse_dhcp_snooping.py get [-h] [--db DB_FILE]
                                   [-v VALUE] [-a]
 parse_dhcp_snooping.py get: error: argument -k: invalid choice: 'vln' (choose from 'mac', 'ip', 'vlan', 'interface', 'switch')
 
-'''
+"""

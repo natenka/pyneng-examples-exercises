@@ -41,7 +41,9 @@ def test_task(capsys, monkeypatch):
         " switchport mode trunk\n"
         " spanning-tree portfast edge trunk\n"
     )
-    config_part = re.search(r"(Current configuration.*?)interface Ethernet1/0", out, re.DOTALL).group(1)
+    config_part = re.search(
+        r"(Current configuration.*?)interface Ethernet1/0", out, re.DOTALL
+    ).group(1)
 
     assert (
         out
@@ -49,4 +51,3 @@ def test_task(capsys, monkeypatch):
     assert (
         correct_stdout == config_part
     ), "На стандартный поток вывода выводится неправильный вывод"
-

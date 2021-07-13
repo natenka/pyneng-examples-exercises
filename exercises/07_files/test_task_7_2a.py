@@ -57,4 +57,3 @@ def test_task(capsys, monkeypatch):
     assert (
         correct_stdout == out.strip()
     ), "На стандартный поток вывода выводится неправильный вывод"
-

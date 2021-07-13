@@ -4,7 +4,11 @@ import sys
 
 sys.path.append("..")
 
-from pyneng_common_functions import check_function_exists, strip_empty_lines, render_jinja_template
+from pyneng_common_functions import (
+    check_function_exists,
+    strip_empty_lines,
+    render_jinja_template,
+)
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook

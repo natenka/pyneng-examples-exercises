@@ -11,7 +11,9 @@ if not isinstance(__loader__, AssertionRewritingHook):
 
 
 def unified_columns_output(output):
-    lines = sorted([re.split(r"  +", line.strip()) for line in output.strip().split("\n")])
+    lines = sorted(
+        [re.split(r"  +", line.strip()) for line in output.strip().split("\n")]
+    )
     formatted = [("{:25}" * len(line)).format(*line) for line in lines]
     return "\n".join(formatted)
 
@@ -28,7 +30,7 @@ def unified_columns_output(output):
             "1000     0a4b.c380.7d00      Gi0/9",
         ),
     ],
-    ids=["vlan 10", "vlan 1000"]
+    ids=["vlan 10", "vlan 1000"],
 )
 def test_task_stdout(capsys, monkeypatch, vlan, result):
     """
@@ -41,6 +43,6 @@ def test_task_stdout(capsys, monkeypatch, vlan, result):
 
     out, err = capsys.readouterr()
     correct_stdout = unified_columns_output(result)
-    assert (
-        correct_stdout == unified_columns_output(out.strip())
+    assert correct_stdout == unified_columns_output(
+        out.strip()
     ), "На стандартный поток вывода выводится неправильная строка"

@@ -5,7 +5,11 @@ import sys
 
 sys.path.append("..")
 
-from pyneng_common_functions import check_class_exists, check_attr_or_method, strip_empty_lines
+from pyneng_common_functions import (
+    check_class_exists,
+    check_attr_or_method,
+    strip_empty_lines,
+)
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook

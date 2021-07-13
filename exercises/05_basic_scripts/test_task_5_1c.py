@@ -18,6 +18,7 @@ def count_calls(func):
         wrapper.total_calls += 1
         result = func(*args, **kwargs)
         return result
+
     wrapper.total_calls = 0
     return wrapper
 
@@ -72,7 +73,6 @@ def test_task_sw1_wrong_param(capsys, monkeypatch):
             "В этом задании должна обрабатываться ситуация, "
             "когда параметр указан неправильный. Не должна возникать ошибка KeyError"
         )
-
 
     out, err = capsys.readouterr()
     correct_stdout = "параметра нет"

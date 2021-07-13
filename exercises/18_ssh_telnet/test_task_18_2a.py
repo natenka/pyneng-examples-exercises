@@ -39,8 +39,8 @@ def test_function_return_value(
     assert (
         type(return_value) == str
     ), f"По заданию функция должна возвращать строку, а возвращает {type(return_value).__name__}"
-    assert (
-        strip_empty_lines(return_value) == strip_empty_lines(correct_return_value)
+    assert strip_empty_lines(return_value) == strip_empty_lines(
+        correct_return_value
     ), "Функция возвращает неправильное значение"
 
     # по умолчанию, log должно быть равным True

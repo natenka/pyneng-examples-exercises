@@ -47,12 +47,14 @@ def count_calls(func):
         wrapper.total_calls += 1
         result = func(*args, **kwargs)
         return result
+
     wrapper.total_calls = 0
     return wrapper
 
 
 def monkey_input_ip(ip_add):
     __tracebackhide__ = True
+
     @count_calls
     def inner(prompt):
         __tracebackhide__ = True
@@ -60,6 +62,7 @@ def monkey_input_ip(ip_add):
             return ip_add
         elif inner.total_calls == 2:
             return "10.1.1.1"
+
     return inner
 
 

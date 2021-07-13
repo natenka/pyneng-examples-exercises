@@ -38,7 +38,10 @@ def test_function_params(first_router_from_devices_yaml, tmpdir):
         # Если передаются оба аргумента и show и config,
         # должно генерироваться исключение ValueError
         task_19_4.send_commands_to_devices(
-            [first_router_from_devices_yaml], dest_filename, show=command, config=cfg_commands
+            [first_router_from_devices_yaml],
+            dest_filename,
+            show=command,
+            config=cfg_commands,
         )
 
 

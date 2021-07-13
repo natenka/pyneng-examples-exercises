@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 25.5
 
 Для заданий 25 раздела нет тестов!
@@ -37,5 +37,4 @@ sqlite> insert into dhcp (mac, ip, vlan, interface, switch, active, last_active)
 mac                ip               vlan  interface        switch  active  last_active
 -----------------  ---------------  ----  ---------------  ------  ------  -------------------
 00:09:BC:3F:A6:50  192.168.100.100  1     FastEthernet0/7  sw1     0       2019-03-08 11:26:56
-'''
-
+"""
