@@ -107,7 +107,7 @@ class CustomTasksType(click.ParamType):
         return test_files
 
 
-def call_command(command, verbose=True, return_stdout=False):
+def call_command(command, verbose=True, return_stdout=False, return_stderr=False):
     """
     Функция вызывает указанную command через subprocess
     и выводит stdout и stderr, если флан verbose=True.
@@ -117,14 +117,20 @@ def call_command(command, verbose=True, return_stdout=False):
         shell=True,
         encoding="utf-8",
         stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
     )
     std = result.stdout
+    stderr = result.stderr
     if return_stdout:
         return std
+    if return_stderr:
+        return result.returncode, stderr
     if verbose:
         print("#" * 20, command)
         if std:
             print(std)
+        if stderr:
+            print(stderr)
     return result.returncode
 
 
