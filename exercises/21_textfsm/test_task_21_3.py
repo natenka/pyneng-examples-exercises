@@ -78,7 +78,6 @@ def test_function_return_value_different_args():
     correct_return_value = [
         {
             "hostname": "R1_LONDON",
-            "uptime": "1 day, 15 hours, 32 minutes",
             "version": "15.3(2)S1",
         }
     ]
