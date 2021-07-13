@@ -38,4 +38,4 @@ def test_iterable(normalized_topology_example):
         pytest.fail("Экземпляр класса Topology не итерируемый объект\n", error)
     else:
         item = next(iterator)
-        assert item == (("R1", "Eth0/0"), ("SW1", "Eth0/1"))
+        assert (("R1", "Eth0/0"), ("SW1", "Eth0/1")) == item

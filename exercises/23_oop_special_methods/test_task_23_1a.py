@@ -30,7 +30,7 @@ def test_str_method():
     """Проверяем __str__"""
     return_ip = task_23_1a.IPAddress("10.5.5.5/24")
     assert (
-        str(return_ip) == "IP address 10.5.5.5/24"
+        "IP address 10.5.5.5/24" == str(return_ip)
     ), "Метод __str__ должен возвращать 'IP address 10.5.5.5/24'"
 
 
@@ -38,6 +38,6 @@ def test_repr_method():
     """Проверяем __repr__"""
     return_ip = task_23_1a.IPAddress("10.5.5.5/24")
     assert (
-        repr(return_ip).replace('"', "'") == "IPAddress('10.5.5.5/24')"
+        "IPAddress('10.5.5.5/24')" == repr(return_ip).replace('"', "'")
     ), "Метод __repr__ должен возвращать IPAddress('10.5.5.5/24')"
 
