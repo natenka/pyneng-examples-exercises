@@ -9,6 +9,12 @@
 * удалено задание: 15.2a
 * Обновлен файл pyneng_common_functions.py в каталоге exercises
 
+После обновления заданий, тестов и файла pyneng_common_functions.py, надо обновить модуль pytest-clarity:
+
+```
+pip install -U pytest-clarity
+```
+
 [Подробнее об изменениях](https://natenka.github.io/pyneng/pyneng-tasks-update-2021-2/)
 
 # Обновление заданий и добавление тестов для всех заданий, кроме раздела 25. (26.01.2021)
