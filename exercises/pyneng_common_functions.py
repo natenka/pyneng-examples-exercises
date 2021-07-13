@@ -4,6 +4,10 @@ from platform import system as system_name
 from subprocess import run, PIPE
 from concurrent.futures import ThreadPoolExecutor
 import re
+import os
+from jinja2 import Environment, FileSystemLoader
+import yaml
+import textfsm
 
 
 stdout_incorrect_warning = """
@@ -11,6 +15,21 @@ stdout_incorrect_warning = """
 Должно быть: {}
 А выведено: {}
 """
+
+def unified_columns_output(output):
+    output = delete_empty_lines(output)
+    lines = [re.split(r"  +", line.strip()) for line in output.strip().split("\n")]
+    formatted = [("{:25}"*len(line)).format(*line) for line in lines]
+    return "\n".join(formatted)
+
+
+def delete_empty_lines(output):
+    output = output.replace("\r\n", "\n")
+    lines = []
+    for line in output.strip().split("\n"):
+        if line.strip():
+            lines.append(line.rstrip())
+    return "\n".join(lines)
 
 
 def check_attr_or_method(obj, attr=None, method=None):
@@ -27,6 +46,7 @@ def check_attr_or_method(obj, attr=None, method=None):
 
 
 def strip_empty_lines(output):
+    output = output.replace("\r\n", "\n")
     lines = []
     for line in output.strip().split("\n"):
         line = line.strip()
@@ -70,7 +90,7 @@ def get_func_params_default_value(function):
 def ping(host):
     param = "-n" if system_name().lower() == "windows" else "-c"
     command = ["ping", param, "1", host]
-    reply = run(command, stdout=PIPE, stderr=PIPE, encoding="utf-8")
+    reply = run(command, stdout=PIPE, stderr=PIPE)
     return reply.returncode == 0
 
 
@@ -95,3 +115,19 @@ def unify_topology_dict(topology_dict):
     }
     return unified_topology_dict
 
+
+def render_jinja_template(template, data_dict):
+    templ_dir, templ_file = os.path.split(template)
+    env = Environment(
+        loader=FileSystemLoader(templ_dir), trim_blocks=True, lstrip_blocks=True
+    )
+    templ = env.get_template(templ_file)
+    return templ.render(data_dict)
+
+
+def get_textfsm_output(template, command_output):
+    with open(template) as tmpl:
+        parser = textfsm.TextFSM(tmpl)
+        header = parser.header
+        result = parser.ParseText(command_output)
+    return [header] + result

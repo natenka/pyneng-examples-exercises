@@ -110,11 +110,12 @@ def test_function_return_value():
         type(return_value) == list
     ), f"По заданию функция должна возвращать список, а возвращает {type(return_value).__name__}"
     assert (
-        return_value == correct_return_value_without_psecurity
+        correct_return_value_without_psecurity == return_value
     ), "Функция возвращает неправильное значение при вызове с psecurity == None"
+
     return_value_with_psecurity = task_9_1a.generate_access_config(
         access_vlans_mapping, template_access_mode, template_psecurity
     )
     assert (
-        return_value_with_psecurity == correct_return_value_with_psecurity
+        correct_return_value_with_psecurity == return_value_with_psecurity
     ), "Функция возвращает неправильное значение при вызове с psecurity"

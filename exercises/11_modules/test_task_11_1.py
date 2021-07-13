@@ -58,7 +58,7 @@ def test_function_return_value():
         type(return_value) == dict
     ), f"По заданию функция должна возвращать словарь, а возвращает {type(return_value).__name__}"
     assert (
-        return_value == correct_return_value
+        correct_return_value == return_value
     ), "Функция возвращает неправильное значение"
 
 
@@ -87,5 +87,5 @@ def test_function_return_value_different_args():
         type(return_value) == dict
     ), f"По заданию функция должна возвращать словарь, а возвращает {type(return_value).__name__}"
     assert (
-        return_value == correct_return_value
+        correct_return_value == return_value
     ), "Функция возвращает неправильное значение"

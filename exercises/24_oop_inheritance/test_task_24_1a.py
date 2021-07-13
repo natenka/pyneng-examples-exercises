@@ -27,11 +27,11 @@ def test_class_created():
 
 
 def test_class_inheritance(first_router_from_devices_yaml):
-    r1 = task_24_1a.CiscoSSH(**first_router_from_devices_yaml)
-    r1.ssh.disconnect()
-    assert isinstance(r1, BaseSSH), "Класс CiscoSSH должен наследовать BaseSSH"
-    check_attr_or_method(r1, method="send_show_command")
-    check_attr_or_method(r1, method="send_cfg_commands")
+    ssh = task_24_1a.CiscoSSH(**first_router_from_devices_yaml)
+    ssh.ssh.disconnect()
+    assert isinstance(ssh, BaseSSH), "Класс CiscoSSH должен наследовать BaseSSH"
+    check_attr_or_method(ssh, method="send_show_command")
+    check_attr_or_method(ssh, method="send_cfg_commands")
 
 
 def test_params_without_password(first_router_from_devices_yaml, monkeypatch):
@@ -40,7 +40,7 @@ def test_params_without_password(first_router_from_devices_yaml, monkeypatch):
     del params["password"]
     monkeypatch.setattr("builtins.input", lambda x=None: password)
     try:
-        r1 = task_24_1a.CiscoSSH(**params)
-        r1.ssh.disconnect()
+        ssh = task_24_1a.CiscoSSH(**params)
+        ssh.ssh.disconnect()
     except SSHException:
         pytest.fail("Ошибка при подключении")

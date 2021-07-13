@@ -42,7 +42,7 @@ def test_function_return_value(r1_test_connection, first_router_from_devices_yam
         type(return_value) == list
     ), f"По заданию функция должна возвращать список, а возвращает {type(return_value).__name__}"
     assert (
-        return_value == correct_return_value
+        correct_return_value == return_value
     ), "Функция возвращает неправильное значение"
 
 
@@ -68,5 +68,5 @@ def test_function_return_value_different_args(
         type(return_value) == list
     ), f"По заданию функция должна возвращать список, а возвращает {type(return_value).__name__}"
     assert (
-        return_value == correct_return_value
+        correct_return_value == return_value
     ), "Функция возвращает неправильное значение"

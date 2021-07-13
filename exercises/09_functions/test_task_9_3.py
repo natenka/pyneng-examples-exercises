@@ -60,5 +60,5 @@ def test_function_return_value():
 
     access, trunk = return_value
     assert (
-        return_value == correct_return_value
+        correct_return_value == return_value
     ), "Функция возвращает неправильное значение"

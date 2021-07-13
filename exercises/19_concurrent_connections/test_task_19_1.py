@@ -24,24 +24,27 @@ def test_function_return_value():
     """
     Проверка работы функции
     """
-    list_of_ips = ["1.1.1", "8.8.8.8", "8.8.4.4", "8.8.7.1"]
+    list_of_ips = ["1.1.1.1", "8.8.8.8", "8.8.4.4", "2.2.2.2"]
     correct_return_value = get_reach_unreach(list_of_ips)
     correct_reachable, correct_unreachable = correct_return_value
+    correct_reachable, correct_unreachable = sorted(correct_reachable), sorted(
+        correct_unreachable
+    )
+
     return_value = task_19_1.ping_ip_addresses(list_of_ips)
-    return_reachable, return_unreachable = return_value
     assert return_value != None, "Функция ничего не возвращает"
     assert (
         type(return_value) == tuple
     ), f"По заданию функция должна возвращать кортеж, а возвращает {type(return_value).__name__}"
-    assert len(return_value) == 2, "Функция должна возвращать кортеж с двумя списками"
-    return_reachable, return_unreachable = return_value
-
+    assert 2 == len(return_value), "Функция должна возвращать кортеж с двумя списками"
     assert all(
         type(item) == list for item in return_value
     ), "Функция должна возвращать кортеж со списками внутри"
-    assert sorted(return_reachable) == sorted(
-        correct_reachable
-    ), "Функция возвращает неправильное значение"
-    assert sorted(return_unreachable) == sorted(
-        correct_unreachable
+
+    return_reachable, return_unreachable = return_value
+    return_reachable, return_unreachable = sorted(return_reachable), sorted(
+        return_unreachable
+    )
+    assert correct_return_value == (
+        return_value
     ), "Функция возвращает неправильное значение"

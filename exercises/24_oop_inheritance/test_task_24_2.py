@@ -19,17 +19,17 @@ def test_class_created():
 
 
 def test_class_inheritance(first_router_from_devices_yaml):
-    r1 = task_24_2.MyNetmiko(**first_router_from_devices_yaml)
-    assert isinstance(r1, CiscoIosSSH), "Класс MyNetmiko должен наследовать CiscoIosSSH"
-    r1.disconnect()
-    check_attr_or_method(r1, method="send_command")
-    check_attr_or_method(r1, method="send_config_set")
+    ssh = task_24_2.MyNetmiko(**first_router_from_devices_yaml)
+    assert isinstance(ssh, CiscoIosSSH), "Класс MyNetmiko должен наследовать CiscoIosSSH"
+    ssh.disconnect()
+    check_attr_or_method(ssh, method="send_command")
+    check_attr_or_method(ssh, method="send_config_set")
 
 
 def test_enable(first_router_from_devices_yaml):
-    r1 = task_24_2.MyNetmiko(**first_router_from_devices_yaml)
-    output = r1.send_command("sh run | i hostname")
-    r1.disconnect()
+    ssh = task_24_2.MyNetmiko(**first_router_from_devices_yaml)
+    output = ssh.send_command("sh run | i hostname")
+    ssh.disconnect()
     assert (
         "hostname" in output
     ), "При создании экземпляра класса должно создаваться подключение и переход в режим enable"

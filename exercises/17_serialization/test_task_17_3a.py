@@ -78,7 +78,7 @@ def test_function_return_value():
         type(return_value) == dict
     ), f"По заданию функция должна возвращать словарь, а возвращает {type(return_value).__name__}"
     assert (
-        return_value == correct_return_value
+        correct_return_value == return_value
     ), "Функция возвращает неправильное значение"
 
 
@@ -118,5 +118,5 @@ def test_writing_to_yaml_file(tmpdir):
     with open(dest_filename) as f:
         yaml_file_content = yaml.safe_load(f)
     assert (
-        yaml_file_content == correct_return_value
+        correct_return_value == yaml_file_content
     ), "Топология не записана в YAML файл"

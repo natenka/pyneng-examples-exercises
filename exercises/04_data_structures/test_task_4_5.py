@@ -20,7 +20,7 @@ def test_task_stdout(capsys):
         out
     ), "Ничего не выведено на стандартный поток вывода. Надо не только получить нужный результат, но и вывести его на стандартный поток вывода с помощью print"
     assert (
-        out.strip() == correct_stdout
+        correct_stdout == out.strip()
     ), "На стандартный поток вывода выводится неправильная строка"
 
 
@@ -42,5 +42,5 @@ def test_task_variables():
         type(task_4_5.result) == list
     ), f"По заданию в переменной result должен быть список, а в ней {type(task_4_5.result).__name__}"
     assert (
-        task_4_5.result == correct_result
+        correct_result == task_4_5.result
     ), f"В переменной result должен быть список {correct_result}"

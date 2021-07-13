@@ -4,7 +4,7 @@ import sys
 
 sys.path.append("..")
 
-from pyneng_common_functions import check_function_exists
+from pyneng_common_functions import check_function_exists, strip_empty_lines
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
@@ -40,22 +40,22 @@ def test_function_return_value(
         type(return_value) == str
     ), f"По заданию функция должна возвращать строку, а возвращает {type(return_value).__name__}"
     assert (
-        return_value == correct_return_value
+        strip_empty_lines(return_value) == strip_empty_lines(correct_return_value)
     ), "Функция возвращает неправильное значение"
 
     # по умолчанию, log должно быть равным True
     # и на stdout должно выводиться сообщение
-    correct_stdout = f"{r1_test_connection.host}"
-    out, err = capsys.readouterr()
-    assert out != "", "Сообщение об ошибке не выведено на stdout"
-    assert correct_stdout in out, "Выведено неправильное сообщение об ошибке"
+    correct_stdout = f"подключаюсь к {r1_test_connection.host}"
+    stdout, err = capsys.readouterr()
+    assert stdout != "", "Сообщение об ошибке не выведено на stdout"
+    assert correct_stdout in stdout.lower(), "Выведено неправильное сообщение об ошибке"
 
     # проверяем, что с log=False вывода в stdout нет
     return_value = task_18_2a.send_config_commands(
         first_router_from_devices_yaml, test_commands, log=False
     )
     correct_stdout = ""
-    out, err = capsys.readouterr()
+    stdout, err = capsys.readouterr()
     assert (
-        out == correct_stdout
+        correct_stdout == stdout
     ), "Сообщение об ошибке не должно выводиться на stdout, когда log=False"

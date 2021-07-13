@@ -9,6 +9,7 @@ from pyneng_common_functions import (
     check_class_exists,
     check_attr_or_method,
     stdout_incorrect_warning,
+    unify_topology_dict,
 )
 
 # Проверка что тест вызван через pytest ..., а не python ...
@@ -33,12 +34,14 @@ def test_attr_topology(topology_with_dupl_links):
 
 def test_topology_normalization(topology_with_dupl_links, normalized_topology_example):
     """Проверка удаления дублей в топологии"""
-    top_with_data = task_22_1b.Topology(topology_with_dupl_links)
+    correct_topology = unify_topology_dict(normalized_topology_example)
+    return_value = task_22_1b.Topology(topology_with_dupl_links)
+    return_topology = unify_topology_dict(return_value.topology)
     assert (
-        type(top_with_data.topology) == dict
+        type(return_value.topology) == dict
     ), f"По заданию в переменной topology должен быть словарь, а не {type(top_with_data.topology).__name__}"
-    assert len(top_with_data.topology) == len(
-        normalized_topology_example
+    assert len(correct_topology) == len(
+        return_value.topology
     ), "После создания экземпляра, в переменной topology должна находиться топология без дублей"
 
 
@@ -54,7 +57,7 @@ def test_method_delete_link(normalized_topology_example, capsys):
     """Проверка работы метода delete_link"""
     norm_top = task_22_1b.Topology(normalized_topology_example)
     delete_link_result = norm_top.delete_link(("R3", "Eth0/0"), ("SW1", "Eth0/3"))
-    assert delete_link_result == None, "Метод delete_link не должен ничего возвращать"
+    assert None == delete_link_result, "Метод delete_link не должен ничего возвращать"
 
     assert ("R3", "Eth0/0") not in norm_top.topology, "Соединение не было удалено"
 

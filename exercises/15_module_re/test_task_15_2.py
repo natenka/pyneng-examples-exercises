@@ -40,8 +40,8 @@ def test_function_return_value():
     ), f"По заданию функция должна возвращать список, а возвращает {type(return_value).__name__}"
     # Списки сортируются чтобы не было ошибки, если строки записаны в списке в другом порядке
     # В этом задании порядок кортежей в списке не важен
-    assert sorted(return_value) == sorted(
-        correct_return_value
+    assert sorted(correct_return_value) == sorted(
+        return_value
     ), "Функция возвращает неправильное значение"
 
 
@@ -64,6 +64,6 @@ def test_function_return_value_different_args():
     ), f"По заданию функция должна возвращать список, а возвращает {type(return_value).__name__}"
     # Списки сортируются чтобы не было ошибки, если строки записаны в списке в другом порядке
     # В этом задании порядок кортежей в списке не важен
-    assert sorted(return_value) == sorted(
-        correct_return_value
+    assert sorted(correct_return_value) == sorted(
+        return_value
     ), "Функция возвращает неправильное значение"

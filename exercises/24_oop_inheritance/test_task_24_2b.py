@@ -19,11 +19,11 @@ def test_class_created():
 
 
 def test_class_inheritance(first_router_from_devices_yaml):
-    r1 = task_24_2b.MyNetmiko(**first_router_from_devices_yaml)
-    r1.disconnect()
-    assert isinstance(r1, CiscoIosSSH), "Класс MyNetmiko должен наследовать CiscoIosSSH"
-    check_attr_or_method(r1, method="send_command")
-    check_attr_or_method(r1, method="_check_error_in_command")
+    ssh = task_24_2b.MyNetmiko(**first_router_from_devices_yaml)
+    ssh.disconnect()
+    assert isinstance(ssh, CiscoIosSSH), "Класс MyNetmiko должен наследовать CiscoIosSSH"
+    check_attr_or_method(ssh, method="send_command")
+    check_attr_or_method(ssh, method="_check_error_in_command")
 
 
 @pytest.mark.parametrize(
@@ -35,10 +35,10 @@ def test_class_inheritance(first_router_from_devices_yaml):
     ],
 )
 def test_errors(first_router_from_devices_yaml, command, error):
-    r1 = task_24_2b.MyNetmiko(**first_router_from_devices_yaml)
+    ssh = task_24_2b.MyNetmiko(**first_router_from_devices_yaml)
     with pytest.raises(Exception) as excinfo:
-        return_value = r1.send_config_set(command)
-        r1.disconnect()
+        return_value = ssh.send_config_set(command)
+    ssh.disconnect()
     assert error in str(
         excinfo
     ), "Метод send_config_commands должен генерировать исключение, когда команда выполнена с ошибкой"

@@ -53,21 +53,25 @@ def test_function_return_value(r1_test_connection, first_router_from_devices_yam
         "logging buffered 20010",
         "no logging console",
     ]
-    correct_return_value_show = r1_test_connection.send_command(show_command)
-    correct_return_value_cfg = r1_test_connection.send_config_set(cfg_commands)
-    return_value_show = task_18_3.send_commands(
-        first_router_from_devices_yaml, show=show_command
+    correct_return_value_show = strip_empty_lines(
+        r1_test_connection.send_command(show_command)
     )
-    return_value_cfg = task_18_3.send_commands(
-        first_router_from_devices_yaml, config=cfg_commands
+    correct_return_value_cfg = strip_empty_lines(
+        r1_test_connection.send_config_set(cfg_commands)
+    )
+    return_value_show = strip_empty_lines(
+        task_18_3.send_commands(first_router_from_devices_yaml, show=show_command)
+    )
+    return_value_cfg = strip_empty_lines(
+        task_18_3.send_commands(first_router_from_devices_yaml, config=cfg_commands)
     )
     assert return_value_show != None, "Функция ничего не возвращает"
     assert (
         type(return_value_show) == str
     ), f"По заданию функция должна возвращать строку, а возвращает {type(return_value).__name__}"
-    assert strip_empty_lines(correct_return_value_show) == strip_empty_lines(
-        return_value_show
+    assert (
+        correct_return_value_show == return_value_show
     ), "Функция возвращает неправильное значение при передаче команды show"
-    assert strip_empty_lines(correct_return_value_cfg) == strip_empty_lines(
-        return_value_cfg
+    assert (
+        correct_return_value_cfg == return_value_cfg
     ), "Функция возвращает неправильное значение при передаче конфигурационных команд"

@@ -61,5 +61,5 @@ def test_function_return_value():
         type(item) == dict for item in return_value
     ), "Функция должна возвращать кортеж с двумя словарями"
     assert (
-        return_value == correct_return_value
+        correct_return_value == return_value
     ), "Функция возвращает неправильное значение"

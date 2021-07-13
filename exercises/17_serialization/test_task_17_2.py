@@ -47,11 +47,12 @@ def test_parse_sh_version_return_value():
         type(return_value_r1) == tuple
     ), f"По заданию функция должна возвращать кортеж, а возвращает {type(return_value_r1).__name__}"
     assert (
-        return_value_r1 == correct_return_value_r1
+        correct_return_value_r1 == return_value_r1
     ), "Функция возвращает неправильное значение для вывода r1"
+
     return_value_r2 = task_17_2.parse_sh_version(sh_version_r2)
     assert (
-        return_value_r2 == correct_return_value_r2
+        correct_return_value_r2 == return_value_r2
     ), "Функция возвращает неправильное значение для вывода r2"
 
 
@@ -59,7 +60,7 @@ def test_write_to_csv_return_value(tmpdir):
     """
     Проверка работы функции
     """
-    routers_inventory = [
+    correct_return_value = sorted([
         ["hostname", "ios", "image", "uptime"],
         [
             "r1",
@@ -69,16 +70,15 @@ def test_write_to_csv_return_value(tmpdir):
         ],
         ["r2", "12.4(4)T", "disk0:c7200-js-mz.124-4.T", "45 days, 8 hours, 22 minutes"],
         ["r3", "12.4(4)T", "disk0:c7200-js-mz.124-4.T", "5 days, 18 hours, 2 minutes"],
-    ]
+    ])
     sh_version_files = ["sh_version_r1.txt", "sh_version_r2.txt", "sh_version_r3.txt"]
     dest_filename = tmpdir.mkdir("test_tasks").join("routers_inventory.csv")
     return_value = task_17_2.write_inventory_to_csv(sh_version_files, dest_filename)
     csv_content = read_all_csv_content_as_list(dest_filename)
-    correct_return_value = sorted(routers_inventory)
 
     assert (
-        return_value == None
+        None == return_value
     ), f"По заданию функция должна возвращать None, а возвращает {type(return_value).__name__}"
     assert (
-        sorted(csv_content) == correct_return_value
+        correct_return_value == sorted(csv_content)
     ), "Функция возвращает неправильное значение"

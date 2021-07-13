@@ -24,7 +24,7 @@ def test_function_return_value(tmpdir):
     """
     Проверка работы функции
     """
-    asa_nat_config = (
+    correct_asa_nat_config = (
         "object network LOCAL_10.66.0.13\n"
         " host 10.66.0.13\n"
         " nat (inside,outside) static interface service tcp 995 995\n"
@@ -72,7 +72,8 @@ def test_function_return_value(tmpdir):
     return_value = task_15_3.convert_ios_nat_to_asa(
         "cisco_nat_config.txt", dest_filename
     )
+    file_content = dest_filename.read().strip()
     assert return_value == None, "Функция должна возвращать None"
     assert (
-        dest_filename.read().strip() == asa_nat_config.strip()
+        correct_asa_nat_config.strip() == file_content
     ), "Неправильная конфигурация для ASA"

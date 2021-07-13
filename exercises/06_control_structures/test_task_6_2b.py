@@ -36,7 +36,7 @@ def test_task_correct_ip(capsys, monkeypatch, ip_add, ip_type):
         out
     ), "Ничего не выведено на стандартный поток вывода. Надо не только получить нужный результат, но и вывести его на стандартный поток вывода с помощью print"
     assert (
-        correct_stdout in out.strip()
+        correct_stdout == out.strip()
     ), "На стандартный поток вывода выводится неправильный вывод"
 
 
@@ -66,15 +66,15 @@ def monkey_input_ip(ip_add):
 @pytest.mark.parametrize(
     "ip_add,ip_type",
     [
-        ("10.1.1", "неправильный"),
-        ("10.a.2.a", "неправильный"),
-        ("10.1.1.1.1", "неправильный"),
-        ("10.1.1.", "неправильный"),
-        ("300.1.1.1", "неправильный"),
-        ("30,1.1.1.1", "неправильный"),
+        ("10.1.1", "неправильный ip-адрес"),
+        ("10.a.2.a", "неправильный ip-адрес"),
+        ("10.1.1.1.1", "неправильный ip-адрес"),
+        ("10.1.1.", "неправильный ip-адрес"),
+        ("300.1.1.1", "неправильный ip-адрес"),
+        ("30,1.1.1.1", "неправильный ip-адрес"),
     ],
 )
-def test_task_wrong_ip(capsys, monkeypatch, ip_add, ip_type):
+def test_task_wrong_first_ip_correct_second(capsys, monkeypatch, ip_add, ip_type):
     """
     Проверка работы задания при вводе multicast адреса
     """
@@ -84,10 +84,10 @@ def test_task_wrong_ip(capsys, monkeypatch, ip_add, ip_type):
     import task_6_2b
 
     out, err = capsys.readouterr()
-    correct_stdout = ip_type
+    correct_stdout = ip_type + "\nunicast"
     assert (
         out
     ), "Ничего не выведено на стандартный поток вывода. Надо не только получить нужный результат, но и вывести его на стандартный поток вывода с помощью print"
     assert (
-        correct_stdout in out.strip().lower()
+        correct_stdout == out.strip().lower()
     ), "На стандартный поток вывода выводится неправильный вывод"

@@ -54,6 +54,6 @@ def test_task(monkeypatch, tmpdir):
     )
 
     assert (
-        dest_file_content == correct_file_content
+        correct_file_content == dest_file_content
     ), "На стандартный поток вывода выводится неправильный вывод"
 

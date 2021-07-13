@@ -3,19 +3,19 @@
   username: cisco
   password: cisco
   secret: cisco
-  timeout: 5
-  fast_cli: true
+  timeout: 10
+  #fast_cli: true
 - device_type: cisco_ios
   host: 192.168.100.2
   username: cisco
   password: cisco
   secret: cisco
-  timeout: 5
-  fast_cli: true
+  timeout: 10
+  #fast_cli: true
 - device_type: cisco_ios
   host: 192.168.100.3
   username: cisco
   password: cisco
   secret: cisco
-  timeout: 5
-  fast_cli: true
+  timeout: 10
+  #fast_cli: true

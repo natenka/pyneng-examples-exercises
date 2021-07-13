@@ -41,7 +41,7 @@ def test_function_return_value():
     assert return_value != None, "Функция ничего не возвращает"
     assert type(return_value) == list, "Функция должна возвращать список"
     assert (
-        sorted(return_value) == sorted(correct_return_value)
+        sorted(correct_return_value) == sorted(return_value)
     ), "Функция возвращает неправильное значение"
 
 
@@ -68,5 +68,5 @@ def test_function_return_value_different_args():
         type(return_value) == list
     ), f"По заданию функция должна возвращать список, а возвращает {type(return_value).__name__}"
     assert (
-        sorted(return_value) == sorted(correct_return_value)
+        sorted(correct_return_value) == sorted(return_value)
     ), "Функция возвращает неправильное значение"

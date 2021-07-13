@@ -5,19 +5,18 @@ import sys
 
 sys.path.append("..")
 
-from pyneng_common_functions import check_function_exists, ping, get_reach_unreach
+from pyneng_common_functions import (
+    check_function_exists,
+    ping,
+    get_reach_unreach,
+    unified_columns_output,
+)
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
 
 if not isinstance(__loader__, AssertionRewritingHook):
     print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
-
-
-def unified_columns_output(output):
-    lines = [re.split(r"  +", line.strip()) for line in output.strip().split("\n")]
-    formatted = [("{:25}"*len(line)).format(*line) for line in lines]
-    return "\n".join(formatted)
 
 
 def test_function_created():
@@ -45,6 +44,6 @@ def test_function_stdout(capsys):
         "10.10.1.15\n"
     )
     assert return_value == None, "Функция должна возвращать None"
-    assert (
-        unified_columns_output(stdout) == correct_stdout
+    assert correct_stdout == unified_columns_output(
+        stdout
     ), "Функция возвращает неправильное значение"

@@ -53,18 +53,23 @@ def test_function_return_value_from_single_device(
     device_ip = device["host"]
     command = command_dict[device_ip]
     ssh = create_ssh_connect(device)
-    output = f"{ssh.find_prompt()}{command}\n{ssh.send_command(command)}\n"
+    correct_output = strip_empty_lines(
+        f"{ssh.find_prompt()}{command}\n{ssh.send_command(command)}\n"
+    )
     ssh.disconnect()
     dest_filename = tmpdir.mkdir("test_tasks").join("task_19_3.txt")
 
     return_value = task_19_3.send_command_to_devices(
-        devices=[device], commands_dict=command_dict, filename=dest_filename, limit=3,
+        devices=[device],
+        commands_dict=command_dict,
+        filename=dest_filename,
+        limit=3,
     )
-    assert return_value == None, "Функция должна возвращать None"
-    dest_file_content = dest_filename.read().strip()
+    assert None == return_value, "Функция должна возвращать None"
+    dest_file_content = strip_empty_lines(dest_filename.read().strip())
 
-    assert strip_empty_lines(output) == strip_empty_lines(
-        dest_file_content
+    assert (
+        correct_output == dest_file_content
     ), f"В итоговом файле нет вывода с {device_ip}"
 
 
@@ -88,7 +93,7 @@ def test_function_return_value_from_all_devices(
         dest_filename,
         limit=3,
     )
-    assert return_value == None, "Функция должна возвращать None"
+    assert None == return_value, "Функция должна возвращать None"
 
     dest_file_content = dest_filename.read().strip()
 

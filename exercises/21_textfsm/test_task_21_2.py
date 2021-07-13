@@ -1,7 +1,10 @@
 import pytest
-import task_21_1
 import os
+import sys
 
+sys.path.append("..")
+
+from pyneng_common_functions import get_textfsm_output
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
@@ -33,8 +36,8 @@ def test_template():
     with open("output/sh_ip_dhcp_snooping.txt") as show:
         sh_ip_dhcp_snoop = show.read()
     template = "templates/sh_ip_dhcp_snooping.template"
-    return_value = task_21_1.parse_command_output(template, sh_ip_dhcp_snoop)
+    return_value = get_textfsm_output(template, sh_ip_dhcp_snoop)
 
     assert (
-        return_value == correct_return_value
+        correct_return_value == return_value
     ), "Шаблон templates/sh_ip_dhcp_snooping.template неправильно парсит данные"
