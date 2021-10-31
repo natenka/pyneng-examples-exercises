@@ -1,18 +1,16 @@
-import sys
-import subprocess
-import re
 import os
-from collections import defaultdict
-import json
 import pathlib
-import stat
+import re
 import shutil
+import stat
+import subprocess
+import sys
+from collections import defaultdict
 from glob import glob
 
 import click
 import pytest
 from pytest_jsonreport.plugin import JSONReport
-
 
 task_dirs = [
     "04_data_structures",
@@ -122,7 +120,7 @@ def call_command(command, verbose=True, return_stdout=False, return_stderr=False
     std = result.stdout
     stderr = result.stderr
     if return_stdout:
-        return std
+        return std, None
     if return_stderr:
         return result.returncode, stderr
     if verbose:
@@ -131,7 +129,7 @@ def call_command(command, verbose=True, return_stdout=False, return_stderr=False
             print(std)
         if stderr:
             print(stderr)
-    return result.returncode
+    return result.returncode, None
 
 
 def current_chapter_id():
@@ -157,9 +155,7 @@ def parse_json_report(report):
     """
     if report and report["summary"]["total"] != 0:
         all_tests = defaultdict(list)
-        summary = report["summary"]
 
-        test_names = [test["nodeid"] for test in report["collectors"][0]["result"]]
         for test in report["tests"]:
             name = test["nodeid"].split("::")[0]
             all_tests[name].append(test["outcome"] == "passed")
@@ -179,7 +175,6 @@ def copy_answers(passed_tasks):
     """
     pth = str(pathlib.Path().absolute())
     current_chapter_name = os.path.split(pth)[-1]
-    current_chapter_number = int(current_chapter_name.split("_")[0])
 
     homedir = pathlib.Path.home()
     os.chdir(homedir)
@@ -202,7 +197,9 @@ def copy_answers(passed_tasks):
         os.chdir(homedir)
         shutil.rmtree("pyneng-answers", onerror=remove_readonly)
     else:
-        if "could not resolve host" in stderr.lower():
+        if stderr and "could not resolve host" in stderr.lower():
+            # PynengError - ниоткуда не импортируется и не определена нигде выше!!
+
             raise PynengError(
                 red(
                     "Не получилось скопировать ответы. Возможно нет доступа в интернет?"
@@ -228,11 +225,18 @@ def copy_answer_files(passed_tasks, pth):
     """
     for test_file in passed_tasks:
         task_name = test_file.replace("test_", "")
-        task_name = re.search(r"task_\w+\.py", task_name).group()
-        answer_name = test_file.replace("test_", "answer_")
-        answer_name = re.search(r"answer_task_\w+\.py", answer_name).group()
-        if not os.path.exists(f"{pth}/{answer_name}"):
-            shutil.copy2(task_name, f"{pth}/{answer_name}")
+        task_name = re.search(r"task_\w+\.py", task_name)
+        if not task_name:
+            print("Передан неверный параметр в функцию")
+            break
+        else:
+            task_name = task_name.group()
+            answer_name = test_file.replace("test_", "answer_")
+            answer_name = re.search(r"answer_task_\w+\.py", answer_name)
+            if answer_name:
+                answer_name = answer_name.group()
+            if not os.path.exists(f"{pth}/{answer_name}"):
+                shutil.copy2(task_name, f"{pth}/{answer_name}")
 
 
 @click.command(
