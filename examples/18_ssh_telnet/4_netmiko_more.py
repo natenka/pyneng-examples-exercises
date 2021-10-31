@@ -1,5 +1,5 @@
-from netmiko import ConnectHandler, NetmikoTimeoutException
 import yaml
+from netmiko import ConnectHandler, NetmikoTimeoutException
 
 
 def send_show_command(device_params, command):

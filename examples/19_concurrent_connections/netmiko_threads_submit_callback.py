@@ -1,11 +1,10 @@
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from pprint import pprint
-from datetime import datetime
-import time
-from itertools import repeat
+import csv
 import logging
 import re
-import csv
+import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime
+from pprint import pprint
 
 import yaml
 from netmiko import ConnectHandler

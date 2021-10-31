@@ -1,5 +1,6 @@
 import ipaddress
 
+
 # Iterator
 class Network:
     def __init__(self, network):

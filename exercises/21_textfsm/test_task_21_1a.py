@@ -1,16 +1,12 @@
-import pytest
-import task_21_1a
 import sys
+
+import task_21_1a
 
 sys.path.append("..")
 
-from pyneng_common_functions import check_function_exists
+from pyneng_common_functions import check_function_exists, check_pytest
 
-# Проверка что тест вызван через pytest ..., а не python ...
-from _pytest.assertion.rewrite import AssertionRewritingHook
-
-if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+check_pytest(__loader__, __file__)
 
 
 def test_functions_created():
@@ -62,7 +58,7 @@ def test_function_return_value():
     template = "templates/sh_ip_int_br.template"
 
     return_value = task_21_1a.parse_output_to_dict(template, sh_ip_int_br)
-    assert return_value != None, "Функция ничего не возвращает"
+    assert return_value is not None, "Функция ничего не возвращает"
     assert (
         type(return_value) == list
     ), f"По заданию функция должна возвращать список, а возвращает {type(return_value).__name__}"
@@ -87,7 +83,7 @@ def test_function_return_value_different_args():
     template = "templates/sh_version.template"
 
     return_value = task_21_1a.parse_output_to_dict(template, sh_version)
-    assert return_value != None, "Функция ничего не возвращает"
+    assert return_value is not None, "Функция ничего не возвращает"
     assert (
         type(return_value) == list
     ), f"По заданию функция должна возвращать список, а возвращает {type(return_value).__name__}"

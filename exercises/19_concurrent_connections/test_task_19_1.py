@@ -1,16 +1,13 @@
-import pytest
-import task_19_1
 import sys
+
+import task_19_1
 
 sys.path.append("..")
 
-from pyneng_common_functions import check_function_exists, get_reach_unreach
+from pyneng_common_functions import (check_function_exists, check_pytest,
+                                     get_reach_unreach)
 
-# Проверка что тест вызван через pytest ..., а не python ...
-from _pytest.assertion.rewrite import AssertionRewritingHook
-
-if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+check_pytest(__loader__, __file__)
 
 
 def test_functions_created():
@@ -32,7 +29,7 @@ def test_function_return_value():
     )
 
     return_value = task_19_1.ping_ip_addresses(list_of_ips)
-    assert return_value != None, "Функция ничего не возвращает"
+    assert return_value is not None, "Функция ничего не возвращает"
     assert (
         type(return_value) == tuple
     ), f"По заданию функция должна возвращать кортеж, а возвращает {type(return_value).__name__}"

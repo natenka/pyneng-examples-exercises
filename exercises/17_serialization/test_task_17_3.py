@@ -1,16 +1,13 @@
-import pytest
-import task_17_3
 import sys
+
+import task_17_3
 
 sys.path.append("..")
 
-from pyneng_common_functions import check_function_exists
+from pyneng_common_functions import check_function_exists, check_pytest
 
-# Проверка что тест вызван через pytest ..., а не python ...
-from _pytest.assertion.rewrite import AssertionRewritingHook
 
-if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+check_pytest(__loader__, __file__)
 
 
 def test_function_created():
@@ -64,9 +61,9 @@ def test_function_return_value_different_args():
 
     return_value = task_17_3.parse_sh_cdp_neighbors(sh_cdp_n_sw1)
     assert return_value != None, "Функция ничего не возвращает"
-    assert (
-        type(return_value) == dict
-    ), f"По заданию функция должна возвращать словарь, а возвращает {type(return_value).__name__}"
-    assert (
-        correct_return_value == return_value
-    ), "Функция возвращает неправильное значение"
+    assert type(return_value) == dict, (
+        "По заданию функция должна возвращать словарь, а возвращает "
+        f"{type(return_value).__name__}")
+    assert correct_return_value == return_value, (
+        "Функция возвращает неправильное значение"
+    )

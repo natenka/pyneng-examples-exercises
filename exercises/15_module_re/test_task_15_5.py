@@ -1,16 +1,12 @@
-import pytest
-import task_15_5
 import sys
+
+import task_15_5
 
 sys.path.append("..")
 
-from pyneng_common_functions import check_function_exists
+from pyneng_common_functions import check_function_exists, check_pytest
 
-# Проверка что тест вызван через pytest ..., а не python ...
-from _pytest.assertion.rewrite import AssertionRewritingHook
-
-if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+check_pytest(__loader__, __file__)
 
 
 def test_function_created():
@@ -31,7 +27,7 @@ def test_function_return_value():
         "Eth 0/5": "description Connected to R6 port Eth 0/1",
     }
     return_value = task_15_5.generate_description_from_cdp("sh_cdp_n_sw1.txt")
-    assert return_value != None, "Функция ничего не возвращает"
+    assert return_value is not None, "Функция ничего не возвращает"
     assert (
         type(return_value) == dict
     ), f"По заданию функция должна возвращать словарь, а возвращает {type(return_value).__name__}"

@@ -1,16 +1,14 @@
-import pytest
-import task_9_4
 import sys
+
+import task_9_4
 
 sys.path.append("..")
 
-from pyneng_common_functions import check_function_exists, check_function_params
+from pyneng_common_functions import (check_function_exists,
+                                     check_function_params, check_pytest)
 
-# Проверка что тест вызван через pytest ..., а не python ...
-from _pytest.assertion.rewrite import AssertionRewritingHook
 
-if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+check_pytest(__loader__, __file__)
 
 
 def test_function_created():

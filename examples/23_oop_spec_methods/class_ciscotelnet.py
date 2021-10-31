@@ -1,5 +1,5 @@
-import time
 import telnetlib
+import time
 
 
 class CiscoTelnet:

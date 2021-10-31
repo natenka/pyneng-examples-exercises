@@ -1,18 +1,14 @@
 import os
-import yaml
-import pytest
-import task_17_3b
 import sys
+
+import task_17_3b
 
 sys.path.append("..")
 
-from pyneng_common_functions import check_function_exists, unify_topology_dict
+from pyneng_common_functions import (check_function_exists, check_pytest,
+                                     unify_topology_dict)
 
-# Проверка что тест вызван через pytest ..., а не python ...
-from _pytest.assertion.rewrite import AssertionRewritingHook
-
-if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+check_pytest(__loader__, __file__)
 
 
 def test_function_created():
@@ -40,7 +36,7 @@ def test_function_return_value():
 
     assert os.path.exists("topology.yaml"), "Файл topology.yaml не существует"
     return_value = task_17_3b.transform_topology("topology.yaml")
-    assert return_value != None, "Функция ничего не возвращает"
+    assert return_value is not None, "Функция ничего не возвращает"
     assert (
         type(return_value) == dict
     ), f"По заданию функция должна возвращать словарь, а возвращает {type(return_value).__name__}"

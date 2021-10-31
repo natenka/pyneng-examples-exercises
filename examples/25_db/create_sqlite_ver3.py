@@ -1,6 +1,6 @@
 import os
-import sqlite3
 import re
+import sqlite3
 
 data_filename = 'dhcp_snooping.txt'
 db_filename = 'dhcp_snooping.db'

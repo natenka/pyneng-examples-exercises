@@ -1,16 +1,13 @@
+import sys
+
 import pytest
 import task_19_4
-import sys
 
 sys.path.append("..")
 
-from pyneng_common_functions import check_function_exists
+from pyneng_common_functions import check_function_exists, check_pytest
 
-# Проверка что тест вызван через pytest ..., а не python ...
-from _pytest.assertion.rewrite import AssertionRewritingHook
-
-if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+check_pytest(__loader__, __file__)
 
 
 def test_functions_created():
@@ -59,7 +56,7 @@ def test_function_return_value_show(
     return_value = task_19_4.send_commands_to_devices(
         three_routers_from_devices_yaml, show=command, filename=dest_filename, limit=3
     )
-    assert None == return_value, "Функция должна возвращать None"
+    assert return_value is None, "Функция должна возвращать None"
 
     dest_file_content = dest_filename.read().strip()
 
@@ -86,7 +83,7 @@ def test_function_return_value_config(
     return_value = task_19_4.send_commands_to_devices(
         three_routers_from_devices_yaml, config=command, filename=dest_filename, limit=3
     )
-    assert None == return_value, "Функция должна возвращать None"
+    assert return_value is None, "Функция должна возвращать None"
 
     dest_file_content = dest_filename.read().strip()
 

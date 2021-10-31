@@ -1,22 +1,17 @@
 import os
-import yaml
-import pytest
-import task_17_3a
 import sys
+
+import task_17_3a
+import yaml
 
 sys.path.append("..")
 
-from pyneng_common_functions import (
-    check_function_exists,
-    check_function_params,
-    get_func_params_default_value,
-)
+from pyneng_common_functions import (check_function_exists,
+                                     check_function_params, check_pytest,
+                                     get_func_params_default_value)
 
-# Проверка что тест вызван через pytest ..., а не python ...
-from _pytest.assertion.rewrite import AssertionRewritingHook
 
-if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+check_pytest(__loader__, __file__)
 
 
 def test_function_created():
@@ -36,7 +31,7 @@ def test_function_params():
         task_17_3a.generate_topology_from_cdp
     )
     assert (
-        default_values.get("save_to_filename") == None
+        default_values.get("save_to_filename") is None
     ), "У параметра save_to_filename значение по умолчанию должно быть None"
 
 

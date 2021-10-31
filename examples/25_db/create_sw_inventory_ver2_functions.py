@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-from pprint import pprint
 import sqlite3
-
+from pprint import pprint
 
 data = [('0000.AAAA.CCCC', 'sw1', 'Cisco 3750', 'London, Green Str'),
         ('0000.BBBB.CCCC', 'sw2', 'Cisco 3780', 'London, Green Str'),

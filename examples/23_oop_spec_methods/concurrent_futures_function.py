@@ -1,13 +1,10 @@
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from pprint import pprint
-from datetime import datetime
-import time
-from itertools import repeat
 import logging
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime
+from pprint import pprint
 
 import yaml
 from netmiko import ConnectHandler
-
 
 logging.getLogger("paramiko").setLevel(logging.WARNING)
 

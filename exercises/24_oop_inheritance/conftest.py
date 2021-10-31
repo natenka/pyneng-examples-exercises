@@ -1,6 +1,5 @@
-import re
-import yaml
 import pytest
+import yaml
 from netmiko import ConnectHandler
 
 

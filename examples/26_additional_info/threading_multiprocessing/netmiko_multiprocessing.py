@@ -1,8 +1,8 @@
 import multiprocessing
 import sys
-import yaml
 from pprint import pprint
 
+import yaml
 from netmiko import ConnectHandler
 
 COMMAND = sys.argv[1]

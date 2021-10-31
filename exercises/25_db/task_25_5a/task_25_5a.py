@@ -21,7 +21,7 @@
 
 """
 
-from datetime import timedelta, datetime
+from datetime import datetime, timedelta
 
 now = datetime.today().replace(microsecond=0)
 week_ago = now - timedelta(days=7)

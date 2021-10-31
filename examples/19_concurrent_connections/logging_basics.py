@@ -1,8 +1,8 @@
-from datetime import datetime
 import logging
+from datetime import datetime
+
 import netmiko
 import yaml
-
 
 # эта строка указывает, что лог-сообщения paramiko будут выводиться
 # только если они уровня WARNING и выше

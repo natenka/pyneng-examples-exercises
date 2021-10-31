@@ -1,7 +1,7 @@
-import paramiko
 import time
-import socket
 from pprint import pprint
+
+import paramiko
 
 
 def send_show_command(

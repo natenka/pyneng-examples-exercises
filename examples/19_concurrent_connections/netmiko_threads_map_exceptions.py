@@ -1,13 +1,12 @@
-from concurrent.futures import ThreadPoolExecutor
-from pprint import pprint
-from datetime import datetime
-import time
-from itertools import repeat
 import logging
+import time
+from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime
+from itertools import repeat
+from pprint import pprint
 
 import yaml
 from netmiko import ConnectHandler, NetMikoAuthenticationException
-
 
 logging.getLogger('paramiko').setLevel(logging.WARNING)
 

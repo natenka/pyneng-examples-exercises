@@ -1,7 +1,7 @@
+import re
 import telnetlib
 import time
 from pprint import pprint
-import re
 
 
 def to_bytes(line):

@@ -1,16 +1,13 @@
-import pytest
-import task_15_3
 import sys
+
+import task_15_3
 
 sys.path.append("..")
 
-from pyneng_common_functions import check_function_exists
+from pyneng_common_functions import check_function_exists, check_pytest
 
-# Проверка что тест вызван через pytest ..., а не python ...
-from _pytest.assertion.rewrite import AssertionRewritingHook
 
-if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+check_pytest(__loader__, __file__)
 
 
 def test_function_created():
@@ -73,7 +70,7 @@ def test_function_return_value(tmpdir):
         "cisco_nat_config.txt", dest_filename
     )
     file_content = dest_filename.read().strip()
-    assert return_value == None, "Функция должна возвращать None"
+    assert return_value is None, "Функция должна возвращать None"
     assert (
         correct_asa_nat_config.strip() == file_content
     ), "Неправильная конфигурация для ASA"

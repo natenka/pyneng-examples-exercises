@@ -1,6 +1,6 @@
-import pexpect
 import re
-from pprint import pprint
+
+import pexpect
 
 
 def send_show_command(ip, username, password, enable, command, prompt="#"):

@@ -1,16 +1,13 @@
-import pytest
-import task_23_1a
 import sys
+
+import task_23_1a
 
 sys.path.append("..")
 
-from pyneng_common_functions import check_class_exists, check_attr_or_method
+from pyneng_common_functions import (check_attr_or_method, check_class_exists,
+                                     check_pytest)
 
-# Проверка что тест вызван через pytest ..., а не python ...
-from _pytest.assertion.rewrite import AssertionRewritingHook
-
-if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+check_pytest(__loader__, __file__)
 
 
 def test_class_created():

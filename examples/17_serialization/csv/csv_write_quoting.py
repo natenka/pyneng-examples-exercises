@@ -1,6 +1,5 @@
 import csv
 
-
 data = [['hostname', 'vendor', 'model', 'location'],
         ['sw1', 'Cisco', '3750', 'London, Best str'],
         ['sw2', 'Cisco', '3850', 'Liverpool, Better str'],
