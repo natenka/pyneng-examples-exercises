@@ -1,7 +1,7 @@
 import sys
-import yaml
 import threading
 
+import yaml
 from netmiko import ConnectHandler
 
 COMMAND = sys.argv[1]

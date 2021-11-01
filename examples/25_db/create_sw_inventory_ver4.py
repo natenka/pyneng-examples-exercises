@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-from pprint import pprint
 import sqlite3
+from pprint import pprint
+
 import create_sw_inventory_ver2_functions as dbf
 
-#MAC-адрес sw7 совпадает с MAC-адресом коммутатора sw3 в списке data
+# MAC-адрес sw7 совпадает с MAC-адресом коммутатора sw3 в списке data
 data2 = [('0055.AAAA.CCCC', 'sw5', 'Cisco 3750', 'London, Green Str'),
          ('0066.BBBB.CCCC', 'sw6', 'Cisco 3780', 'London, Green Str'),
          ('0000.AAAA.DDDD', 'sw7', 'Cisco 2960', 'London, Green Str'),

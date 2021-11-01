@@ -1,8 +1,7 @@
-import pexpect
-import getpass
-import sys
-import time
 import re
+import time
+
+import pexpect
 
 
 def connect_ssh_cisco_ios(command, ip, username, password, enable,

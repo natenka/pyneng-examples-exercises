@@ -30,3 +30,9 @@ Thumbs.db
 *.un~
 *.pyc
 *.swp
+
+# VSCode files
+.vscode/
+
+# Virual environments
+venv/

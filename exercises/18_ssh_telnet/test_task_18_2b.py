@@ -1,19 +1,14 @@
-import re
-
-import yaml
-import pytest
-import task_18_2b
 import sys
+
+import pytest
+
+import task_18_2b
 
 sys.path.append("..")
 
-from pyneng_common_functions import check_function_exists
+from pyneng_common_functions import check_function_exists, check_pytest
 
-# Проверка что тест вызван через pytest ..., а не python ...
-from _pytest.assertion.rewrite import AssertionRewritingHook
-
-if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+check_pytest(__loader__, __file__)
 
 
 correct_return_value = (
@@ -70,7 +65,7 @@ def test_function_return_value(capsys, first_router_from_devices_yaml):
     )
 
     # проверяем возвращаемое значение
-    assert return_value != None, "Функция ничего не возвращает"
+    assert return_value is not None, "Функция ничего не возвращает"
     assert type(return_value) == tuple, "Функция должна возвращать кортеж"
     assert 2 == len(return_value) and all(
         type(item) == dict for item in return_value

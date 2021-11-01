@@ -1,8 +1,7 @@
-import sys
 import yaml
 from netmiko import ConnectHandler
 
-#COMMAND = sys.argv[1]
+# COMMAND = sys.argv[1]
 with open('devices.yaml') as f:
     devices = yaml.safe_load(f)
 

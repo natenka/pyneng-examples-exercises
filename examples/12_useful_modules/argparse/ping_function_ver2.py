@@ -1,5 +1,5 @@
-import subprocess
 import argparse
+import subprocess
 
 
 def ping_ip(ip_address, count):

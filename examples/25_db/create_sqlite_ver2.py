@@ -1,5 +1,5 @@
-import sqlite3
 import re
+import sqlite3
 
 regex = re.compile('(\S+) +(\S+) +\d+ +\S+ +(\d+) +(\S+)')
 

@@ -1,14 +1,14 @@
 import csv
 import inspect
-from platform import system as system_name
-from subprocess import run, PIPE
-from concurrent.futures import ThreadPoolExecutor
-import re
 import os
-from jinja2 import Environment, FileSystemLoader
-import yaml
-import textfsm
+import re
+from concurrent.futures import ThreadPoolExecutor
+from platform import system as system_name
+from subprocess import PIPE, run
 
+import textfsm
+from _pytest.assertion.rewrite import AssertionRewritingHook
+from jinja2 import Environment, FileSystemLoader
 
 stdout_incorrect_warning = """
 Сообщение отличается от указанного в задании.
@@ -35,12 +35,12 @@ def delete_empty_lines(output):
 
 def check_attr_or_method(obj, attr=None, method=None):
     if attr:
-        assert getattr(obj, attr, None) != None, "Переменная не найдена"
+        assert getattr(obj, attr, None) is not None, "Переменная не найдена"
         assert not inspect.ismethod(
             getattr(obj, attr)
         ), f"{attr} должен быть переменной, а не методом"
     if method:
-        assert getattr(obj, method, None) != None, "Метод не найден"
+        assert getattr(obj, method, None) is not None, "Метод не найден"
         assert inspect.ismethod(
             getattr(obj, method)
         ), f"{method} должен быть методом, а не переменной"
@@ -132,3 +132,10 @@ def get_textfsm_output(template, command_output):
         header = parser.header
         result = parser.ParseText(command_output)
     return [header] + result
+
+
+def check_pytest(loader, file):
+    """Проверка что тест вызван через pytest ..., а не python ..."""
+    if not isinstance(loader, AssertionRewritingHook):
+        print("Тесты нужно вызывать используя такое выражение:"
+              f"\npytest {file}\n\n")

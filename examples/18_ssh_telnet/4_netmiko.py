@@ -1,10 +1,8 @@
 from pprint import pprint
+
 import yaml
-from netmiko import (
-    ConnectHandler,
-    NetmikoTimeoutException,
-    NetmikoAuthenticationException,
-)
+from netmiko import (ConnectHandler, NetmikoAuthenticationException,
+                     NetmikoTimeoutException)
 
 
 def send_show_command(device, commands):

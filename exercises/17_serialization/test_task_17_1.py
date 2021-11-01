@@ -1,16 +1,14 @@
-import pytest
-import task_17_1
 import sys
+
+import task_17_1
 
 sys.path.append("..")
 
-from pyneng_common_functions import check_function_exists, read_all_csv_content_as_list
+from pyneng_common_functions import (check_function_exists, check_pytest,
+                                     read_all_csv_content_as_list)
 
-# Проверка что тест вызван через pytest ..., а не python ...
-from _pytest.assertion.rewrite import AssertionRewritingHook
 
-if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+check_pytest(__loader__, __file__)
 
 
 def test_function_created():
@@ -51,9 +49,8 @@ def test_return_value(tmpdir):
     )
     csv_content = read_all_csv_content_as_list(dest_filename)
 
-    assert (
-        None == return_value
-    ), f"По заданию функция должна возвращать None, а возвращает {type(return_value).__name__}"
+    assert return_value is None, ("По заданию функция должна возвращать None, "
+                                  f"а возвращает {type(return_value).__name__}")
     assert correct_return_value == sorted(
         csv_content
     ), "Функция возвращает неправильное значение"
@@ -85,9 +82,10 @@ def test_function_return_value_different_args(tmpdir):
     )
     csv_content = read_all_csv_content_as_list(dest_filename)
 
-    assert (
-        None == return_value
-    ), f"По заданию функция должна возвращать None, а возвращает {type(return_value).__name__}"
+    assert return_value is None, (
+        "По заданию функция должна возвращать None, а возвращает "
+        f"{type(return_value).__name__}"
+    )
     assert correct_return_value == sorted(
         csv_content
     ), "Функция возвращает неправильное значение"

@@ -1,4 +1,5 @@
 import sys
+
 import textfsm
 from tabulate import tabulate
 

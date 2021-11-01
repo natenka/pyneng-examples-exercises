@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import sys
-import yaml
 import threading
 from pprint import pprint
 
+import yaml
 from netmiko import ConnectHandler
 
 COMMAND = sys.argv[1]
@@ -17,7 +17,7 @@ def connect_ssh(device_dict, command, queue):
         result = ssh.send_command(command)
         print('Connection to device {}'.format(device_dict['ip']))
 
-        #Добавляем словарь в список
+        # Добавляем словарь в список
         queue.append({device_dict['ip']: result})
 
 

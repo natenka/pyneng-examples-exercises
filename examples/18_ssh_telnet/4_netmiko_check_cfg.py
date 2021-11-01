@@ -1,6 +1,5 @@
-import getpass
-import sys
 import re
+
 from netmiko import ConnectHandler
 
 

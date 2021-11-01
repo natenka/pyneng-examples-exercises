@@ -1,14 +1,13 @@
-import re
-import yaml
 import pytest
+import yaml
 from netmiko import ConnectHandler
 
 
 def test_attr_or_method(obj, attr=None, method=None):
     if attr:
-        assert getattr(obj, attr, None) != None, "Атрибут не найден"
+        assert getattr(obj, attr, None) is not None, "Атрибут не найден"
     if method:
-        assert getattr(obj, method, None) != None, "Метод не найден"
+        assert getattr(obj, method, None) is not None, "Метод не найден"
 
 
 @pytest.fixture()

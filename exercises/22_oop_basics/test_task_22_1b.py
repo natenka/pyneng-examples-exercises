@@ -1,22 +1,14 @@
-import pytest
-import warnings
-import task_22_1b
 import sys
+
+import task_22_1b
 
 sys.path.append("..")
 
-from pyneng_common_functions import (
-    check_class_exists,
-    check_attr_or_method,
-    stdout_incorrect_warning,
-    unify_topology_dict,
-)
+from pyneng_common_functions import (check_attr_or_method, check_class_exists,
+                                     check_pytest, stdout_incorrect_warning,
+                                     unify_topology_dict)
 
-# Проверка что тест вызван через pytest ..., а не python ...
-from _pytest.assertion.rewrite import AssertionRewritingHook
-
-if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+check_pytest(__loader__, __file__)
 
 
 def test_class_created():

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from jinja2 import Environment, FileSystemLoader
-import yaml
-import sys
 import os
+import sys
+
+import yaml
+from jinja2 import Environment, FileSystemLoader
 
 #$ python cfg_gen.py templates/for.txt data_files/for.yml
 template_dir, template_file = os.path.split(sys.argv[1])

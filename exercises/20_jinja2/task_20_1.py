@@ -16,7 +16,6 @@
 """
 import yaml
 
-
 # так должен выглядеть вызов функции
 if __name__ == "__main__":
     data_file = "data_files/for.yml"

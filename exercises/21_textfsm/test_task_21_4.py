@@ -1,18 +1,14 @@
-import textfsm
 import os
-import pytest
-import task_21_4
 import sys
+
+import task_21_4
+import textfsm
 
 sys.path.append("..")
 
-from pyneng_common_functions import check_function_exists
+from pyneng_common_functions import check_function_exists, check_pytest
 
-# Проверка что тест вызван через pytest ..., а не python ...
-from _pytest.assertion.rewrite import AssertionRewritingHook
-
-if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+check_pytest(__loader__, __file__)
 
 
 def test_functions_created():
@@ -37,7 +33,7 @@ def test_function_return_value(r1_test_connection, first_router_from_devices_yam
         first_router_from_devices_yaml, "sh ip int br", templates_path=full_pth
     )
 
-    assert return_value != None, "Функция ничего не возвращает"
+    assert return_value is not None, "Функция ничего не возвращает"
     assert (
         type(return_value) == list
     ), f"По заданию функция должна возвращать список, а возвращает {type(return_value).__name__}"
@@ -63,7 +59,7 @@ def test_function_return_value_different_args(
         first_router_from_devices_yaml, "sh version", templates_path=full_pth
     )
 
-    assert return_value != None, "Функция ничего не возвращает"
+    assert return_value is not None, "Функция ничего не возвращает"
     assert (
         type(return_value) == list
     ), f"По заданию функция должна возвращать список, а возвращает {type(return_value).__name__}"

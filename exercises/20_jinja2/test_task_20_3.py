@@ -1,20 +1,12 @@
 import os
-import pytest
 import sys
 
 sys.path.append("..")
 
-from pyneng_common_functions import (
-    check_function_exists,
-    strip_empty_lines,
-    render_jinja_template,
-)
+from pyneng_common_functions import (check_pytest,
+                                     render_jinja_template, strip_empty_lines)
 
-# Проверка что тест вызван через pytest ..., а не python ...
-from _pytest.assertion.rewrite import AssertionRewritingHook
-
-if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+check_pytest(__loader__, __file__)
 
 
 def test_templates_exists():

@@ -1,6 +1,7 @@
-import pexpect
 import getpass
 import sys
+
+import pexpect
 
 
 def send_ios_show_pexpect(ip, command, username=None, password=None, enable=None):

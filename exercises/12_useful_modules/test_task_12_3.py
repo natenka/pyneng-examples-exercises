@@ -1,22 +1,14 @@
-import re
-import pytest
-import task_12_3
 import sys
+
+import task_12_3
 
 sys.path.append("..")
 
-from pyneng_common_functions import (
-    check_function_exists,
-    ping,
-    get_reach_unreach,
-    unified_columns_output,
-)
+from pyneng_common_functions import (check_function_exists, check_pytest,
+                                     unified_columns_output)
 
-# Проверка что тест вызван через pytest ..., а не python ...
-from _pytest.assertion.rewrite import AssertionRewritingHook
 
-if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+check_pytest(__loader__, __file__)
 
 
 def test_function_created():
@@ -43,7 +35,7 @@ def test_function_stdout(capsys):
         "10.10.1.9\n"
         "10.10.1.15\n"
     )
-    assert return_value == None, "Функция должна возвращать None"
+    assert return_value is None, "Функция должна возвращать None"
     assert correct_stdout == unified_columns_output(
         stdout
     ), "Функция возвращает неправильное значение"

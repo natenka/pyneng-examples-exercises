@@ -1,18 +1,11 @@
-import re
-from importlib import reload
-import pytest
 import sys
+from importlib import reload
 
 sys.path.append("..")
 
-from pyneng_common_functions import unified_columns_output
+from pyneng_common_functions import check_pytest, unified_columns_output
 
-
-# Проверка что тест вызван через pytest ..., а не python ...
-from _pytest.assertion.rewrite import AssertionRewritingHook
-
-if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+check_pytest(__loader__, __file__)
 
 
 def test_task_10_5_5_1_24(capsys, monkeypatch):

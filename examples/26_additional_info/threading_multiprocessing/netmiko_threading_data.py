@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import sys
-import yaml
 import threading
-from queue import Queue
 from pprint import pprint
+from queue import Queue
+
+import yaml
 from netmiko import ConnectHandler
 
 COMMAND = sys.argv[1]

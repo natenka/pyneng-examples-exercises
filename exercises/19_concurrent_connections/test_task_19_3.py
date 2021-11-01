@@ -1,22 +1,16 @@
+import sys
+
 import pytest
 import task_19_3
 import yaml
-import sys
 
 sys.path.append("..")
 
-from pyneng_common_functions import (
-    check_function_exists,
-    strip_empty_lines,
-)
-
 from conftest import create_ssh_connect
+from pyneng_common_functions import (check_function_exists, check_pytest,
+                                     strip_empty_lines)
 
-# Проверка что тест вызван через pytest ..., а не python ...
-from _pytest.assertion.rewrite import AssertionRewritingHook
-
-if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+check_pytest(__loader__, __file__)
 
 
 with open("devices.yaml") as f:
@@ -65,7 +59,7 @@ def test_function_return_value_from_single_device(
         filename=dest_filename,
         limit=3,
     )
-    assert None == return_value, "Функция должна возвращать None"
+    assert return_value is None, "Функция должна возвращать None"
     dest_file_content = strip_empty_lines(dest_filename.read().strip())
 
     assert (
@@ -93,7 +87,7 @@ def test_function_return_value_from_all_devices(
         dest_filename,
         limit=3,
     )
-    assert None == return_value, "Функция должна возвращать None"
+    assert return_value is None, "Функция должна возвращать None"
 
     dest_file_content = dest_filename.read().strip()
 

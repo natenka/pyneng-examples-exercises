@@ -1,16 +1,13 @@
-import pytest
-import task_20_1
 import sys
+
+import task_20_1
 
 sys.path.append("..")
 
-from pyneng_common_functions import check_function_exists, strip_empty_lines
+from pyneng_common_functions import (check_function_exists, check_pytest,
+                                     strip_empty_lines)
 
-# Проверка что тест вызван через pytest ..., а не python ...
-from _pytest.assertion.rewrite import AssertionRewritingHook
-
-if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+check_pytest(__loader__, __file__)
 
 
 def test_functions_created():
@@ -52,7 +49,7 @@ def test_function_return_value():
         ],
     }
     return_value = task_20_1.generate_config(template, data)
-    assert return_value != None, "Функция ничего не возвращает"
+    assert return_value is not None, "Функция ничего не возвращает"
     assert (
         type(return_value) == str
     ), f"По заданию функция должна возвращать строку, а возвращает {type(return_value).__name__}"
