@@ -49,7 +49,7 @@ def test_function_return_value_from_single_device(
         filename=dest_filename,
         limit=3,
     )
-    assert return_value is None, "Функция должна возвращать None"
+    assert None == return_value, "Функция должна возвращать None"
     dest_file_content = strip_empty_lines(dest_filename.read().strip())
 
     assert (
@@ -70,7 +70,7 @@ def test_function_return_value_from_all_devices(
         filename=dest_filename,
         limit=3,
     )
-    assert return_value is None, "Функция должна возвращать None"
+    assert None == return_value, "Функция должна возвращать None"
 
     dest_file_content = dest_filename.read().strip()
 

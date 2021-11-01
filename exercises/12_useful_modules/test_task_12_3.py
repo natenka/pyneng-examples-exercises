@@ -35,7 +35,7 @@ def test_function_stdout(capsys):
         "10.10.1.9\n"
         "10.10.1.15\n"
     )
-    assert return_value is None, "Функция должна возвращать None"
+    assert None == return_value, "Функция должна возвращать None"
     assert correct_stdout == unified_columns_output(
         stdout
     ), "Функция возвращает неправильное значение"

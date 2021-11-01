@@ -41,7 +41,7 @@ def test_return_value(tmpdir):
     return_value = task_17_4.write_last_log_to_csv(source_filename, dest_filename)
     csv_content = read_all_csv_content_as_list(dest_filename)
 
-    assert return_value is None, (
+    assert None == return_value, (
         f"По заданию функция должна возвращать None, а возвращает {type(return_value).__name__}"
     )
     assert correct_return_value == sorted(

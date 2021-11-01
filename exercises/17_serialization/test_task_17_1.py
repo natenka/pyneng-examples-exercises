@@ -49,7 +49,7 @@ def test_return_value(tmpdir):
     )
     csv_content = read_all_csv_content_as_list(dest_filename)
 
-    assert return_value is None, ("По заданию функция должна возвращать None, "
+    assert None == return_value, ("По заданию функция должна возвращать None, "
                                   f"а возвращает {type(return_value).__name__}")
     assert correct_return_value == sorted(
         csv_content
@@ -82,7 +82,7 @@ def test_function_return_value_different_args(tmpdir):
     )
     csv_content = read_all_csv_content_as_list(dest_filename)
 
-    assert return_value is None, (
+    assert None == return_value, (
         "По заданию функция должна возвращать None, а возвращает "
         f"{type(return_value).__name__}"
     )

@@ -86,7 +86,7 @@ def test_write_to_csv_return_value(tmpdir):
     return_value = task_17_2.write_inventory_to_csv(sh_version_files, dest_filename)
     csv_content = read_all_csv_content_as_list(dest_filename)
 
-    assert return_value is None, (
+    assert None == return_value, (
         f"По заданию функция должна возвращать None, а возвращает {type(return_value).__name__}")
     assert correct_return_value == sorted(
         csv_content

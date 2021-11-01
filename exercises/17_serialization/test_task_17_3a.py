@@ -31,7 +31,7 @@ def test_function_params():
         task_17_3a.generate_topology_from_cdp
     )
     assert (
-        default_values.get("save_to_filename") is None
+        None == default_values.get("save_to_filename")
     ), "У параметра save_to_filename значение по умолчанию должно быть None"
 
 

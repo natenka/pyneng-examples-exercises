@@ -70,7 +70,7 @@ def test_function_return_value(tmpdir):
         "cisco_nat_config.txt", dest_filename
     )
     file_content = dest_filename.read().strip()
-    assert return_value is None, "Функция должна возвращать None"
+    assert None == return_value, "Функция должна возвращать None"
     assert (
         correct_asa_nat_config.strip() == file_content
     ), "Неправильная конфигурация для ASA"
