@@ -32,9 +32,9 @@ task_dirs = [
 ]
 
 
-class PtestError(Exception):
+class PynengError(Exception):
     """
-    Ошибка в использовании/работе скрипта ptest
+    Ошибка в использовании/работе скрипта pyneng
     """
 
 
@@ -198,7 +198,6 @@ def copy_answers(passed_tasks):
         shutil.rmtree("pyneng-answers", onerror=remove_readonly)
     else:
         if stderr and "could not resolve host" in stderr.lower():
-            # PynengError - ниоткуда не импортируется и не определена нигде выше!!
 
             raise PynengError(
                 red(
