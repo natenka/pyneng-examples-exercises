@@ -40,4 +40,7 @@ ValueError                                Traceback (most recent call last)
       4
 
 ValueError: Возникла ошибка
+
+Тест проверяет подключение с параметрами из файла devices.yaml. Там должны быть
+указаны доступные устройства.
 """
