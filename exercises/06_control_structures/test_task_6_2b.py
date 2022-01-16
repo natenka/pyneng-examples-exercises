@@ -86,7 +86,7 @@ def test_task_wrong_first_ip_correct_second(capsys, monkeypatch, ip_add, ip_type
     import task_6_2b
 
     out, err = capsys.readouterr()
-    correct_stdout = ip_type + "\nunicast"
+    correct_stdout = ip_type
     assert (
         out
     ), "Ничего не выведено на стандартный поток вывода. Надо не только получить нужный результат, но и вывести его на стандартный поток вывода с помощью print"
