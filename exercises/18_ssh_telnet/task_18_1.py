@@ -19,6 +19,8 @@
 """
 import yaml
 
+
+
 if __name__ == "__main__":
     command = "sh ip int br"
     with open("devices.yaml") as f:
